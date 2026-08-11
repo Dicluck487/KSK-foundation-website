@@ -1,0 +1,78 @@
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-text">
+      <p class="eyebrow">Welcome to</p>
+      <h1>The Mentorship Program</h1>
+      <p class="lead">A dynamic youth program harnessing the transformative power of peer-to-peer mentorship to nurture the next generation of leaders and entrepreneurs of tomorrow.</p>
+      <a href="/apply" class="btn btn-primary">Apply Now</a>
+    </div>
+    <div class="hero-image">
+      <img src="/images/images.jpg" alt="Mentorship program participants" class="rounded-img">
+    </div>
+  </div>
+</section>
+
+<section class="section experience">
+  <div class="container two-col">
+    <img src="/images/images1.jpg" alt="Mentorship session" class="rounded-img tall">
+    <div>
+      <p class="eyebrow">Our Mentorship Experience</p>
+      <h2>Ignite Your Potential. Learn From Visionaries.</h2>
+      <p>Immerse yourself in a mentorship experience guided by experienced leaders. Our program uses personal narratives and structured monthly themes to build:</p>
+      <ul class="checklist">
+        <li>Self awareness</li>
+        <li>Personal development</li>
+        <li>Career development</li>
+        <li>Impactful leadership</li>
+        <li>Entrepreneurship</li>
+      </ul>
+      <a href="/who-we-are" class="btn btn-outline">More About Us</a>
+    </div>
+  </div>
+</section>
+
+<section class="section impact">
+  <div class="container">
+    <p class="eyebrow center">Our Impact</p>
+    <h2 class="center">Seize The Opportunity To Transform Your Future.</h2>
+    <p class="center max-w">Through a focus on monthly topics, this program offers a unique perspective on your potential in a rapidly changing world &mdash; the lessons shared, networks forged, and skills acquired set each individual apart.</p>
+
+    <div class="stats-grid">
+      <% impactStats.forEach(function(stat) { %>
+        <div class="stat-card">
+          <div class="stat-number"><%= stat.number %></div>
+          <div class="stat-label"><%= stat.label %></div>
+          <p><%= stat.text %></p>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<section class="section testimonials">
+  <div class="container">
+    <p class="eyebrow center">Testimonials</p>
+    <h2 class="center">What Our Students Say</h2>
+
+    <div class="testimonial-grid">
+      <% testimonials.forEach(function(t, i) { %>
+        <blockquote class="testimonial-card">
+          <img class="avatar" src="/images/images2.jpg" alt="<%= t.name %>">
+          <p>&ldquo;<%= t.quote %>&rdquo;</p>
+          <footer><strong><%= t.name %></strong> &mdash; <%= t.role %></footer>
+        </blockquote>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="container cta-inner">
+    <div>
+      <p class="eyebrow">Apply Today</p>
+      <h2>Nothing Beats Good Mentorship For The Betterment Of A Student's Future</h2>
+      <p>We bring together accomplished mentors to guide the next generation of young leaders.</p>
+    </div>
+    <a href="/apply" class="btn btn-primary btn-lg">Apply Now!</a>
+  </div>
+</section>

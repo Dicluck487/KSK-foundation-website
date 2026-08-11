@@ -1,0 +1,23 @@
+<section class="page-header">
+  <div class="container">
+    <h1>News &amp; Events</h1>
+    <p>Latest news, stories, and events from the mentorship program.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="news-grid">
+      <% newsEvents.forEach(function(item) { %>
+        <article class="news-card">
+          <img src="/public/images/2image5.jpg" alt="<%= item.title %>">
+          <div class="news-card-body">
+            <span class="news-date"><%= item.date %></span>
+            <h3><%= item.title %></h3>
+            <p><%= item.excerpt %></p>
+          </div>
+        </article>
+      <% }); %>
+    </div>
+  </div>
+</section>

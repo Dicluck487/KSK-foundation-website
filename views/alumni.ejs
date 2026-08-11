@@ -1,0 +1,30 @@
+<section class="page-header">
+  <div class="container">
+    <h1>Alumni</h1>
+    <p>Whether you are a potential mentee, mentor, or just curious, our alumni network is ready to share, learn, and support.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="testimonial-grid">
+      <% testimonials.forEach(function(t, i) { %>
+        <blockquote class="testimonial-card">
+          <img class="avatar" src="/public/images/2image5.jpg" alt="<%= t.name %>">
+          <p>&ldquo;<%= t.quote %>&rdquo;</p>
+          <footer><strong><%= t.name %></strong> &mdash; <%= t.role %></footer>
+        </blockquote>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="container cta-inner">
+    <div>
+      <h2>Are You An Alumnus?</h2>
+      <p>Reconnect with the network and find out how you can mentor the next cohort.</p>
+    </div>
+    <a href="/contact-us" class="btn btn-primary btn-lg">Get In Touch</a>
+  </div>
+</section>

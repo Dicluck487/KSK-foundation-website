@@ -1,0 +1,20 @@
+<section class="page-header">
+  <div class="container">
+    <h1>Publications</h1>
+    <p>Prospectuses and magazines published by the program.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="publications-grid">
+      <% publications.forEach(function(p) { %>
+        <a href="/publications/<%= p.slug %>" class="publication-card">
+          <img src="../public/images/2image3.jpg" alt="<%= p.title %>">
+          <h3><%= p.title %></h3>
+          <p><%= p.description %></p>
+        </a>
+      <% }); %>
+    </div>
+  </div>
+</section>

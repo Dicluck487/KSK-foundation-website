@@ -1,0 +1,38 @@
+<section class="page-header">
+  <div class="container">
+    <h1>Contact Us</h1>
+    <p>Get in touch with the mentorship program team.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container two-col">
+    <div>
+      <h2>Reach Us Directly</h2>
+      <p><strong>Email:</strong> hello@yourdomain.com</p>
+      <p><strong>Phone:</strong> +256 700 000 000</p>
+      <p><strong>Location:</strong> Your Venue, Your Street, City, Country</p>
+    </div>
+
+    <div>
+      <% if (submitted) { %>
+        <div class="alert alert-success">Thanks for reaching out! We'll get back to you soon.</div>
+      <% } %>
+      <form method="POST" action="/contact-us" class="site-form">
+        <label>
+          Name
+          <input type="text" name="name" required>
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" required>
+        </label>
+        <label>
+          Message
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>

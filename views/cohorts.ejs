@@ -1,0 +1,26 @@
+<section class="page-header">
+  <div class="container">
+    <h1>Cohort</h1>
+    <p>Current and past mentorship cohorts.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="cohort-list">
+      <% cohorts.forEach(function(c) { %>
+        <div class="cohort-row">
+          <div>
+            <h3><%= c.name %></h3>
+            <p><%= c.period %></p>
+          </div>
+          <span class="badge <%= c.status === 'Applications Open' ? 'badge-open' : 'badge-closed' %>"><%= c.status %></span>
+        </div>
+      <% }); %>
+    </div>
+
+    <div class="cta-inline">
+      <a href="/apply" class="btn btn-primary">Apply To The Current Cohort</a>
+    </div>
+  </div>
+</section>

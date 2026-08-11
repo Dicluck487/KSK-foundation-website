@@ -1,0 +1,19 @@
+{
+  "name": "mentorship-class-site",
+  "version": "1.0.0",
+  "description": "A youth mentorship program website built with Express.js",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "ejs": "^3.1.10",
+    "express-ejs-layouts": "^2.5.1",
+    "body-parser": "^1.20.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

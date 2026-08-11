@@ -1,0 +1,21 @@
+<section class="page-header">
+  <div class="container">
+    <h1>Our Team</h1>
+    <p>The leading management team behind our mentoring and coaching.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="team-grid">
+      <% teamMembers.forEach(function(member, i) { %>
+        <div class="team-card">
+          <img src="../public/images/him1.jpg" alt="<%= member.name %>" class="rounded-img square">
+          <h3><%= member.name %></h3>
+          <p class="role"><%= member.role %></p>
+          <p><%= member.bio %></p>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+</section>
