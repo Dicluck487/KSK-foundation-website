@@ -1,61 +1,128 @@
 <header class="site-header">
-  <div class="container header-inner">
-    <a href="/" class="logo">KSK<span>.</span></a>
+    <div class="container header-inner">
 
+
+    <!-- Logo -->
+    <a href="/" class="logo">
+        <img src="/images/logo.jpg" alt="KSK Logo">
+    </a>
+   
+
+    <!-- Navigation -->
     <nav class="main-nav" id="main-nav">
-      <ul>
-        <li><a href="/" class="<%= currentPath === '/' ? 'active' : '' %>">Welcome</a></li>
+        <ul>
 
-        <li class="has-dropdown">
-          <a href="#" class="dropdown-toggle">About KSK</a>
-          <div class="mega-dropdown">
-            <a href="/who-we-are" class="mega-item">
-              <img src="/public/images/2image3.jpg" alt="Who We Are">
-              <h4>Who We Are</h4>
-              <p>A youth program using peer-to-peer mentorship to groom leaders and entrepreneurs.</p>
-            </a>
-            <a href="/alumni" class="mega-item">
-              <img src="/public/images/2image6.jpg" alt="Alumni">
-              <h4>Alumni</h4>
-              <p>Whether a potential mentee, mentor, or just curious, our alumni are ready to share and support.</p>
-            </a>
-            <a href="/our-team" class="mega-item">
-              <img src="/public/images/2image5.jpg" alt="Our Team">
-              <h4>Our Team</h4>
-              <p>Our leading management team behind great mentoring and coaching.</p>
-            </a>
-          </div>
-        </li>
+            <li>
+                <a href="/" class="<%= currentPath === '/' ? 'active' : '' %>">
+                    Welcome
+                </a>
+            </li>
 
-        <li><a href="/cohorts" class="<%= currentPath === '/cohorts' ? 'active' : '' %>">Cohort</a></li>
+            <!-- About KSK -->
+            <li class="has-dropdown">
+                <a href="#" class="dropdown-toggle">
+                    About KSK
+                </a>
 
-        <li class="has-dropdown">
-          <a href="#" class="dropdown-toggle">Publications</a>
-          <div class="mega-dropdown">
-            <a href="/publications/prospectus-2026" class="mega-item">
-              <img src="/public/images/2image7.jpg" alt="Prospectus">
-              <h4>2026 Prospectus</h4>
-            </a>
-            <a href="/publications/magazine-2025" class="mega-item">
-              <img src="/public/images/2image1.jpg" alt="Magazine 2025">
-              <h4>Magazine 2025</h4>
-            </a>
-            <a href="/publications/magazine-2024" class="mega-item">
-              <img src="/public/images/2image2.jpg" alt="Magazine 2024">
-              <h4>Magazine 2024</h4>
-            </a>
-          </div>
-        </li>
+                <div class="mega-dropdown">
 
-        <li><a href="/news-events" class="<%= currentPath === '/news-events' ? 'active' : '' %>">News &amp; Events</a></li>
-        <li><a href="/contact-us" class="<%= currentPath === '/contact-us' ? 'active' : '' %>">Contact Us</a></li>
-      </ul>
+                    <a href="/who-we-are" class="mega-item">
+                        <img src="/images/2image3.jpg" alt="Who We Are">
+                        <h4>Who We Are</h4>
+                        <p>
+                            A youth program using peer-to-peer mentorship
+                            to groom leaders and entrepreneurs.
+                        </p>
+                    </a>
+
+                    <a href="/alumni" class="mega-item">
+                        <img src="/images/2image6.jpg" alt="Alumni">
+                        <h4>Alumni</h4>
+                        <p>
+                            Whether a potential mentee, mentor, or just curious,
+                            our alumni are ready to share and support.
+                        </p>
+                    </a>
+
+                    <a href="/our-team" class="mega-item">
+                        <img src="/images/2image5.jpg" alt="Our Team">
+                        <h4>Our Team</h4>
+                        <p>
+                            Our leading management team behind great mentoring
+                            and coaching.
+                        </p>
+                    </a>
+
+                </div>
+            </li>
+
+            <!-- Cohorts -->
+            <li>
+                <a href="/cohorts" class="<%= currentPath === '/cohorts' ? 'active' : '' %>">
+                    Cohort
+                </a>
+            </li>
+
+            <!-- Publications -->
+            <li class="has-dropdown">
+                <a href="#" class="dropdown-toggle">
+                    Publications
+                </a>
+
+                <div class="mega-dropdown">
+
+                    <a href="/publications/prospectus-2026" class="mega-item">
+                        <img src="/images/2image7.jpg" alt="Prospectus">
+                        <h4>2026 Prospectus</h4>
+                    </a>
+
+                    <a href="/publications/magazine-2025" class="mega-item">
+                        <img src="/images/2image1.jpg" alt="Magazine 2025">
+                        <h4>Magazine 2025</h4>
+                    </a>
+
+                    <a href="/publications/magazine-2024" class="mega-item">
+                        <img src="/images/2image2.jpg" alt="Magazine 2024">
+                        <h4>Magazine 2024</h4>
+                    </a>
+
+                </div>
+            </li>
+
+            <!-- News & Events -->
+            <li>
+                <a href="/news-events" class="<%= currentPath === '/news-events' ? 'active' : '' %>">
+                    News &amp; Events
+                </a>
+            </li>
+
+            <!-- Contact -->
+            <li>
+                <a href="/contact-us" class="<%= currentPath === '/contact-us' ? 'active' : '' %>">
+                    Contact Us
+                </a>
+            </li>
+
+        </ul>
     </nav>
 
-    <a href="/apply" class="btn btn-primary header-cta">Apply Today</a>
+    <!-- Apply Button -->
+    <a href="/apply" class="btn btn-primary header-cta">
+        Apply Today
+    </a>
 
-    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
-      <span></span><span></span><span></span>
+    <!-- Mobile Navigation Toggle -->
+    <button
+        class="nav-toggle"
+        id="nav-toggle"
+        aria-label="Toggle navigation"
+        type="button"
+    >
+        <span></span>
+        <span></span>
+        <span></span>
     </button>
-  </div>
+
+</div>
+
 </header>
