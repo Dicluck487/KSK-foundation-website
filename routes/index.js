@@ -30,9 +30,32 @@ const cohorts = [
 ];
 
 const publications = [
-  { title: 'Prospectus 2026', description: 'Program overview, structure, and how to apply.', slug: 'prospectus-2026' },
-  { title: 'Magazine 2025', description: 'Highlights, stories, and alumni features from the year.', slug: 'magazine-2025' },
-  { title: 'Magazine 2024', description: 'A look back at cohort activities and milestones.', slug: 'magazine-2024' }
+  {
+    title: 'FOCUS Magazine — Current Issue',
+    type: 'FOCUS Magazine',
+    year: '2026',
+    description: 'The latest issue of FOCUS Magazine from KSK Foundation.',
+    slug: 'focus-magazine-2026',
+    image: 'focus-2026.jpg'
+  },
+
+  {
+    title: 'FOCUS Magazine — 2025',
+    type: 'FOCUS Magazine',
+    year: '2025',
+    description: 'Stories, achievements and highlights from KSK Foundation.',
+    slug: 'focus-magazine-2025',
+    image: 'focus-2025.jpg'
+  },
+
+  {
+    title: 'Year in Review — 2025',
+    type: 'Annual Highlights',
+    year: '2025',
+    description: 'A celebration of KSK Foundation’s programs, cohorts and achievements.',
+    slug: 'year-in-review-2025',
+    image: 'year-review-2025.jpg'
+  }
 ];
 
 const newsEvents = [
@@ -42,10 +65,30 @@ const newsEvents = [
 ];
 
 const faqs = [
-  { q: 'Who can apply to the program?', a: 'The program is open to young people interested in leadership, personal growth, and entrepreneurship. Specific eligibility details are shared in each cohort\'s application form.' },
-  { q: 'Is there a cost to join?', a: 'Fee structures vary by cohort and are detailed in the prospectus and application materials.' },
-  { q: 'How long does a cohort run?', a: 'Each cohort typically runs across a defined mentorship cycle built around monthly themes and sessions.' },
-  { q: 'How do I become a mentor?', a: 'Reach out via the contact page and our team will walk you through the mentor onboarding process.' }
+  {
+    q: 'How do I apply to a program?',
+    a: 'Applications open on a rolling basis ahead of each program’s intake window. Secondary schools may nominate S6 leavers for the Making Students World Ready Program (MSWRP), while families can apply directly for Kaizen Teen Boot Camp. Please contact KSK Foundation to confirm the exact application process and any available application form before applying.'
+  },
+
+  {
+    q: 'Is there a cost to participate?',
+    a: 'Participation costs, sponsorship arrangements and any need-based waivers vary by program. Please contact KSK Foundation for the most current information about fees and available support before applying.'
+  },
+
+  {
+    q: 'How can my organization sponsor a program?',
+    a: 'Visit our Partner With Us page to learn about sponsorship opportunities, or contact us directly to discuss a partnership tailored to your organization’s interests.'
+  },
+
+  {
+    q: 'How do I apply for a KSK Foundation scholarship?',
+    a: 'KSK Foundation scholarship beneficiaries are identified through school nominations rather than applying directly for the scholarships. Please contact the Foundation if you would like to learn more about the scholarship partnerships and selection process.'
+  },
+
+  {
+    q: 'Where can I read FOCUS Magazine?',
+    a: 'Current and past digital issues of FOCUS Magazine are available on our Publications page as they become available. Hard-copy issues are available for UGX 20,000, subject to availability.'
+  }
 ];
 
 // ---- Routes ----
@@ -123,11 +166,11 @@ router.get('/terms-conditions', (req, res) => {
   });
 });
 
-router.get('/faqs', (req, res) => {
-  res.render('faqs', {
-    title: 'FAQs',
+router.get('/faq', (req, res) => {
+  res.render('faq', {
+    title: 'FAQ',
     description: 'Frequently asked questions about the mentorship program.',
-    faqs
+    faq
   });
 });
 
@@ -139,22 +182,46 @@ router.get('/privacy-policy', (req, res) => {
 });
 
 router.get('/contact-us', (req, res) => {
+
   res.render('contact-us', {
     title: 'Contact Us',
-    description: 'Get in touch with the mentorship program team.',
+    description: 'Get in touch with KSK Foundation.',
     submitted: false
   });
+
 });
 
 router.post('/contact-us', (req, res) => {
-  const { name, email, message } = req.body;
-  // TODO: wire this up to an email service or database
-  console.log('New contact form submission:', { name, email, message });
-  res.render('contact-us', {
-    title: 'Contact Us',
-    description: 'Get in touch with the mentorship program team.',
-    submitted: true
+
+  const {
+    name,
+    email,
+    organization,
+    reason,
+    message
+  } = req.body;
+
+
+  console.log('New contact form submission:', {
+    name,
+    email,
+    organization,
+    reason,
+    message
   });
+
+
+  res.render('contact-us', {
+
+    title: 'Contact Us',
+
+    description:
+      'Get in touch with KSK Foundation.',
+
+    submitted: true
+
+  });
+
 });
 
 router.get('/apply', (req, res) => {
@@ -172,6 +239,30 @@ router.post('/apply', (req, res) => {
     title: 'Apply',
     description: 'Apply to join the next mentorship cohort.',
     submitted: true
+  });
+});
+
+
+// =========================================================
+// PARTNER WITH US
+// =========================================================
+
+router.get('/partner-with-us', (req, res) => {
+  res.render('partner-with-us', {
+    title: 'Partner With Us',
+    description: 'Partner with KSK Foundation to invest in Uganda’s next generation of leaders, innovators and entrepreneurs.'
+  });
+});
+
+
+// =========================================================
+// LEADERSHIP
+// =========================================================
+
+router.get('/leadership', (req, res) => {
+  res.render('leadership', {
+    title: 'Leadership',
+    description: 'Meet the leadership and governance community guiding KSK Foundation.'
   });
 });
 

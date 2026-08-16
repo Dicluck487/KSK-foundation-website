@@ -1,38 +1,436 @@
-<section class="page-header">
+<!-- =========================================================
+     CONTACT US
+========================================================= -->
+
+<section class="page-header contact-page-header">
   <div class="container">
-    <h1>Contact Us</h1>
-    <p>Get in touch with the mentorship program team.</p>
+
+    <span class="section-eyebrow">
+      GET IN TOUCH
+    </span>
+
+    <h1>Contact KSK Foundation</h1>
+
+    <p>
+      Whether you have a question about our programs, would like
+      to explore a partnership, or simply want to learn more,
+      we'd love to hear from you.
+    </p>
+
   </div>
 </section>
 
-<section class="section">
-  <div class="container two-col">
-    <div>
-      <h2>Reach Us Directly</h2>
-      <p><strong>Email:</strong> hello@yourdomain.com</p>
-      <p><strong>Phone:</strong> +256 700 000 000</p>
-      <p><strong>Location:</strong> Your Venue, Your Street, City, Country</p>
+
+<!-- =========================================================
+     CONTACT DETAILS + FORM
+========================================================= -->
+
+<section class="section contact-section">
+
+  <div class="container">
+
+    <div class="contact-layout">
+
+
+      <!-- ===================================================
+           CONTACT INFORMATION
+      ==================================================== -->
+
+      <div class="contact-information">
+
+        <span class="section-eyebrow">
+          CONTACT INFORMATION
+        </span>
+
+        <h2>
+          Let's start a conversation
+        </h2>
+
+        <p class="contact-intro">
+          Reach out to KSK Foundation for information about our
+          programs, partnerships, alumni network, media enquiries
+          or any other questions you may have.
+        </p>
+
+
+        <!-- ADDRESS -->
+
+        <div class="contact-detail">
+
+          <div class="contact-icon" aria-hidden="true">
+            <span>⌖</span>
+          </div>
+
+          <div>
+
+            <h3>Address</h3>
+
+            <p>
+              Plot 24A Hannington Road,<br>
+              KSK Green Campus,<br>
+              P.O. Box 70434,<br>
+              Kampala, Uganda
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- PHONE -->
+
+        <div class="contact-detail">
+
+          <div class="contact-icon" aria-hidden="true">
+            <span>☎</span>
+          </div>
+
+          <div>
+
+            <h3>Phone</h3>
+
+            <p>
+              <a href="tel:+256392302692">
+                +256 392 302692
+              </a>
+              <br>
+
+              <a href="tel:+256773770433">
+                +256 773 770433
+              </a>
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- PROGRAM VENUES -->
+
+        <div class="contact-detail">
+
+          <div class="contact-icon" aria-hidden="true">
+            <span>●</span>
+          </div>
+
+          <div>
+
+            <h3>Program Venues</h3>
+
+            <p>
+              KSK Green Campus, Kampala
+              <br>
+              MMK Gardens &amp; Waterfront, Bwerenga
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- EMAIL NOTE -->
+
+        <div class="contact-response-note">
+
+          <strong>Have a specific enquiry?</strong>
+
+          <p>
+            Use the contact form and select the reason for your
+            enquiry so that we can direct your message to the
+            appropriate person.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- ===================================================
+           CONTACT FORM
+      ==================================================== -->
+
+      <div class="contact-form-wrapper">
+
+        <div class="contact-form-heading">
+
+          <span class="section-eyebrow">
+            SEND US A MESSAGE
+          </span>
+
+          <h2>
+            How can we help?
+          </h2>
+
+        </div>
+
+
+        <form
+          action="/contact-us"
+          method="POST"
+          class="contact-form"
+          id="contact-form"
+          novalidate
+        >
+
+
+          <!-- NAME -->
+
+          <div class="form-group">
+
+            <label for="contact-name">
+              Name
+              <span>*</span>
+            </label>
+
+            <input
+              type="text"
+              id="contact-name"
+              name="name"
+              placeholder="Your full name"
+              autocomplete="name"
+              required
+            >
+
+            <small
+              class="form-error"
+              data-error-for="name"
+            ></small>
+
+          </div>
+
+
+          <!-- EMAIL -->
+
+          <div class="form-group">
+
+            <label for="contact-email">
+              Email Address
+              <span>*</span>
+            </label>
+
+            <input
+              type="email"
+              id="contact-email"
+              name="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required
+            >
+
+            <small
+              class="form-error"
+              data-error-for="email"
+            ></small>
+
+          </div>
+
+
+          <!-- ORGANIZATION -->
+
+          <div class="form-group">
+
+            <label for="contact-organization">
+              Organization
+              <span class="optional">
+                Optional
+              </span>
+            </label>
+
+            <input
+              type="text"
+              id="contact-organization"
+              name="organization"
+              placeholder="Organization or company"
+              autocomplete="organization"
+            >
+
+          </div>
+
+
+          <!-- REASON -->
+
+          <div class="form-group">
+
+            <label for="contact-reason">
+              Reason for Contact
+              <span>*</span>
+            </label>
+
+            <select
+              id="contact-reason"
+              name="reason"
+              required
+            >
+
+              <option value="">
+                Select a reason
+              </option>
+
+              <option value="general_enquiry">
+                General Enquiry
+              </option>
+
+              <option value="partnership">
+                Partnership
+              </option>
+
+              <option value="media">
+                Media
+              </option>
+
+              <option value="other">
+                Other
+              </option>
+
+            </select>
+
+            <small
+              class="form-error"
+              data-error-for="reason"
+            ></small>
+
+          </div>
+
+
+          <!-- MESSAGE -->
+
+          <div class="form-group form-group-full">
+
+            <label for="contact-message">
+              Message
+              <span>*</span>
+            </label>
+
+            <textarea
+              id="contact-message"
+              name="message"
+              rows="7"
+              placeholder="Tell us how we can help..."
+              required
+            ></textarea>
+
+            <small
+              class="form-error"
+              data-error-for="message"
+            ></small>
+
+          </div>
+
+
+          <!-- SUBMIT -->
+
+          <button
+            type="submit"
+            class="btn btn-primary btn-lg contact-submit"
+          >
+
+            <span class="submit-text">
+              Send Message
+            </span>
+
+            <span class="submit-loading">
+              Sending...
+            </span>
+
+          </button>
+
+
+          <p class="form-security-note">
+            Your information will only be used to respond
+            to your enquiry.
+          </p>
+
+
+          <!-- SERVER RESPONSE -->
+
+          <% if (typeof success !== 'undefined' && success) { %>
+
+            <div class="contact-success">
+              <strong>Thank you!</strong>
+              Your message has been received. We will get
+              back to you as soon as possible.
+            </div>
+
+          <% } %>
+
+
+          <% if (typeof error !== 'undefined' && error) { %>
+
+            <div class="contact-error">
+              <%= error %>
+            </div>
+
+          <% } %>
+
+        </form>
+
+      </div>
+
     </div>
 
-    <div>
-      <% if (submitted) { %>
-        <div class="alert alert-success">Thanks for reaching out! We'll get back to you soon.</div>
-      <% } %>
-      <form method="POST" action="/contact-us" class="site-form">
-        <label>
-          Name
-          <input type="text" name="name" required>
-        </label>
-        <label>
-          Email
-          <input type="email" name="email" required>
-        </label>
-        <label>
-          Message
-          <textarea name="message" rows="5" required></textarea>
-        </label>
-        <button type="submit" class="btn btn-primary">Send Message</button>
-      </form>
-    </div>
   </div>
+
 </section>
+
+
+<!-- =========================================================
+     MAP
+========================================================= -->
+
+<section class="contact-map-section">
+
+  <div class="container">
+
+    <div class="section-heading centered">
+
+      <span class="section-eyebrow">
+        FIND US
+      </span>
+
+      <h2>
+        Visit KSK Green Campus
+      </h2>
+
+      <p>
+        Plot 24A Hannington Road, Kampala, Uganda
+      </p>
+
+    </div>
+
+
+    <div class="contact-map">
+
+      <iframe
+        src="https://www.google.com/maps?q=Plot%2024A%20Hannington%20Road%2C%20Kampala%2C%20Uganda&output=embed"
+        width="100%"
+        height="450"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="KSK Green Campus location map">
+      </iframe>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     NEWSLETTER
+========================================================= -->
+
+<%- include('partials/newsletter-signup', {
+    variant: 'full',
+    newsletterSource: 'contact-page'
+}) %>
+
+
+<!-- <%- include('partials/newsletter-signup', {
+    variant: 'full',
+    newsletterSource: 'contact-page'
+}) %> -->
+
+<script src="/js/contact.js"></script>

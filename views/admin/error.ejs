@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= title %> — KSK Admin</title>
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+<div class="admin-shell">
+  <%- include('partials/sidebar', { active: '' }) %>
+  <main class="admin-main">
+    <div class="admin-topbar"><h1><%= title %></h1></div>
+    <div class="panel"><div class="error-msg"><%= message %></div>
+      <a href="/admin/dashboard" class="btn">Back to dashboard</a>
+    </div>
+  </main>
+</div>
+</body>
+</html>

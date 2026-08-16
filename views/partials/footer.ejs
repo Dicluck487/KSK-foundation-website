@@ -40,6 +40,11 @@
     </div>
   </div>
 
+  <%- include('newsletter-signup', {
+  variant: 'compact',
+  newsletterSource: 'footer'
+}) %>
+
   <div class="footer-bottom">
     <div class="container">
       <p>&copy; <%= new Date().getFullYear() %> The Mentorship Program. All rights reserved.</p>

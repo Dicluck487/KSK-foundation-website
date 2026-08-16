@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard — KSK Admin</title>
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+<div class="admin-shell">
+  <%- include('partials/sidebar', { active: 'dashboard' }) %>
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <h1>Dashboard</h1>
+      <div class="welcome">Welcome, <%= currentAdmin.name %> · <span class="badge <%= currentAdmin.role %>"><%= currentAdmin.role.replace('_',' ') %></span></div>
+    </div>
+
+    <% if (stats.pendingApps > 0 && currentAdmin.role === 'super_admin') { %>
+      <div class="panel" style="border-color:#f5d98e;background:#fffaf0;">
+        <strong><%= stats.pendingApps %></strong> admin application<%= stats.pendingApps > 1 ? 's' : '' %> awaiting review.
+        <a href="/admin/applications" class="btn small primary" style="margin-left:10px;">Review now</a>
+      </div>
+    <% } %>
+
+    <div class="stat-grid">
+      <div class="stat-card"><div class="num"><%= stats.contacts %></div><div class="label">Contact Messages</div></div>
+      <div class="stat-card"><div class="num"><%= stats.partners %></div><div class="label">Partnership Applications</div></div>
+      <div class="stat-card"><div class="num"><%= stats.subscribers %></div><div class="label">Newsletter Subscribers</div></div>
+      <div class="stat-card"><div class="num"><%= stats.alumni %></div><div class="label">Alumni Records</div></div>
+    </div>
+
+    <div class="panel">
+      <h2>Recent Contact Messages</h2>
+      <% if (recentMessages.length === 0) { %>
+        <div class="empty-state">No messages yet.</div>
+      <% } else { %>
+        <table class="admin-table">
+          <thead><tr><th>Name</th><th>Subject</th><th>Status</th><th>Date</th></tr></thead>
+          <tbody>
+            <% recentMessages.forEach(m => { %>
+              <tr>
+                <td><%= m.name %></td>
+                <td><%= m.subject || '—' %></td>
+                <td><span class="badge <%= m.status %>"><%= m.status %></span></td>
+                <td><%= new Date(m.created_at).toLocaleDateString() %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+        <a href="/admin/contacts" class="btn small" style="margin-top:12px;">View all messages</a>
+      <% } %>
+    </div>
+  </main>
+</div>
+</body>
+</html>

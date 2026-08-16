@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Request Admin Access — KSK Foundation</title>
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body class="auth-page">
+  <div class="auth-card" style="max-width:440px;">
+    <h1>Request Admin Access</h1>
+    <div class="sub">This submits a request only. A Super Admin must review and approve it before you can log in.</div>
+
+    <% if (success) { %>
+      <div class="success-msg">Thanks — your request has been submitted. You'll be able to log in once a Super Admin approves it.</div>
+    <% } else { %>
+      <% if (error) { %><div class="error-msg"><%= error %></div><% } %>
+      <form method="POST" action="/admin/apply" class="form-grid">
+        <div><label>Full name</label><input type="text" name="name" required></div>
+        <div><label>Email</label><input type="email" name="email" required></div>
+        <div><label>Phone (optional)</label><input type="text" name="phone"></div>
+        <div><label>Organization (optional)</label><input type="text" name="organization"></div>
+        <div><label>Why do you need admin access?</label><textarea name="reason" required></textarea></div>
+        <button type="submit" class="btn primary">Submit request</button>
+      </form>
+    <% } %>
+    <div class="foot-link"><a href="/admin/login">Back to login</a></div>
+  </div>
+</body>
+</html>

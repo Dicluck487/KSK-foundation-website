@@ -1,20 +1,1179 @@
-<section class="page-header">
+<!-- =========================================================
+     PUBLICATIONS PAGE
+========================================================= -->
+
+<section class="page-header publications-header">
   <div class="container">
+
+    <span class="section-eyebrow">
+      KSK FOUNDATION
+    </span>
+
     <h1>Publications</h1>
-    <p>Prospectuses and magazines published by the program.</p>
+
+    <p>
+      Explore FOCUS Magazine, prospectuses and public-facing annual
+      highlights celebrating the work, achievements and stories of
+      KSK Foundation and its programs.
+    </p>
+
   </div>
 </section>
 
-<section class="section">
+
+<!-- =========================================================
+     PUBLICATIONS INTRO
+========================================================= -->
+
+<section class="section publications-intro">
+
   <div class="container">
-    <div class="publications-grid">
-      <% publications.forEach(function(p) { %>
-        <a href="/publications/<%= p.slug %>" class="publication-card">
-          <img src="../public/images/2image3.jpg" alt="<%= p.title %>">
-          <h3><%= p.title %></h3>
-          <p><%= p.description %></p>
-        </a>
-      <% }); %>
+
+    <div class="publications-intro-grid">
+
+      <div>
+
+        <span class="section-eyebrow">
+          OUR PUBLICATIONS
+        </span>
+
+        <h2>
+          Stories, Insights &amp; Impact
+        </h2>
+
+      </div>
+
+      <div>
+
+        <p>
+          Our publications document the experiences, achievements and
+          opportunities created through KSK Foundation's programs.
+        </p>
+
+        <p>
+          From participant stories and program insights to annual
+          highlights, these publications provide a window into the
+          Foundation's work and its growing community.
+        </p>
+
+      </div>
+
     </div>
+
   </div>
+
 </section>
+
+
+<!-- =========================================================
+     FOCUS MAGAZINE
+========================================================= -->
+
+<section class="section focus-magazine">
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <span class="section-eyebrow">
+        FOCUS MAGAZINE
+      </span>
+
+      <h2>
+        FOCUS Magazine
+      </h2>
+
+      <p>
+        FOCUS Magazine is a publication of KSK Foundation featuring
+        stories, experiences, achievements and perspectives from the
+        Foundation's programs and community.
+      </p>
+
+    </div>
+
+
+    <!-- CURRENT ISSUE -->
+
+    <div class="current-publication">
+
+      <div class="publication-cover">
+
+        <!-- Replace this image with the actual current FOCUS cover -->
+        <img
+          src="/images/focus-magazine-current.jpg"
+          alt="FOCUS Magazine current issue"
+          onerror="this.src='/images/2image3.jpg'"
+        />
+
+        <span class="current-badge">
+          CURRENT ISSUE
+        </span>
+
+      </div>
+
+
+      <div class="publication-details">
+
+        <span class="publication-label">
+          FOCUS MAGAZINE
+        </span>
+
+        <h3>
+          FOCUS Magazine
+        </h3>
+
+        <p class="publication-description">
+          Discover stories from KSK Foundation's programs, hear from
+          participants and alumni, and explore the people and ideas
+          helping young Ugandans become leaders, innovators and
+          entrepreneurs.
+        </p>
+
+        <div class="publication-meta">
+
+          <div>
+            <span>Publication</span>
+            <strong>FOCUS Magazine</strong>
+          </div>
+
+          <div>
+            <span>Status</span>
+            <strong>Current Issue</strong>
+          </div>
+
+        </div>
+
+
+        <div class="publication-actions">
+
+          <!-- Change # to the actual PDF when available -->
+          <a
+            href="#"
+            class="btn btn-primary"
+            onclick="return false;"
+          >
+            Read Current Issue
+          </a>
+
+          <a
+            href="#focus-archive"
+            class="btn btn-outline"
+          >
+            View Archive
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     FOCUS MAGAZINE ARCHIVE
+========================================================= -->
+
+<section
+  class="section publication-archive"
+  id="focus-archive"
+>
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <span class="section-eyebrow">
+        MAGAZINE ARCHIVE
+      </span>
+
+      <h2>
+        Previous FOCUS Issues
+      </h2>
+
+      <p>
+        Browse previous issues of FOCUS Magazine as they become
+        available in digital form.
+      </p>
+
+    </div>
+
+
+    <div class="archive-grid">
+
+      <!--
+        ADD FUTURE MAGAZINE ISSUES HERE.
+
+        Example:
+
+        <article class="archive-card">
+
+          <div class="archive-cover">
+            <img
+              src="/images/focus-2025.jpg"
+              alt="FOCUS Magazine 2025"
+            />
+          </div>
+
+          <div class="archive-content">
+
+            <span class="archive-year">
+              2025
+            </span>
+
+            <h3>
+              FOCUS Magazine — 2025
+            </h3>
+
+            <p>
+              Stories and highlights from KSK Foundation's programs.
+            </p>
+
+            <a href="/publications/focus-2025">
+              Read Issue →
+            </a>
+
+          </div>
+
+        </article>
+      -->
+
+
+      <!-- EMPTY ARCHIVE STATE -->
+
+      <div class="archive-empty">
+
+        <div class="archive-empty-icon">
+          +
+        </div>
+
+        <h3>
+          More Issues Coming Soon
+        </h3>
+
+        <p>
+          Previous digital issues of FOCUS Magazine will be added
+          here as they become available.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     ANNUAL HIGHLIGHTS
+========================================================= -->
+
+<section class="section annual-highlights">
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <span class="section-eyebrow">
+        ANNUAL HIGHLIGHTS
+      </span>
+
+      <h2>
+        Year in Review
+      </h2>
+
+      <p>
+        A public-facing look at the people, programs and achievements
+        that shaped each year at KSK Foundation.
+      </p>
+
+    </div>
+
+
+    <div class="annual-highlights-intro">
+
+      <div class="annual-icon">
+        <span>YR</span>
+      </div>
+
+      <div>
+
+        <h3>
+          Celebrating Progress &amp; Impact
+        </h3>
+
+        <p>
+          Our Year in Review publications will highlight cohort numbers,
+          program milestones, participant achievements, partnerships and
+          other approved public-facing highlights from each year.
+        </p>
+
+        <p>
+          These summaries are designed to celebrate the Foundation's
+          impact in an accessible format for participants, alumni,
+          partners, sponsors and the wider community.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         YEAR ARCHIVE
+    ===================================================== -->
+
+    <div class="year-review-section">
+
+      <div class="year-review-header">
+
+        <h3>
+          Annual Highlights Archive
+        </h3>
+
+        <span>
+          By Year
+        </span>
+
+      </div>
+
+
+      <div class="year-grid">
+
+
+        <!-- 2025 -->
+
+        <article class="year-card">
+
+          <span class="year">
+            2025
+          </span>
+
+          <div>
+
+            <h4>
+              Year in Review 2025
+            </h4>
+
+            <p>
+              Annual highlights and approved public-facing impact
+              figures from KSK Foundation's programs.
+            </p>
+
+            <!-- Replace # when the document is available -->
+            <a
+              href="#"
+              class="year-link"
+              onclick="return false;"
+            >
+              Coming Soon
+            </a>
+
+          </div>
+
+        </article>
+
+
+        <!-- 2024 -->
+
+        <article class="year-card">
+
+          <span class="year">
+            2024
+          </span>
+
+          <div>
+
+            <h4>
+              Year in Review 2024
+            </h4>
+
+            <p>
+              Program highlights, achievements and community stories
+              from the year.
+            </p>
+
+            <a
+              href="#"
+              class="year-link"
+              onclick="return false;"
+            >
+              Coming Soon
+            </a>
+
+          </div>
+
+        </article>
+
+
+        <!-- FUTURE YEARS -->
+
+        <article class="year-card year-card-placeholder">
+
+          <span class="year">
+            +
+          </span>
+
+          <div>
+
+            <h4>
+              Future Editions
+            </h4>
+
+            <p>
+              Additional annual highlights will be published here
+              once approved for public release.
+            </p>
+
+          </div>
+
+        </article>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     ANNUAL REPORT NOTICE
+========================================================= -->
+
+<section class="section report-notice">
+
+  <div class="container">
+
+    <div class="report-notice-card">
+
+      <div class="report-notice-icon">
+        !
+      </div>
+
+      <div>
+
+        <span class="section-eyebrow">
+          PUBLICATION NOTE
+        </span>
+
+        <h3>
+          About KSK Foundation's Annual Reports
+        </h3>
+
+        <p>
+          The Publications page is intended for public-facing
+          Year in Review summaries and approved highlights rather
+          than the Foundation's internal Annual Reports.
+        </p>
+
+        <p>
+          Internal Annual Reports may contain Board-level financial
+          and governance matters and are therefore not published
+          here unless specifically approved by the Foundation.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     PROSPECTUSES & OTHER PUBLICATIONS
+========================================================= -->
+
+<section class="section other-publications">
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <span class="section-eyebrow">
+        OTHER PUBLICATIONS
+      </span>
+
+      <h2>
+        Prospectuses &amp; Program Documents
+      </h2>
+
+      <p>
+        Explore prospectuses and other public documents that provide
+        more information about KSK Foundation's programs.
+      </p>
+
+    </div>
+
+
+    <div class="publications-grid">
+
+      <% if (publications && publications.length) { %>
+
+        <% publications.forEach(function(p) { %>
+
+          <a
+            href="/publications/<%= p.slug %>"
+            class="publication-card"
+          >
+
+            <div class="publication-card-image">
+
+              <img
+                src="<%= p.image || '/images/2image3.jpg' %>"
+                alt="<%= p.title %>"
+                onerror="this.src='/images/2image3.jpg'"
+              />
+
+            </div>
+
+            <div class="publication-card-content">
+
+              <span class="publication-card-type">
+                PUBLICATION
+              </span>
+
+              <h3>
+                <%= p.title %>
+              </h3>
+
+              <p>
+                <%= p.description %>
+              </p>
+
+              <span class="publication-read">
+                Read Publication →
+              </span>
+
+            </div>
+
+          </a>
+
+        <% }); %>
+
+      <% } else { %>
+
+        <div class="archive-empty">
+
+          <div class="archive-empty-icon">
+            +
+          </div>
+
+          <h3>
+            Publications Coming Soon
+          </h3>
+
+          <p>
+            Prospectuses and additional public-facing publications
+            will be added here as they become available.
+          </p>
+
+        </div>
+
+      <% } %>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     CTA
+========================================================= -->
+
+<section class="cta-banner publications-cta">
+
+  <div class="container cta-inner">
+
+    <div>
+
+      <span class="section-eyebrow">
+        STAY CONNECTED
+      </span>
+
+      <h2>
+        Want to learn more about KSK Foundation?
+      </h2>
+
+      <p>
+        Explore our programs, meet our community and discover how
+        you can support the next generation of young Ugandans.
+      </p>
+
+    </div>
+
+    <div class="cta-actions">
+
+      <a
+        href="/contact-us"
+        class="btn btn-primary btn-lg"
+      >
+        Get In Touch
+      </a>
+
+      <a
+        href="/programs"
+        class="btn btn-outline btn-lg"
+      >
+        Explore Our Programs
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     PAGE CSS
+========================================================= -->
+
+<style>
+
+  /* =========================================================
+     HEADER
+  ========================================================= */
+
+  .publications-header {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .publications-header .section-eyebrow {
+    color: rgba(255,255,255,0.8);
+  }
+
+
+  /* =========================================================
+     INTRO
+  ========================================================= */
+
+  .publications-intro-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .publications-intro-grid h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.1;
+  }
+
+  .publications-intro-grid p {
+    margin: 0 0 15px;
+    color: var(--color-muted, #6b7280);
+    line-height: 1.8;
+  }
+
+
+  /* =========================================================
+     SECTION HEADINGS
+  ========================================================= */
+
+  .section-heading {
+    max-width: 760px;
+    margin-bottom: 45px;
+  }
+
+  .section-heading h2 {
+    margin: 0 0 15px;
+  }
+
+  .section-heading p {
+    margin: 0;
+    color: var(--color-muted, #6b7280);
+    line-height: 1.8;
+  }
+
+  .section-eyebrow {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: var(--color-primary, #e0392c);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+  }
+
+
+  /* =========================================================
+     FOCUS MAGAZINE
+  ========================================================= */
+
+  .focus-magazine {
+    background: var(--color-bg-alt, #f6f5f3);
+  }
+
+  .current-publication {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 70px;
+    align-items: center;
+  }
+
+  .publication-cover {
+    position: relative;
+  }
+
+  .publication-cover img {
+    display: block;
+    width: 100%;
+    max-height: 520px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+  }
+
+  .current-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 8px 13px;
+    border-radius: 30px;
+    background: var(--color-primary, #e0392c);
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+  }
+
+  .publication-label {
+    color: var(--color-primary, #e0392c);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+  }
+
+  .publication-details h3 {
+    margin: 10px 0 18px;
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+
+  .publication-description {
+    max-width: 650px;
+    color: var(--color-muted, #6b7280);
+    line-height: 1.8;
+    font-size: 1rem;
+  }
+
+  .publication-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 35px;
+    margin: 28px 0;
+  }
+
+  .publication-meta div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .publication-meta span {
+    color: var(--color-muted, #6b7280);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .publication-meta strong {
+    font-size: 0.9rem;
+  }
+
+  .publication-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+
+  /* =========================================================
+     ARCHIVE
+  ========================================================= */
+
+  .publication-archive {
+    background: #fff;
+  }
+
+  .archive-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .archive-empty {
+    grid-column: 1 / -1;
+    padding: 60px 30px;
+    text-align: center;
+    border: 1px dashed rgba(0,0,0,0.15);
+    border-radius: 18px;
+    background: var(--color-bg-alt, #f6f5f3);
+  }
+
+  .archive-empty-icon {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: rgba(224,57,44,0.1);
+    color: var(--color-primary, #e0392c);
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+
+  .archive-empty h3 {
+    margin: 0 0 10px;
+  }
+
+  .archive-empty p {
+    max-width: 520px;
+    margin: auto;
+    color: var(--color-muted, #6b7280);
+    line-height: 1.7;
+  }
+
+
+  /* =========================================================
+     ANNUAL HIGHLIGHTS
+  ========================================================= */
+
+  .annual-highlights {
+    background: var(--color-bg-alt, #f6f5f3);
+  }
+
+  .annual-highlights-intro {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 30px;
+    padding: 40px;
+    margin-bottom: 50px;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  }
+
+  .annual-icon {
+    width: 75px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    background: var(--color-primary, #e0392c);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 900;
+  }
+
+  .annual-highlights-intro h3 {
+    margin: 0 0 15px;
+    font-size: 1.5rem;
+  }
+
+  .annual-highlights-intro p {
+    margin: 0 0 12px;
+    color: var(--color-muted, #6b7280);
+    line-height: 1.8;
+  }
+
+
+  /* =========================================================
+     YEAR ARCHIVE
+  ========================================================= */
+
+  .year-review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+
+  .year-review-header h3 {
+    margin: 0;
+  }
+
+  .year-review-header span {
+    color: var(--color-muted, #6b7280);
+    font-size: 0.8rem;
+  }
+
+  .year-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .year-card {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 20px;
+    padding: 28px;
+    border-radius: 16px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .year-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.07);
+  }
+
+  .year {
+    color: var(--color-primary, #e0392c);
+    font-size: 1.8rem;
+    font-weight: 900;
+  }
+
+  .year-card h4 {
+    margin: 0 0 10px;
+  }
+
+  .year-card p {
+    margin: 0 0 15px;
+    color: var(--color-muted, #6b7280);
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .year-link {
+    color: var(--color-primary, #e0392c);
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .year-card-placeholder {
+    opacity: 0.7;
+    border-style: dashed;
+  }
+
+
+  /* =========================================================
+     REPORT NOTICE
+  ========================================================= */
+
+  .report-notice {
+    background: #fff;
+  }
+
+  .report-notice-card {
+    display: grid;
+    grid-template-columns: 65px 1fr;
+    gap: 25px;
+    padding: 35px;
+    border-left: 4px solid var(--color-primary, #e0392c);
+    border-radius: 0 16px 16px 0;
+    background: var(--color-bg-alt, #f6f5f3);
+  }
+
+  .report-notice-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(224,57,44,0.1);
+    color: var(--color-primary, #e0392c);
+    font-weight: 900;
+  }
+
+  .report-notice-card h3 {
+    margin: 0 0 12px;
+  }
+
+  .report-notice-card p {
+    margin: 0 0 12px;
+    color: var(--color-muted, #6b7280);
+    line-height: 1.7;
+  }
+
+
+  /* =========================================================
+     OTHER PUBLICATIONS
+  ========================================================= */
+
+  .other-publications {
+    background: var(--color-bg-alt, #f6f5f3);
+  }
+
+  .publications-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+  }
+
+  .publication-card {
+    display: block;
+    overflow: hidden;
+    border-radius: 18px;
+    background: #fff;
+    color: inherit;
+    text-decoration: none;
+    border: 1px solid rgba(0,0,0,0.06);
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .publication-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+  }
+
+  .publication-card-image {
+    height: 220px;
+    overflow: hidden;
+  }
+
+  .publication-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .publication-card:hover img {
+    transform: scale(1.04);
+  }
+
+  .publication-card-content {
+    padding: 25px;
+  }
+
+  .publication-card-type {
+    color: var(--color-primary, #e0392c);
+    font-size: 0.65rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+  }
+
+  .publication-card h3 {
+    margin: 8px 0 10px;
+  }
+
+  .publication-card p {
+    margin: 0 0 18px;
+    color: var(--color-muted, #6b7280);
+    line-height: 1.6;
+    font-size: 0.88rem;
+  }
+
+  .publication-read {
+    color: var(--color-primary, #e0392c);
+    font-size: 0.8rem;
+    font-weight: 800;
+  }
+
+
+  /* =========================================================
+     CTA
+  ========================================================= */
+
+  .publications-cta .section-eyebrow {
+    color: rgba(255,255,255,0.8);
+  }
+
+  .publications-cta h2 {
+    margin-bottom: 10px;
+  }
+
+  .publications-cta p {
+    max-width: 650px;
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+
+  /* =========================================================
+     RESPONSIVE
+  ========================================================= */
+
+  @media (max-width: 1000px) {
+
+    .current-publication {
+      grid-template-columns: 300px 1fr;
+      gap: 45px;
+    }
+
+    .archive-grid,
+    .year-grid,
+    .publications-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+  }
+
+
+  @media (max-width: 800px) {
+
+    .publications-intro-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .current-publication {
+      grid-template-columns: 1fr;
+    }
+
+    .publication-cover {
+      max-width: 380px;
+    }
+
+  }
+
+
+  @media (max-width: 600px) {
+
+    .archive-grid,
+    .year-grid,
+    .publications-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .annual-highlights-intro,
+    .report-notice-card {
+      grid-template-columns: 1fr;
+      padding: 25px;
+    }
+
+    .year-review-header {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .publication-actions,
+    .cta-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .publication-actions .btn,
+    .cta-actions .btn {
+      text-align: center;
+    }
+
+  }
+
+</style>

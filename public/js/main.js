@@ -9,18 +9,30 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Mobile dropdown toggles (About KSK / Publications mega-menus)
-  var dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-  dropdownToggles.forEach(function (link) {
-    link.addEventListener('click', function (e) {
-      if (window.innerWidth <= 720) {
-        e.preventDefault();
-        var parentLi = link.closest('.has-dropdown');
-        if (parentLi) parentLi.classList.toggle('open');
-      }
-    });
-  });
+  // // Mobile dropdown toggles (About KSK / Publications mega-menus)
+  // var dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+  // dropdownToggles.forEach(function (link) {
+  //   link.addEventListener('click', function (e) {
+  //     if (window.innerWidth <= 720) {
+  //       e.preventDefault();
+  //       var parentLi = link.closest('.has-dropdown');
+  //       if (parentLi) parentLi.classList.toggle('open');
+  //     }
+  //   });
+  // });
 
+
+  document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+
+    toggle.addEventListener('click', function() {
+
+        const parent = this.closest('.has-dropdown');
+
+        parent.classList.toggle('active');
+
+    });
+
+});
   // FAQ accordion
   var toggles = document.querySelectorAll('.accordion-toggle');
   toggles.forEach(function (btn) {

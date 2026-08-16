@@ -1,0 +1,25 @@
+<aside class="admin-sidebar">
+  <div class="brand">KSK FOUNDATION ADMIN</div>
+  <nav>
+    <div class="nav-section-label">Overview</div>
+    <a href="/admin/dashboard" class="<%= active === 'dashboard' ? 'active' : '' %>">Dashboard</a>
+
+    <div class="nav-section-label">Content</div>
+    <a href="/admin/gallery" class="<%= active === 'gallery' ? 'active' : '' %>">Gallery</a>
+    <a href="/admin/publications" class="<%= active === 'publications' ? 'active' : '' %>">Publications</a>
+
+    <div class="nav-section-label">Leads</div>
+    <a href="/admin/contacts" class="<%= active === 'contacts' ? 'active' : '' %>">Contact Messages</a>
+    <a href="/admin/partnerships" class="<%= active === 'partnerships' ? 'active' : '' %>">Partnership Applications</a>
+    <a href="/admin/subscribers" class="<%= active === 'subscribers' ? 'active' : '' %>">Subscribers</a>
+
+    <% if (currentAdmin && currentAdmin.role === 'super_admin') { %>
+      <div class="nav-section-label">Administration</div>
+      <a href="/admin/applications" class="<%= active === 'applications' ? 'active' : '' %>">Admin Applications</a>
+      <a href="/admin/admins" class="<%= active === 'admins' ? 'active' : '' %>">Admin Users</a>
+    <% } %>
+  </nav>
+  <form class="logout-form" action="/admin/logout" method="POST">
+    <button type="submit">Log out (<%= currentAdmin ? currentAdmin.name.split(' ')[0] : '' %>)</button>
+  </form>
+</aside>

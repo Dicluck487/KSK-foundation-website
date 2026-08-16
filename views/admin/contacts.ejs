@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Messages — KSK Admin</title>
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+<div class="admin-shell">
+  <%- include('partials/sidebar', { active: 'contacts' }) %>
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <h1>Contact Messages</h1>
+      <a href="/admin/export/contacts" class="btn">Download CSV</a>
+    </div>
+    <div class="panel">
+      <% if (messages.length === 0) { %>
+        <div class="empty-state">No messages yet.</div>
+      <% } else { %>
+        <table class="admin-table">
+          <thead><tr><th>Name</th><th>Subject</th><th>Message</th><th>Status</th><th>Date</th><th></th></tr></thead>
+          <tbody>
+            <% messages.forEach(m => { %>
+              <tr>
+                <td><%= m.name %><br><small style="color:#6b7280;"><%= m.email %></small></td>
+                <td><%= m.subject || '—' %></td>
+                <td style="max-width:280px;"><%= m.message %></td>
+                <td><span class="badge <%= m.status %>"><%= m.status %></span></td>
+                <td><%= new Date(m.created_at).toLocaleDateString() %></td>
+                <td>
+                  <% if (m.status === 'unread' && currentAdmin.role !== 'viewer') { %>
+                    <form method="POST" action="/admin/contacts/<%= m.id %>/read">
+                      <button type="submit" class="btn small">Mark read</button>
+                    </form>
+                  <% } %>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      <% } %>
+    </div>
+  </main>
+</div>
+</body>
+</html>

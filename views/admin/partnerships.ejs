@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Partnership Applications — KSK Admin</title>
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+<div class="admin-shell">
+  <%- include('partials/sidebar', { active: 'partnerships' }) %>
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <h1>Partnership Applications</h1>
+      <a href="/admin/export/partnerships" class="btn">Download CSV</a>
+    </div>
+    <div class="panel">
+      <% if (inquiries.length === 0) { %>
+        <div class="empty-state">No applications yet.</div>
+      <% } else { %>
+        <table class="admin-table">
+          <thead><tr><th>Name</th><th>Organization</th><th>Interest</th><th>Message</th><th>Date</th></tr></thead>
+          <tbody>
+            <% inquiries.forEach(i => { %>
+              <tr>
+                <td><%= i.name %><br><small style="color:#6b7280;"><%= i.email %></small></td>
+                <td><%= i.organization || '—' %></td>
+                <td><%= i.interest_area %></td>
+                <td style="max-width:280px;"><%= i.message || '—' %></td>
+                <td><%= new Date(i.created_at).toLocaleDateString() %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      <% } %>
+    </div>
+  </main>
+</div>
+</body>
+</html>
