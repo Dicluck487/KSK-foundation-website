@@ -47,7 +47,22 @@ app.use((req, res, next) => {
 // Routes
 // =========================================================
 
+// =========================================================
+// Routes
+// =========================================================
+
 const indexRouter = require('./routes/index');
+const authRouter = require('./routes/auth');
+const adminRouter = require('./routes/admin');
+
+app.use('/', indexRouter);
+
+// Public authentication routes
+app.use('/auth', authRouter);
+
+// Protected admin dashboard
+app.use('/admin', adminRouter);
+
 
 app.use('/', indexRouter);
 
