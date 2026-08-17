@@ -64,7 +64,7 @@ const newsEvents = [
   { title: 'Alumni Spotlight: From Mentee To Mentor', date: 'April 2026', excerpt: 'One of our earliest mentees returns as a mentor for the current cohort.', image: 'KSK-news3' }
 ];
 
-const faqs = [
+const faq = [
   {
     q: 'How do I apply to a program?',
     a: 'Applications open on a rolling basis ahead of each program’s intake window. Secondary schools may nominate S6 leavers for the Making Students World Ready Program (MSWRP), while families can apply directly for Kaizen Teen Boot Camp. Please contact KSK Foundation to confirm the exact application process and any available application form before applying.'
