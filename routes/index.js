@@ -255,6 +255,40 @@ router.get('/partner-with-us', (req, res) => {
 });
 
 
+router.get('partials/newsletter-signup', (req, res) => {
+    res.render('partials/newsletter-signup');
+});
+
+
+router.get('/programs', (req, res) => {
+    const newsEvents = [
+        {
+            title: 'MSWRP Graduation',
+            description: 'Celebrating the achievements of young Ugandans.',
+        },
+        {
+            title: 'Kaizen Teen Boot Camp',
+            description: 'Empowering young people through skills and mentorship.',
+        },
+        {
+            title: 'Financial Services Academy',
+            description: 'Building financial knowledge and leadership skills.',
+        }
+    ];
+
+    res.render('programs', { newsEvents });
+});
+
+router.get('/alumni', (req, res) => {
+    res.render('alumni');
+});
+
+router.get('/our-team', (req, res) => {
+    res.render('our-team');
+});
+
+
+
 // =========================================================
 // LEADERSHIP
 // =========================================================

@@ -2,9 +2,11 @@ const express = require('express');
 const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
 
 // =========================================================
 // View engine setup
@@ -18,16 +20,41 @@ app.set('layout', 'partials/layout');
 
 
 // =========================================================
-// Middleware
+// Body parsing
+// =========================================================
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+app.use(bodyParser.json());
+
+
+// =========================================================
+// Static files
 // =========================================================
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
 
-app.use(bodyParser.json());
+// =========================================================
+// Session
+// IMPORTANT: Must come BEFORE routes
+// =========================================================
+
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'ksk-foundation-secret',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: false,
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24
+    }
+}));
 
 
 // =========================================================
@@ -35,17 +62,10 @@ app.use(bodyParser.json());
 // =========================================================
 
 app.use((req, res, next) => {
-
-  res.locals.currentPath = req.path;
-
-  next();
-
+    res.locals.currentPath = req.path;
+    next();
 });
 
-
-// =========================================================
-// Routes
-// =========================================================
 
 // =========================================================
 // Routes
@@ -55,34 +75,29 @@ const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const adminRouter = require('./routes/admin');
 
+
+// Public website
 app.use('/', indexRouter);
 
-// Public authentication routes
+
+// Authentication
 app.use('/auth', authRouter);
 
-// Protected admin dashboard
+
+// Admin
 app.use('/admin', adminRouter);
-
-
-app.use('/', indexRouter);
 
 
 // =========================================================
 // 404 handler
-// IMPORTANT: This must come AFTER your routes
+// IMPORTANT: Must come AFTER routes
 // =========================================================
 
 app.use((req, res) => {
-
-  res.status(404).render('404', {
-
-    title: 'Page Not Found',
-
-    description:
-      'The page you are looking for could not be found.'
-
-  });
-
+    res.status(404).render('404', {
+        title: 'Page Not Found',
+        description: 'The page you are looking for could not be found.'
+    });
 });
 
 
@@ -91,13 +106,11 @@ app.use((req, res) => {
 // =========================================================
 
 app.use((err, req, res, next) => {
+    console.error(err.stack);
 
-  console.error(err.stack);
-
-  res.status(500).send(
-    'Something went wrong on our end. Please try again later.'
-  );
-
+    res.status(500).send(
+        'Something went wrong on our end. Please try again later.'
+    );
 });
 
 
@@ -106,9 +119,7 @@ app.use((err, req, res, next) => {
 // =========================================================
 
 app.listen(PORT, () => {
-
-  console.log(
-    `KSK Foundation website running at http://localhost:${PORT}`
-  );
-
+    console.log(
+        `KSK Foundation website running at http://localhost:${PORT}`
+    );
 });

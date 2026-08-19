@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <title>Admin Login — KSK Foundation</title>
   <link rel="stylesheet" href="/css/admin.css">
+ <link rel="stylesheet" href="/css/style.css">
 </head>
 <body class="auth-page">
   <div class="auth-card">
     <h1>KSK Foundation Admin</h1>
     <div class="sub">Sign in to manage the website.</div>
     <% if (error) { %><div class="error-msg"><%= error %></div><% } %>
-    <form method="POST" action="/admin/login" class="form-grid">
+    <form method="POST" action="/auth/login" class="form-grid">
       <div>
         <label>Email</label>
         <input type="email" name="email" required autofocus>
@@ -21,7 +22,7 @@
       </div>
       <button type="submit" class="btn primary">Log in</button>
     </form>
-    <div class="foot-link">Need admin access? <a href="/admin/apply">Apply here</a></div>
+    <div class="foot-link">Need admin access? <a href="/auth/apply">Apply here</a></div>
   </div>
 </body>
-</html>
+</html>/
