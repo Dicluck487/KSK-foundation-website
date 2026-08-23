@@ -63,6 +63,7 @@ app.use(session({
 
 app.use((req, res, next) => {
     res.locals.currentPath = req.path;
+    res.locals.currentAdmin = req.session?.user || null;
     next();
 });
 
@@ -81,7 +82,7 @@ app.use('/', indexRouter);
 
 
 // Authentication
-app.use('/auth', authRouter);
+app.use('/', authRouter);
 
 
 // Admin

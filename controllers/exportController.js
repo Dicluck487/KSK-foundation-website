@@ -79,4 +79,32 @@ async function exportAlumni(req, res) {
   sendCsv(res, 'alumni.csv', csv);
 }
 
-module.exports = { exportContacts, exportPartnerships, exportSubscribers, exportAlumni };
+
+// GET /admin/export/program-applications
+async function exportProgramApplications(req, res) {
+  const { data } = await supabase
+    .from('program_applications')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  const csv = toCsv(data || [], [
+    { key: 'name', label: 'Name' },
+    { key: 'email', label: 'Email' },
+    { key: 'phone', label: 'Phone' },
+    { key: 'motivation', label: 'Motivation' },
+    { key: 'status', label: 'Status' },
+    { key: 'created_at', label: 'Date' },
+  ]);
+  sendCsv(res, 'program-applications.csv', csv);
+}
+
+
+module.exports = {
+  exportContacts,
+  exportPartnerships,
+  exportSubscribers,
+  exportAlumni,
+  exportProgramApplications,   // <-- add this line
+};
+
+

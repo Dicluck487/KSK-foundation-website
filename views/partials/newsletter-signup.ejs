@@ -44,7 +44,7 @@
             Subscribe to our Quarterly Update
           </h2>
 
-          <p>
+          <p class="newsp">
             Get the latest from KSK Foundation every quarter —
             new cohorts, graduation highlights, partnership
             opportunities and FOCUS Magazine releases,
@@ -215,19 +215,19 @@
 
           <button
             type="submit"
-            class="btn btn-primary btn-lg newsletter-submit"
+            class="btn btn-outline btn-lg newsletter-submit"
           >
 
             <span class="button-text">
               Subscribe to Updates
             </span>
 
-            <span
+            <!-- <span
               class="button-loading"
               aria-hidden="true"
             >
               Subscribing...
-            </span>
+            </span> -->
 
           </button>
 
@@ -396,529 +396,299 @@
   /* =========================================================
      FULL NEWSLETTER
   ========================================================= */
-
-  .newsletter-signup {
+.newsletter-signup {
     position: relative;
     overflow: hidden;
-  }
+}
 
-  .newsletter-full {
+/* =========================================
+   FULL NEWSLETTER — REDUCED HEIGHT
+========================================= */
+
+.newsletter-full {
     display: grid;
     grid-template-columns: 0.9fr 1.1fr;
-    gap: 70px;
+    gap: 35px;
     align-items: center;
 
-    padding: 65px;
+    /* Was 65px */
+    padding: 32px;
 
-    border-radius: 24px;
+    border-radius: 18px;
 
     background:
-      linear-gradient(
-        135deg,
-        var(--color-dark, #14161a),
-        var(--color-dark-2, #1e2126)
-      );
+        linear-gradient(
+            135deg,
+            var(--color-dark, #14161a),
+            var(--color-dark-2, #1e2126)
+        );
 
     color: #fff;
 
     box-shadow:
-      0 20px 50px rgba(0,0,0,0.12);
-  }
+        0 12px 30px rgba(0,0,0,0.12);
+}
 
-  .newsletter-content .section-eyebrow {
-    color: var(--color-primary, #e0392c);
-  }
+.newsletter-content .section-eyebrow {
+    color: #e9760b
+}
 
-  .newsletter-content h2 {
-    margin: 0 0 18px;
-
+.newsletter-content h2 {
+    margin: 0 0 10px;
     color: #fff;
-
-    font-size:
-      clamp(2rem, 4vw, 3.2rem);
-
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
     line-height: 1.1;
-  }
+}
 
-  .newsletter-content p {
+.newsletter-content p {
     max-width: 600px;
-
     margin: 0;
-
     color: rgba(255,255,255,0.72);
+    line-height: 1.5;
+}
 
-    line-height: 1.8;
-  }
 
+/* =========================================
+   FORM — COMPACT
+========================================= */
 
-  /* =========================================================
-     FORM
-  ========================================================= */
-
-  .newsletter-form {
+.newsletter-form {
     display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
 
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-
-    gap: 20px;
-  }
-
-  .form-group {
+.form-group {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-  }
+    gap: 5px;
+}
 
-  .form-group label {
+.form-group label {
     color: #fff;
-
-    font-size: 0.82rem;
-
+    font-size: 0.76rem;
     font-weight: 700;
-  }
+}
 
-  .form-group .optional {
+.form-group .optional {
     margin-left: 5px;
-
     color: rgba(255,255,255,0.45);
-
-    font-size: 0.68rem;
-
+    font-size: 0.65rem;
     font-weight: 400;
-  }
+}
 
-  .form-group input,
-  .form-group select {
-
+.form-group input,
+.form-group select {
     width: 100%;
 
-    min-height: 50px;
+    /* Was 50px */
+    min-height: 40px;
 
-    padding: 13px 15px;
+    padding: 8px 12px;
 
-    border: 1px solid
-      rgba(255,255,255,0.15);
-
-    border-radius: 9px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 7px;
 
     outline: none;
 
-    background:
-      rgba(255,255,255,0.07);
-
+    background: rgba(255,255,255,0.07);
     color: #fff;
 
     font-family: inherit;
-
-    font-size: 0.9rem;
+    font-size: 0.82rem;
 
     transition:
-      border-color 0.2s ease,
-      background 0.2s ease;
-  }
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
 
-  .form-group input::placeholder {
+.form-group input::placeholder {
     color: rgba(255,255,255,0.4);
-  }
+}
 
-  .form-group select {
+.form-group select {
     cursor: pointer;
-  }
+}
 
-  .form-group select option {
+.form-group select option {
     color: #222;
-
     background: #fff;
-  }
+}
 
-  .form-group input:focus,
-  .form-group select:focus {
-    border-color:
-      var(--color-primary, #e0392c);
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--color-primary, #e0392c);
+    background: rgba(255,255,255,0.1);
+}
+.newsp{
+  font-size: 10px;
+  line-height: 1.4;
+}
 
-    background:
-      rgba(255,255,255,0.1);
-  }
 
+/* =========================================
+   CONSENT
+========================================= */
 
-  /* =========================================================
-     CONSENT
-  ========================================================= */
+.newsletter-consent {
+    grid-column: 1 / -1;
+    margin-top: 0;
+}
 
-  .newsletter-consent {
-
-    grid-column:
-      1 / -1;
-
-    margin-top: 2px;
-  }
-
-  .checkbox-label {
-
+.checkbox-label {
     display: flex;
-
     align-items: flex-start;
-
-    gap: 11px;
+    gap: 8px;
 
     cursor: pointer;
 
-    color:
-      rgba(255,255,255,0.72);
+    color: rgba(255,255,255,0.72);
+    font-size: 0.72rem;
+    line-height: 1.3;
+}
 
-    font-size: 0.8rem;
-
-    line-height: 1.5;
-  }
-
-  .checkbox-label input {
-
-    position: absolute;
-
-    opacity: 0;
-
-    pointer-events: none;
-  }
-
-  .custom-checkbox {
-
+.custom-checkbox {
     flex: 0 0 auto;
 
-    width: 19px;
-    height: 19px;
+    width: 17px;
+    height: 17px;
 
     margin-top: 1px;
 
-    border:
-      1px solid
-      rgba(255,255,255,0.35);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 3px;
 
-    border-radius: 4px;
-
-    background:
-      rgba(255,255,255,0.05);
+    background: rgba(255,255,255,0.05);
 
     transition:
-      background 0.2s ease,
-      border-color 0.2s ease;
-  }
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
 
-  .checkbox-label input:checked
-  + .custom-checkbox {
+.checkbox-label input:checked + .custom-checkbox {
+    border-color: var(--color-primary, #e0392c);
+    background: var(--color-primary, #e0392c);
+}
 
-    border-color:
-      var(--color-primary, #e0392c);
-
-    background:
-      var(--color-primary, #e0392c);
-  }
-
-  .checkbox-label input:checked
-  + .custom-checkbox::after {
-
+.checkbox-label input:checked + .custom-checkbox::after {
     content: "✓";
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
     height: 100%;
 
     color: #fff;
-
-    font-size: 0.72rem;
-
+    font-size: 0.65rem;
     font-weight: 900;
-  }
+}
 
 
-  /* =========================================================
-     SUBMIT
-  ========================================================= */
+/* =========================================
+   SUBMIT
+========================================= */
 
-  .newsletter-submit {
-
-    grid-column:
-      1 / -1;
-
+.newsletter-submit {
+    grid-column: 1 / -1;
     justify-self: start;
 
-    min-width: 190px;
-  }
-
-  .button-loading {
-    display: none;
-  }
-
-  .newsletter-form.is-loading
-  .button-text {
-    display: none;
-  }
-
-  .newsletter-form.is-loading
-  .button-loading {
-    display: inline;
-  }
-
-  .newsletter-form.is-loading
-  .newsletter-submit {
-    pointer-events: none;
-
-    opacity: 0.7;
-  }
+    min-width: 160px;
+}
 
 
-  /* =========================================================
-     STATUS
-  ========================================================= */
+/* =========================================
+   STATUS
+========================================= */
 
-  .newsletter-status {
+.newsletter-status {
+    grid-column: 1 / -1;
+}
 
-    grid-column:
-      1 / -1;
-  }
+.newsletter-success,
+.newsletter-error {
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+}
 
-  .newsletter-success,
-  .newsletter-error {
-
-    padding: 12px 15px;
-
-    border-radius: 8px;
-
-    font-size: 0.82rem;
-  }
-
-  .newsletter-success {
-
-    background:
-      rgba(34,197,94,0.12);
-
-    color:
-      #86efac;
-  }
-
-  .newsletter-error {
-
-    background:
-      rgba(224,57,44,0.12);
-
-    color:
-      #ffaaa1;
-  }
-
-  .form-error {
-
-    min-height: 14px;
-
-    color:
-      #ffaaa1;
-
-    font-size: 0.7rem;
-  }
+.form-error {
+    min-height: 10px;
+    color: #ffaaa1;
+    font-size: 0.65rem;
+}
 
 
-  /* =========================================================
-     COMPACT FOOTER VERSION
-  ========================================================= */
+/* =========================================
+   COMPACT FOOTER VERSION
+========================================= */
 
-  .newsletter-signup--compact {
+.newsletter-signup--compact {
+    padding: 18px 0;
+}
 
-    padding: 35px 0;
-  }
-
-  .newsletter-compact {
-
+.newsletter-compact {
     display: grid;
+    grid-template-columns: 1fr 1.5fr;
 
-    grid-template-columns:
-      1fr 1.5fr;
-
-    gap: 35px;
-
+    gap: 18px;
     align-items: center;
 
-    padding: 35px;
+    padding: 20px;
 
-    border-radius: 18px;
+    border-radius: 12px;
 
-    background:
-      var(--color-dark-2, #1e2126);
-  }
+    background: var(--color-dark-2, #1e2126);
+}
 
-  .newsletter-compact-content
-  .section-eyebrow {
+.newsletter-compact-content .section-eyebrow {
+    margin-bottom: 4px;
+    color: var(--color-primary, #e0392c);
+}
 
-    margin-bottom: 7px;
-
-    color:
-      var(--color-primary, #e0392c);
-  }
-
-  .newsletter-compact-content h3 {
-
-    margin: 0 0 8px;
-
+.newsletter-compact-content h3 {
+    margin: 0 0 5px;
     color: #fff;
+    font-size: 1.1rem;
+}
 
-    font-size: 1.25rem;
-  }
-
-  .newsletter-compact-content p {
-
+.newsletter-compact-content p {
     margin: 0;
+    color: rgba(255,255,255,0.55);
+    font-size: 0.75rem;
+    line-height: 1.4;
+}
 
-    color:
-      rgba(255,255,255,0.55);
-
-    font-size: 0.8rem;
-
-    line-height: 1.6;
-  }
-
-  .newsletter-compact-form {
-
+.newsletter-compact-form {
     display: grid;
+    grid-template-columns: 1fr 1.2fr auto;
+    gap: 7px;
+}
 
-    grid-template-columns:
-      1fr 1.2fr auto;
-
-    gap: 10px;
-  }
-
-  .compact-input input {
-
+.compact-input input {
     width: 100%;
 
-    min-height: 46px;
+    min-height: 38px;
 
-    padding: 11px 13px;
+    padding: 8px 11px;
 
-    border:
-      1px solid
-      rgba(255,255,255,0.12);
-
-    border-radius: 7px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 6px;
 
     outline: none;
 
-    background:
-      rgba(255,255,255,0.06);
-
+    background: rgba(255,255,255,0.06);
     color: #fff;
-  }
+}
 
-  .compact-input input::placeholder {
-
-    color:
-      rgba(255,255,255,0.4);
-  }
-
-  .newsletter-privacy {
-
-    grid-column:
-      1 / -1;
+.newsletter-privacy {
+    grid-column: 1 / -1;
 
     margin: 0;
 
-    color:
-      rgba(255,255,255,0.4);
-
-    font-size: 0.68rem;
-  }
-
-
-  /* =========================================================
-     ACCESSIBILITY
-  ========================================================= */
-
-  .sr-only {
-
-    position: absolute;
-
-    width: 1px;
-    height: 1px;
-
-    padding: 0;
-    margin: -1px;
-
-    overflow: hidden;
-
-    clip: rect(0,0,0,0);
-
-    white-space: nowrap;
-
-    border: 0;
-  }
-
-
-  /* =========================================================
-     RESPONSIVE
-  ========================================================= */
-
-  @media (max-width: 900px) {
-
-    .newsletter-full {
-
-      grid-template-columns: 1fr;
-
-      gap: 40px;
-
-      padding: 45px;
-    }
-
-    .newsletter-compact {
-
-      grid-template-columns: 1fr;
-
-    }
-
-  }
-
-
-  @media (max-width: 650px) {
-
-    .newsletter-full {
-
-      padding: 30px 22px;
-
-      border-radius: 18px;
-    }
-
-    .newsletter-form {
-
-      grid-template-columns: 1fr;
-    }
-
-    .newsletter-consent,
-    .newsletter-submit,
-    .newsletter-status {
-
-      grid-column: 1;
-    }
-
-    .newsletter-submit {
-
-      width: 100%;
-    }
-
-    .newsletter-compact {
-
-      padding: 25px 20px;
-    }
-
-    .newsletter-compact-form {
-
-      grid-template-columns: 1fr;
-    }
-
-    .newsletter-compact-form .btn {
-
-      width: 100%;
-    }
-
-  }
+    color: rgba(255,255,255,0.4);
+    font-size: 0.62rem;
+}
 
 </style>
 

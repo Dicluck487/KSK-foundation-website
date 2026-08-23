@@ -8,6 +8,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  
+
 </head>
 <body>
 
@@ -20,5 +23,29 @@
   <%- include('footer') %>
 
   <script src="/js/main.js"></script>
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const dropdown = document.querySelector('.has-dropdown');
+    const toggle = dropdown.querySelector('.dropdown-toggle');
+
+    toggle.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const isOpen = dropdown.classList.toggle('dropdown-open');
+
+        toggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close when clicking somewhere else
+    document.addEventListener('click', function (e) {
+        if (!dropdown.contains(e.target)) {
+            dropdown.classList.remove('dropdown-open');
+            toggle.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+});
+</script>
 </body>
 </html>

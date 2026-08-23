@@ -91,7 +91,32 @@ const faq = [
   }
 ];
 
+const programApplicationController = require('../controllers/programApplicationController');
+const { getPublishedGallery, getRecentGalleryPhotos } = require('../controllers/galleryController');
+
+
+
 // ---- Routes ----
+
+// Homepage — fetch 3 most recent published photos for the preview strip
+router.get('/', async (req, res) => {
+  const recentPhotos = await getRecentGalleryPhotos(3);
+  res.render('index', {
+    title: 'Welcome',
+    recentPhotos,
+    // ...any other data your homepage already passes in
+  });
+});
+
+// Full gallery page
+router.get('/gallery', async (req, res) => {
+  const photos = await getPublishedGallery();
+  res.render('gallery', { title: 'Gallery', photos });
+});
+
+
+
+
 
 router.get('/', (req, res) => {
   res.render('index', {
@@ -133,22 +158,20 @@ router.get('/cohorts', (req, res) => {
   });
 });
 
-router.get('/publications', (req, res) => {
-  res.render('publications', {
-    title: 'Publications',
-    description: 'Prospectuses and magazines published by the program.',
-    publications
-  });
-});
+// router.get('/publications', (req, res) => {
+//   res.render('publications', {
+//     title: 'Publications',
+//     description: 'Prospectuses and magazines published by the program.',
+//     publications
+//   });
+// });
 
-router.get('/publications/:slug', (req, res, next) => {
-  const pub = publications.find(p => p.slug === req.params.slug);
-  if (!pub) return next();
-  res.render('publication-detail', {
-    title: pub.title,
-    description: pub.description,
-    publication: pub
-  });
+router.get('/publications', (req, res) => {
+    res.render('publications', {
+        title: 'Publications',
+        description: 'Prospectuses and magazines published by the program.',
+        publications
+    });
 });
 
 router.get('/news-events', (req, res) => {
@@ -180,48 +203,32 @@ router.get('/privacy-policy', (req, res) => {
     description: 'How we handle your data.'
   });
 });
+// router.get('/publications', (req, res) => {
+//     res.render('publications', {
+//         title: 'Publications',
+//         description: 'Prospectuses and magazines published by the program.',
+//         publications
+//     });
+// });
+
+// router.get('/publications/:slug', (req, res, next) => {
+//     const publication = publications.find(
+//         p => p.slug === req.params.slug
+//     );
+
+//     if (!publication) {
+//         return next();
+//     }
+
+//     res.render('publication-detail', {
+//         title: publication.title,
+//         description: publication.description,
+//         publication
+//     });
+// });
 
 router.get('/contact-us', (req, res) => {
-
-  res.render('contact-us', {
-    title: 'Contact Us',
-    description: 'Get in touch with KSK Foundation.',
-    submitted: false
-  });
-
-});
-
-router.post('/contact-us', (req, res) => {
-
-  const {
-    name,
-    email,
-    organization,
-    reason,
-    message
-  } = req.body;
-
-
-  console.log('New contact form submission:', {
-    name,
-    email,
-    organization,
-    reason,
-    message
-  });
-
-
-  res.render('contact-us', {
-
-    title: 'Contact Us',
-
-    description:
-      'Get in touch with KSK Foundation.',
-
-    submitted: true
-
-  });
-
+  res.render('contact-us', { title: 'Contact KSK Foundation' });
 });
 
 router.get('/apply', (req, res) => {
@@ -231,6 +238,14 @@ router.get('/apply', (req, res) => {
     submitted: false
   });
 });
+
+
+
+// router.get('/apply', (req, res) => {
+//   res.render('apply', { submitted: false });
+// });
+
+router.post('/apply', programApplicationController.submitApplication);
 
 router.post('/apply', (req, res) => {
   const { name, email, phone, motivation } = req.body;
@@ -285,6 +300,49 @@ router.get('/alumni', (req, res) => {
 
 router.get('/our-team', (req, res) => {
     res.render('our-team');
+});
+
+router.get('/publications', (req, res) => {
+    res.render('publications', {
+        title: 'Publications',
+        description: 'Prospectuses and magazines published by the program.',
+        publications
+    });
+});
+
+// router.get('/publication-details', (req, res) => {
+//     res.render('publication-details', { publication });
+// });
+
+
+router.get('/testimonials', (req, res) => {
+
+    const testimonials = [
+        {
+            name: 'Sarah',
+            role: 'KSK Alumni',
+            image: '/images/alum1.jpg',
+            quote: 'KSK gave me the confidence and skills to pursue my goals and make a difference in my community.'
+        },
+        {
+            name: 'John',
+            role: 'KSK Alumni',
+            image: '/images/alum2.jpg',
+            quote: 'The mentorship and practical learning at KSK helped me discover my potential and become a better leader.'
+        },
+        {
+            name: 'Mary',
+            role: 'KSK Alumni',
+            image: '/images/alum3.jpg',
+            quote: 'My experience with KSK shaped how I think about leadership, innovation and creating opportunities for others.'
+        }
+    ];
+
+    res.render('testimonials', {
+        title: 'Testimonials',
+        testimonials: testimonials
+    });
+
 });
 
 

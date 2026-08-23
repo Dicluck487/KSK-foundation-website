@@ -4,7 +4,8 @@
 
     <!-- Logo -->
     <a href="/" class="logo">
-        <img src="/images/logo.jpg" alt="KSK Logo">
+             <img src="/images/logo.jpg" alt="KSK Logo">
+       
     </a>
    
 
@@ -21,7 +22,7 @@
            <!-- About KSK -->
 <li class="has-dropdown">
 
-    <a href="/leadership" class="dropdown-toggle">
+    <a href="javascript:void(0);" class="dropdown-toggle" aria-expanded="false">
         About KSK
         <span class="dropdown-arrow">⌄</span>
     </a>
@@ -29,7 +30,7 @@
     <div class="mega-dropdown">
 
         <a href="/who-we-are" class="mega-item">
-            <img src="/images/2image3.jpg" alt="Who We Are">
+            <img src="/images/pride.jpg" alt="Who We Are">
             <h4>Who We Are</h4>
             <p>
                 A youth program using peer-to-peer mentorship
@@ -37,17 +38,17 @@
             </p>
         </a>
 
-        <a href="/alumni" class="mega-item">
-            <img src="/images/2image6.jpg" alt="Alumni">
-            <h4>Alumni</h4>
+        <a href="/testimonials" class="mega-item">
+            <img src="/images/alum2.jpg" alt="Testimonials">
+            <h4>Testimonials</h4>
             <p>
                 Whether a potential mentee, mentor, or just curious,
                 our alumni are ready to share and support.
             </p>
         </a>
 
-        <a href="/our-team" class="mega-item">
-            <img src="/images/2image5.jpg" alt="Our Team">
+        <a href="/leadership" class="mega-item">
+            <img src="/images/lead1.jpg" alt="Our Team">
             <h4>Our Team</h4>
             <p>
                 Our leading management team behind great mentoring
@@ -55,33 +56,56 @@
             </p>
         </a>
 
-        <!-- Leadership -->
-        <a href="/leadership" class="mega-item leadership-menu-item">
-
-            <div class="leadership-menu-icon">
-                <span>★</span>
-            </div>
-
-            <div>
-                <h4>Leadership</h4>
-                <p>
-                    Meet the Foundation's leadership, vision founders
-                    and Board of Directors.
-                </p>
-            </div>
-
-        </a>
-
     </div>
 
 </li>
-
             <!-- Cohorts -->
-            <li>
+            <!-- <li>
                 <a href="/cohorts" class="<%= currentPath === '/cohorts' ? 'active' : '' %>">
                     Cohort
                 </a>
+            </li> -->
+
+            <li>
+                <a href="/programs" class="<%= currentPath === '/cohorts' ? 'active' : '' %>">
+                    Programs
+                </a>
             </li>
+
+            <!-- Publications -->
+            <li class="has-dropdown">
+                <a href="#" class="dropdown-toggle">
+                    Publications ⌄
+                </a>
+
+                <div class="mega-dropdown">
+
+                    <a href="/publications/#section1" class="mega-item">
+                        <img src="/images/2image3.jpeg" alt="Prospectus">
+                        <h4>2026 Prospectus</h4>
+                    </a>
+
+                    <a href="/publications/#section2" class="mega-item">
+                        <img src="/images/2image3.jpeg" alt="Magazine 2025">
+                        <h4>Magazine 2025</h4>
+                    </a>
+
+                    <a href="/publications/#section3" class="mega-item">
+                        <img src="/images/2image3.jpeg" alt="Magazine 2024">
+                        <h4>Magazine 2024</h4>
+                    </a>
+
+                </div>
+            </li>
+
+
+            <!-- Contact -->
+            <li>
+                <a href="/partner-with-us" class="<%= currentPath === '/partner-with-us' ? 'active' : '' %>">
+                    partner with us
+                </a>
+            </li>
+
 
             <li>
                 <a href="/contact-us">Contact</a>
@@ -91,51 +115,21 @@
 <a href="/faq">FAQ</a>
             </li>
 
-            <!-- Publications -->
-            <li class="has-dropdown">
-                <a href="#" class="dropdown-toggle">
-                    Publications
-                </a>
-
-                <div class="mega-dropdown">
-
-                    <a href="/publications/prospectus-2026" class="mega-item">
-                        <img src="/images/2image7.jpg" alt="Prospectus">
-                        <h4>2026 Prospectus</h4>
-                    </a>
-
-                    <a href="/publications/magazine-2025" class="mega-item">
-                        <img src="/images/2image1.jpg" alt="Magazine 2025">
-                        <h4>Magazine 2025</h4>
-                    </a>
-
-                    <a href="/publications/magazine-2024" class="mega-item">
-                        <img src="/images/2image2.jpg" alt="Magazine 2024">
-                        <h4>Magazine 2024</h4>
-                    </a>
-
-                </div>
-            </li>
-
+            
             <!-- News & Events -->
-            <li>
+            <!-- <li>
                 <a href="/news-events" class="<%= currentPath === '/news-events' ? 'active' : '' %>">
                     News &amp; Events
                 </a>
-            </li>
+            </li> -->
 
-            <!-- Contact -->
-            <li>
-                <a href="/partner-with-us" class="<%= currentPath === '/partner-with-us' ? 'active' : '' %>">
-                    partner with us
-                </a>
-            </li>
+            
 
         </ul>
     </nav>
 
     <!-- Apply Button -->
-    <a href="/apply" class="btn btn-primary header-cta">
+    <a href="/apply" class="btn primary header-cta">
         Apply Today
     </a>
 

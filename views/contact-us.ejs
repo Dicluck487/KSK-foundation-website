@@ -428,9 +428,21 @@
 }) %>
 
 
-<!-- <%- include('partials/newsletter-signup', {
-    variant: 'full',
-    newsletterSource: 'contact-page'
-}) %> -->
-
 <script src="/js/contact.js"></script>
+
+<style>
+.contact-page-header {
+  position: relative;
+  overflow: hidden;
+  background-image:
+    linear-gradient(135deg, rgba(97, 6, 100, 0.78), rgba(238, 74, 230, 0.55)),
+    url('/images/contact.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.contact-page-header .section-eyebrow { color: rgba(255,255,255,0.85); }
+.contact-page-header h1 { color: #eba852; }
+.contact-page-header p { color: #fff; }
+
+

@@ -3,8 +3,17 @@ const bcrypt = require('bcryptjs');
 const supabase = require('../config/supabase');
 
 // GET /admin/login
+// function getLogin(req, res) {
+//   res.render('admin/login', { error: null });
+// }
+
 function getLogin(req, res) {
-  res.render('admin/login', { error: null });
+    res.render('admin/login', {
+        layout: false,
+        title: 'Admin Login',
+        description: 'KSK Foundation administrator login',
+        error: null
+    });
 }
 
 // POST /admin/login

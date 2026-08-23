@@ -21,11 +21,25 @@
       </div>
     <% } %>
 
+
+
+
+<% if (stats.unreadContacts > 0) { %>
+  <div class="panel" style="border-color:#a7c7f2;background:#f0f6ff;">
+    <strong><%= stats.unreadContacts %></strong> new contact message<%= stats.unreadContacts > 1 ? 's' : '' %> waiting.
+    <a href="/admin/contacts" class="btn small primary" style="margin-left:10px;">Review now</a>
+  </div>
+<% } %>
+
+
     <div class="stat-grid">
       <div class="stat-card"><div class="num"><%= stats.contacts %></div><div class="label">Contact Messages</div></div>
       <div class="stat-card"><div class="num"><%= stats.partners %></div><div class="label">Partnership Applications</div></div>
       <div class="stat-card"><div class="num"><%= stats.subscribers %></div><div class="label">Newsletter Subscribers</div></div>
       <div class="stat-card"><div class="num"><%= stats.alumni %></div><div class="label">Alumni Records</div></div>
+       <div class="stat-card"><div class="num"><%= stats.programApplications %></div><div class="label">Program Applications</div></div>
+
+      
     </div>
 
     <div class="panel">

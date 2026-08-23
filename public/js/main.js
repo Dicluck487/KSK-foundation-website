@@ -1,47 +1,147 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // Mobile nav toggle
-  var toggle = document.getElementById('nav-toggle');
-  var nav = document.getElementById('main-nav');
-  if (toggle && nav) {
-    toggle.addEventListener('click', function () {
-      nav.classList.toggle('open');
-      nav.style.display = nav.classList.contains('open') ? 'block' : '';
+
+    // ==========================================
+    // MOBILE NAVIGATION TOGGLE
+    // ==========================================
+    const navToggle = document.getElementById('nav-toggle');
+    const mainNav = document.getElementById('main-nav');
+
+    if (navToggle && mainNav) {
+        navToggle.addEventListener('click', function () {
+            mainNav.classList.toggle('open');
+
+            if (mainNav.classList.contains('open')) {
+                mainNav.style.display = 'block';
+            } else {
+                mainNav.style.display = '';
+            }
+        });
+    }
+
+
+    // ==========================================
+    // DROPDOWN MENUS
+    // About KSK / Publications
+    // ==========================================
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+    dropdownToggles.forEach(function (toggle) {
+
+        toggle.addEventListener('click', function (event) {
+
+            // Prevent href="#" from jumping to the top
+            event.preventDefault();
+
+            const parentDropdown = this.closest('.has-dropdown');
+
+            if (!parentDropdown) {
+                return;
+            }
+
+            // Close other open dropdowns
+            document.querySelectorAll('.has-dropdown.active').forEach(function (dropdown) {
+
+                if (dropdown !== parentDropdown) {
+                    dropdown.classList.remove('active');
+
+                    const otherToggle = dropdown.querySelector('.dropdown-toggle');
+
+                    if (otherToggle) {
+                        otherToggle.setAttribute('aria-expanded', 'false');
+                    }
+                }
+
+            });
+
+            // Toggle the clicked dropdown
+            parentDropdown.classList.toggle('active');
+
+            // Update accessibility state
+            this.setAttribute(
+                'aria-expanded',
+                parentDropdown.classList.contains('active')
+                    ? 'true'
+                    : 'false'
+            );
+
+        });
+
     });
-  }
-
-  // // Mobile dropdown toggles (About KSK / Publications mega-menus)
-  // var dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-  // dropdownToggles.forEach(function (link) {
-  //   link.addEventListener('click', function (e) {
-  //     if (window.innerWidth <= 720) {
-  //       e.preventDefault();
-  //       var parentLi = link.closest('.has-dropdown');
-  //       if (parentLi) parentLi.classList.toggle('open');
-  //     }
-  //   });
-  // });
 
 
-  document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+    // ==========================================
+    // CLOSE DROPDOWNS WHEN CLICKING OUTSIDE
+    // ==========================================
+    document.addEventListener('click', function (event) {
 
-    toggle.addEventListener('click', function() {
+        const clickedInsideDropdown = event.target.closest('.has-dropdown');
 
-        const parent = this.closest('.has-dropdown');
+        if (!clickedInsideDropdown) {
 
-        parent.classList.toggle('active');
+            document.querySelectorAll('.has-dropdown.active').forEach(function (dropdown) {
+
+                dropdown.classList.remove('active');
+
+                const toggle = dropdown.querySelector('.dropdown-toggle');
+
+                if (toggle) {
+                    toggle.setAttribute('aria-expanded', 'false');
+                }
+
+            });
+
+        }
 
     });
 
-});
-  // FAQ accordion
-  var toggles = document.querySelectorAll('.accordion-toggle');
-  toggles.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var targetId = btn.getAttribute('data-target');
-      var content = document.getElementById(targetId);
-      if (content) {
-        content.classList.toggle('open');
-      }
+
+    // ==========================================
+    // MOBILE DROPDOWN BEHAVIOUR
+    // ==========================================
+    window.addEventListener('resize', function () {
+
+        // When returning to desktop, remove mobile-open
+        // states if necessary.
+        if (window.innerWidth > 720) {
+
+            if (mainNav) {
+                mainNav.style.display = '';
+            }
+
+        }
+
     });
-  });
+
+
+    // ==========================================
+    // FAQ ACCORDION
+    // ==========================================
+    const accordionToggles = document.querySelectorAll('.accordion-toggle');
+
+    accordionToggles.forEach(function (button) {
+
+        button.addEventListener('click', function () {
+
+            const targetId = this.getAttribute('data-target');
+            const content = document.getElementById(targetId);
+
+            if (!content) {
+                return;
+            }
+
+            // Toggle current FAQ item
+            content.classList.toggle('open');
+
+            // Update accessibility state
+            const isOpen = content.classList.contains('open');
+
+            this.setAttribute(
+                'aria-expanded',
+                isOpen ? 'true' : 'false'
+            );
+
+        });
+
+    });
+
 });

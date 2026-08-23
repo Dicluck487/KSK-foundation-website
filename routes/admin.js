@@ -15,12 +15,17 @@ const contactController = require('../controllers/contactController');
 const newsletterController = require('../controllers/newsletterController');
 const exportController = require('../controllers/exportController');
 
+const programApplicationController = require('../controllers/programApplicationController');
+
+
+
 // Every route below requires an active, logged-in admin.
 router.use(requireAuth);
 
 // --- Dashboard ---
 router.get('/dashboard', adminController.dashboard);
 router.get('/', (req, res) => res.redirect('/admin/dashboard'));
+
 
 // --- Admin applications (approve/reject) — Super Admin only ---
 router.get('/applications', requireRole('super_admin'), adminController.listApplications);
@@ -79,5 +84,9 @@ router.get('/export/contacts', exportController.exportContacts);
 router.get('/export/partnerships', exportController.exportPartnerships);
 router.get('/export/subscribers', exportController.exportSubscribers);
 router.get('/export/alumni', exportController.exportAlumni);
+
+router.get('/program-applications', programApplicationController.listApplications);
+router.get('/export/program-applications', exportController.exportProgramApplications);
+
 
 module.exports = router;

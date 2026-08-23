@@ -8,8 +8,37 @@
 <section class="section">
   <div class="container narrow">
     <% if (submitted) { %>
-      <div class="alert alert-success">Your application has been received. We'll be in touch soon!</div>
+
+      <div class="alert alert-success">
+        <strong>Thank you, <%= applicantName %>!</strong> Your application has been received.
+        We'll be in touch soon.
+      </div>
+
+      <div class="apply-newsletter-nudge">
+        <h3>While you wait — stay in the loop</h3>
+        <p>
+          Get updates on new cohorts, graduation highlights, and partnership
+          opportunities straight to your inbox.
+        </p>
+        <form method="POST" action="/newsletter/subscribe" class="apply-newsletter-form">
+          <input type="hidden" name="name" value="<%= applicantName %>">
+          <input
+            type="email"
+            name="email"
+            value="<%= applicantEmail %>"
+            placeholder="Your email address"
+            required
+          >
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+      </div>
+
     <% } else { %>
+
+      <% if (typeof error !== 'undefined' && error) { %>
+        <div class="alert alert-error"><%= error %></div>
+      <% } %>
+
       <form method="POST" action="/apply" class="site-form">
         <label>
           Full Name
@@ -24,11 +53,74 @@
           <input type="tel" name="phone" required>
         </label>
         <label>
-          Why do you want to join this program?
+          Why do you want to join this program?, Include your Expectations and what you hope to gain from the program.
           <textarea name="motivation" rows="6" required></textarea>
         </label>
         <button type="submit" class="btn btn-primary">Submit Application</button>
       </form>
+
     <% } %>
   </div>
 </section>
+
+
+<style>
+  .page-header {
+    position: relative;
+    overflow: hidden;
+    background-image:
+      linear-gradient(135deg, rgba(20,22,26,0.78), rgba(224,57,44,0.55)),
+      url('/images/cohort.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .page-header .section-eyebrow { color: rgba(255,255,255,0.85); }
+  .page-header h1 { color: #eba852; }
+  .page-header p { color: #fff; }
+
+  .alert-error {
+    background: #fdecea;
+    color: #b23a2c;
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+
+  .apply-newsletter-nudge {
+    margin-top: 34px;
+    padding: 28px 30px;
+    border-radius: 16px;
+    background: var(--color-bg-alt, #f6f5f3);
+    border: 1px solid rgba(243, 104, 11, 0.06);
+  }
+  .apply-newsletter-nudge h3 {
+    margin: 0 0 8px;
+    font-size: 1.15rem;
+  }
+  .apply-newsletter-nudge p {
+    margin: 0 0 18px;
+    color: var(--color-muted, #6b7280);
+    line-height: 1.6;
+  }
+  .apply-newsletter-form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .apply-newsletter-form input[type="email"] {
+    flex: 1;
+    min-width: 220px;
+    padding: 11px 14px;
+    border: 1px solid rgba(247, 172, 11, 0.15);
+    border-radius: 8px;
+    font-size: 0.95rem;
+  }
+  .apply-newsletter-form button {
+    white-space: nowrap;
+  }
+
+  @media (max-width: 480px) {
+    .apply-newsletter-form { flex-direction: column; }
+  }
+</style>

@@ -4,19 +4,27 @@ const crypto = require('crypto');
 const supabase = require('../config/supabase');
 
 // GET /admin/dashboard
+// Replace the existing `dashboard` function in controllers/adminController.js with this:
+
+// Replace the existing `dashboard` function in controllers/adminController.js with this:
+
 async function dashboard(req, res) {
   const [
     { count: contactsCount },
+    { count: unreadContactsCount },
     { count: partnersCount },
     { count: subscribersCount },
     { count: alumniCount },
+    { count: programApplicationsCount },
     { count: pendingAppsCount },
     { data: recentMessages },
   ] = await Promise.all([
     supabase.from('contact_messages').select('*', { count: 'exact', head: true }),
+    supabase.from('contact_messages').select('*', { count: 'exact', head: true }).eq('status', 'unread'),
     supabase.from('partnership_inquiries').select('*', { count: 'exact', head: true }),
     supabase.from('newsletter_subscribers').select('*', { count: 'exact', head: true }).eq('status', 'subscribed'),
     supabase.from('alumni').select('*', { count: 'exact', head: true }),
+    supabase.from('program_applications').select('*', { count: 'exact', head: true }),
     supabase.from('admin_applications').select('*', { count: 'exact', head: true }).eq('status', 'pending'),
     supabase.from('contact_messages').select('*').order('created_at', { ascending: false }).limit(5),
   ]);
@@ -24,9 +32,11 @@ async function dashboard(req, res) {
   res.render('admin/dashboard', {
     stats: {
       contacts: contactsCount || 0,
+      unreadContacts: unreadContactsCount || 0,
       partners: partnersCount || 0,
       subscribers: subscribersCount || 0,
       alumni: alumniCount || 0,
+      programApplications: programApplicationsCount || 0,
       pendingApps: pendingAppsCount || 0,
     },
     recentMessages: recentMessages || [],

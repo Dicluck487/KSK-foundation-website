@@ -81,4 +81,22 @@ async function getPublishedGallery() {
   return (photos || []).map((p) => ({ ...p, url: publicUrl(p.storage_path) }));
 }
 
-module.exports = { listGallery, uploadPhoto, setPhotoStatus, deletePhoto, getPublishedGallery };
+// Used by the homepage to show a small "recent photos" preview.
+async function getRecentGalleryPhotos(limit = 3) {
+  const { data: photos } = await supabase
+    .from('gallery')
+    .select('*')
+    .eq('status', 'published')
+    .order('created_at', { ascending: false })
+    .limit(limit);
+  return (photos || []).map((p) => ({ ...p, url: publicUrl(p.storage_path) }));
+}
+
+module.exports = {
+  listGallery,
+  uploadPhoto,
+  setPhotoStatus,
+  deletePhoto,
+  getPublishedGallery,
+  getRecentGalleryPhotos,
+};

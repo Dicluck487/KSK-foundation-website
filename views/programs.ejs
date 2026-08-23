@@ -1,0 +1,719 @@
+<!-- =========================================================
+     KSK FOUNDATION — OUR PROGRAMS PAGE
+     Linked from the homepage "Our Programs" preview cards
+     and main navigation. Built from Content Brief Section 3.
+     Redesigned: elegant, modern, minimal — self-contained styles.
+========================================================= -->
+
+<style>
+  .ksk-programs {
+    --ink: #222;
+    --ink-soft: #5f625f;
+    --paper: #fff;
+    --paper-alt: #f5f3ee;
+    --line: #ddd9d0;
+    --accent: #a87532;
+    --accent-deep: #ecc390;
+    --navy: #1d2a34;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .ksk-programs .container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  .ksk-programs h1,
+  .ksk-programs h2,
+  .ksk-programs h3 {
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    color: var(--ink);
+    margin: 0 0 16px;
+  }
+
+  .ksk-programs p {
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin: 0 0 16px;
+  }
+
+  .ksk-programs .eyebrow {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #da7400;
+    margin: 0 0 12px;
+  }
+
+  .ksk-programs .eyebrow.center {
+    text-align: center;
+  }
+
+  .ksk-programs .center {
+    text-align: center;
+  }
+
+  .ksk-programs .max-w {
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ---------- Page Header ---------- */
+  .ksk-programs .page-header {
+    position: relative;
+    padding: 112px 0 86px;
+    overflow: hidden;
+    background: var(--navy);
+  }
+
+  .ksk-programs .page-header-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.24;
+    pointer-events: none;
+  }
+
+  /* .ksk-programs .page-header .hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba(29, 42, 52, 0.72);
+    pointer-events: none;
+  } */
+
+  .ksk-programs .hero-overlay {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+    text-align: left;
+  }
+
+  .ksk-programs .page-header .eyebrow {
+    color: #dfc18a;
+  }
+
+  .ksk-programs .page-header h1 {
+    color: #fff;
+    font-size: clamp(32px, 4vw, 48px);
+    max-width: 680px;
+    margin-bottom: 18px;
+  }
+
+  .ksk-programs .page-header .lead {
+    color: rgba(255,255,255,.82);
+    font-size: 17px;
+    max-width: 650px;
+    margin-bottom: 0;
+  }
+
+  /* ---------- Jump Menu ---------- */
+  .ksk-programs .program-jumpmenu {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: #fff;
+    /* border-bottom: 1px solid var(--line); */
+  }
+
+  .ksk-programs .jumpmenu-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    padding: 0 28px;
+  }
+
+  .ksk-programs .jumpmenu-inner a {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: #fcfdfd;
+    text-decoration: none;
+    padding: 15px 17px;
+    /* border-bottom: 2px solid transparent; */
+    transition: color .2s ease, border-color .2s ease;
+    white-space: nowrap;
+  }
+
+  .ksk-programs .jumpmenu-inner a:hover {
+    color: var(--accent-deep);
+    border-bottom-color: var(--accent);
+  }
+
+  /* ---------- Sections ---------- */
+  .ksk-programs .section {
+    padding: 76px 0;
+  }
+
+  /* .ksk-programs .program-detail {
+    border-bottom: 1px solid var(--line);
+  } */
+
+  .ksk-programs .two-col {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 58px;
+    align-items: center;
+  }
+
+  .ksk-programs .two-col.reverse > *:first-child {
+    order: 2;
+  }
+
+  .ksk-programs .two-col h2 {
+    font-size: clamp(27px, 3vw, 35px);
+    margin-bottom: 18px;
+  }
+
+  .ksk-programs .program-image-link {
+    display: block;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ksk-programs .rounded-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ksk-programs .rounded-img.tall {
+    aspect-ratio: 5 / 4;
+  }
+
+  .ksk-programs .program-image-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.08);
+    pointer-events: none;
+  }
+
+  /* ---------- Checklist ---------- */
+  .ksk-programs .checklist {
+    list-style: none;
+    margin: 24px 0 28px;
+    padding: 0;
+    display: grid;
+    gap: 0;
+  }
+
+  .ksk-programs .checklist li {
+    position: relative;
+    padding: 11px 0 11px 21px;
+    font-size: 15px;
+    color: var(--ink);
+    font-weight: 500;
+    border-top: 1px solid var(--line);
+  }
+
+  /* .ksk-programs .checklist li:last-child {
+    border-bottom: 1px solid var(--line);
+  } */
+
+  .ksk-programs .checklist li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 19px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* ---------- Program note ---------- */
+  .ksk-programs .program-cta-note {
+    display: block;
+    padding: 14px 18px;
+    margin-bottom: 26px;
+    border-left: 3px solid var(--accent);
+    background: #f7f5f0;
+  }
+
+  .ksk-programs .program-cta-note strong {
+    display: block;
+    font-size: 14px;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+
+  .ksk-programs .program-cta-note span {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Buttons ---------- */
+  .ksk-programs .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 11px;
+  }
+
+  .ksk-programs .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background .2s ease, color .2s ease, border-color .2s ease;
+    white-space: nowrap;
+  }
+
+  .ksk-programs .btn-primary {
+    background: #fa931a;
+    color: #fff;
+    border: 1px solid var(--navy);
+    height: 10px;
+  }
+
+  .ksk-programs .btn-primary:hover {
+    background: var(--accent-deep);
+    border-color: var(--accent-deep);
+  }
+
+  .ksk-programs .btn-outline {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid #bdb9b0;
+  }
+
+  .ksk-programs .btn-outline:hover {
+    border-color: var(--ink);
+    background: #f7f6f3;
+  }
+
+  .ksk-programs .btn-lg {
+    padding: 13px 24px;
+    font-size: 14.5px;
+  }
+
+  /* ---------- Upcoming Initiatives ---------- */
+  .ksk-programs .upcoming-initiatives {
+    background: var(--paper-alt);
+  }
+
+  .ksk-programs .upcoming-initiatives h2 {
+    font-size: clamp(27px, 3vw, 35px);
+    margin-bottom: 12px;
+  }
+
+  .ksk-programs .upcoming-initiatives > .container > p.max-w {
+    margin-bottom: 42px;
+  }
+
+  .ksk-programs .program-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .ksk-programs .program-card {
+    background: #fff;
+    padding: 30px;
+    border: 1px solid var(--line);
+  }
+
+  .ksk-programs .program-card h3 {
+    font-size: 21px;
+    margin-bottom: 10px;
+  }
+
+  .ksk-programs .program-card p {
+    margin-bottom: 0;
+    font-size: 15px;
+  }
+
+  /* ---------- CTA Banner ---------- */
+  .ksk-programs .cta-banner {
+    background: var(--navy);
+    padding: 62px 0;
+  }
+
+  .ksk-programs .cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 36px;
+    flex-wrap: wrap;
+  }
+
+  .ksk-programs .cta-inner .eyebrow {
+    color: #dfc18a;
+  }
+
+  .ksk-programs .cta-inner h2 {
+    color: #fff;
+    font-size: clamp(25px, 3vw, 32px);
+    max-width: 500px;
+  }
+
+  .ksk-programs .cta-inner p {
+    color: rgba(255,255,255,.76);
+    max-width: 520px;
+    margin-bottom: 0;
+  }
+
+  .ksk-programs .cta-inner .btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .ksk-programs .cta-inner .btn-primary:hover {
+    background: var(--accent-deep);
+    border-color: var(--accent-deep);
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 860px) {
+    .ksk-programs .two-col,
+    .ksk-programs .program-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .ksk-programs .two-col.reverse > *:first-child {
+      order: 0;
+    }
+
+    .ksk-programs .rounded-img.tall {
+      aspect-ratio: 16 / 10;
+    }
+
+    .ksk-programs .section {
+      padding: 58px 0;
+    }
+
+    .ksk-programs .page-header {
+      padding: 92px 0 60px;
+    }
+
+    .ksk-programs .jumpmenu-inner {
+      overflow-x: auto;
+      flex-wrap: nowrap;
+    }
+
+    .ksk-programs .jumpmenu-inner a {
+      flex-shrink: 0;
+    }
+
+    .ksk-programs .cta-inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .ksk-programs .container {
+      padding: 0 20px;
+    }
+
+    .ksk-programs .page-header h1 {
+      font-size: 32px;
+    }
+
+    .ksk-programs .page-header .lead {
+      font-size: 16px;
+    }
+
+    .ksk-programs .two-col {
+      gap: 34px;
+    }
+
+    .ksk-programs .program-card {
+      padding: 24px;
+    }
+  }
+
+ 
+
+
+</style>
+
+<div class="ksk-programs">
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="page-header-bg" style="background-image: url('/images/2image2.jpg');"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="container page-header-inner">
+      <p class="eyebrow">Our Programs</p>
+
+      <h1>Our Programs</h1>
+
+      <p class="lead">
+        We run practical programs for students, teenagers and young
+        professionals. Each one combines learning, mentorship and
+        hands-on activities that participants can use beyond the program.
+      </p>
+
+     
+                 <a href="/cohorts" class="btn btn-primary btn-lg">
+        Cohorts
+      </a>
+    </div>
+    
+  </section>
+</div>
+<div></div>
+
+  <!-- Jump Menu -->
+  <nav class="program-jumpmenu" aria-label="Jump to a program">
+    <div class="container jumpmenu-inner">
+       <a href="#mswrp" class="btn btn-primary ">
+            Making Students World Ready
+          </a>
+           <a href="#kaizen" class="btn btn-primary">
+            Kaizen Teen Boot Camp
+          </a>
+           <a href="#fsa" class="btn btn-primary">
+            Financial Services Academy
+          </a>
+           <a href="#upcoming" class="btn btn-primary">
+            Upcoming Initiatives
+          </a>
+      <!-- <a href="#mswrp">Making Students World Ready</a> -->
+      <!-- <a href="#kaizen">Kaizen Teen Boot Camp</a> -->
+      <!-- <a href="#fsa">Financial Services Academy</a> -->
+      <!-- <a href="#upcoming">Upcoming Initiatives</a> -->
+    </div>
+  </nav>
+
+
+
+  <!-- ============ MSWRP ============ -->
+  <section class="section program-detail" id="mswrp">
+    <div class="container two-col">
+      <div>
+        <p class="eyebrow">Flagship Youth Program &middot; Now in Season VIII</p>
+
+        <h2>Making Students World Ready Program</h2>
+
+        <p>
+          Now in its eighth consecutive year, the Making Students
+          World Ready Program is KSK Foundation's flagship initiative.
+          Over eight intensive weeks, participants move through
+          personal branding and leadership foundations, into
+          enterprise and career development, then applied innovation
+          and project development &mdash; building toward a real,
+          judged Hackathon where teams pitch AI-assisted business
+          concepts they've developed themselves.
+        </p>
+
+        <p>
+          The program has been graced by guests including Hon. Maria
+          Kiwanuka, and draws on a growing bench of over 30 industry
+          professionals each season who volunteer as facilitators
+          and mentors.
+        </p>
+
+        <ul class="checklist">
+          <li>Personal branding &amp; leadership foundations</li>
+          <li>Enterprise &amp; career development</li>
+          <li>Applied innovation &amp; project development</li>
+          <li>Judged Hackathon &amp; graduation showcase</li>
+        </ul>
+
+        <div class="program-cta-note">
+          <strong>Applications for Season IX open 1st November, 2026.</strong>
+          <span>Secondary schools may nominate S6 leavers.</span>
+        </div>
+
+        <div class="hero-actions">
+          <a href="/contact-us?reason=mswrp" class="btn btn-primary">
+            Nominate a Student
+          </a>
+          <a href="/gallery?category=mswrp" class="btn btn-outline">
+            See MSWRP in Action
+          </a>
+        </div>
+      </div>
+
+      <a href="/gallery?category=mswrp" class="program-image-link" aria-label="View MSWRP gallery">
+        <img
+          src="/images/2image1.jpg"
+          alt="Making Students World Ready Program participants"
+          class="rounded-img tall"
+        >
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ KAIZEN ============ -->
+  <section class="section program-detail alt-bg" id="kaizen">
+    <div class="container two-col reverse">
+      <a href="/gallery?category=kaizen" class="program-image-link" aria-label="View Kaizen Teen Boot Camp gallery">
+        <img
+          src="/images/2image5.jpg"
+          alt="Kaizen Teen Boot Camp activities"
+          class="rounded-img tall"
+        >
+      </a>
+
+      <div>
+        <p class="eyebrow">Teen Development &middot; Residential</p>
+
+        <h2>Kaizen Teen Boot Camp</h2>
+
+        <p>
+          The Kaizen Teen Boot Camp gives teenagers a hands-on,
+          immersive week of life-skills learning, engaging the whole
+          young person through a deliberate mix of academic workshops
+          and experiential activities. Campers leave with stronger
+          self-esteem, practical financial literacy, and real
+          exposure to leadership and teamwork in a supportive,
+          residential setting.
+        </p>
+
+        <ul class="checklist">
+          <li>Personal development &amp; self-esteem building</li>
+          <li>Practical financial literacy</li>
+          <li>Leadership &amp; teamwork exposure</li>
+          <li>Outdoor, experiential learning</li>
+        </ul>
+
+        <div class="hero-actions">
+          <a href="/contact-us?reason=kaizen" class="btn btn-primary">
+            Apply for a Place
+          </a>
+          <a href="/gallery?category=kaizen" class="btn btn-outline">
+            See Kaizen in Action
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FSA ============ -->
+  <section class="section program-detail" id="fsa">
+    <div class="container two-col">
+      <div>
+        <p class="eyebrow">Professional Development</p>
+
+        <h2>Financial Services Academy</h2>
+
+        <p>
+          The Financial Services Academy is a professional
+          development platform designed to equip participants with
+          practical, current knowledge across the full breadth of
+          financial services &mdash; from foundational accounting
+          principles to emerging areas like AI in finance and
+          fintech. Sessions combine expert-led modules with real
+          case studies drawn from industry reports, giving
+          participants direct exposure to how financial
+          professionals think and work.
+        </p>
+
+        <ul class="checklist">
+          <li>Finance, accounting &amp; taxation fundamentals</li>
+          <li>Capital markets</li>
+          <li>AI in finance &amp; fintech</li>
+          <li>Case studies led by industry practitioners</li>
+        </ul>
+
+        <div class="hero-actions">
+          <a href="/contact-us?reason=fsa" class="btn btn-primary">
+            Apply for a Place
+          </a>
+          <a href="/gallery?category=fsa" class="btn btn-outline">
+            See FSA in Action
+          </a>
+        </div>
+      </div>
+
+      <a href="/gallery?category=fsa" class="program-image-link" aria-label="View Financial Services Academy gallery">
+        <img
+          src="/images/2image3.jpg"
+          alt="Financial Services Academy session"
+          class="rounded-img tall"
+        >
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ UPCOMING INITIATIVES ============ -->
+  <section class="section upcoming-initiatives" id="upcoming">
+    <div class="container">
+      <p class="eyebrow center">In Development</p>
+
+      <h2 class="center">Upcoming Initiatives</h2>
+
+      <p class="center max-w">
+        Two pilot programs are in development, designed to extend
+        KSK Foundation's reach within the Making Students World Ready
+        Program. Both pilots are proposed for early 2027.
+      </p>
+
+      <div class="program-grid">
+        <article class="program-card">
+          <p class="eyebrow">Pilot &middot; 2027</p>
+          <h3>Corporate Survival Boot Camp</h3>
+
+          <p>
+            A 48-hour immersive simulation in which students
+            are &ldquo;hired&rdquo; into a mock company, giving
+            them hands-on experience of workplace dynamics,
+            problem-solving and professional conduct.
+          </p>
+        </article>
+
+        <article class="program-card">
+          <p class="eyebrow">Pilot &middot; 2027</p>
+          <h3>Rural Leadership Exchange</h3>
+
+          <p>
+            A community co-creation initiative that takes
+            participants into rural districts to collaborate
+            with local communities on practical solutions
+            &mdash; from water management to local literacy
+            drives.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NEWSLETTER SIGN-UP ============ -->
+  <%- include('partials/newsletter-signup', {
+      variant: 'full',
+      newsletterSource: 'programs'
+  }) %>
+
+  <!-- ============ CLOSING PARTNER CTA ============ -->
+  <section class="cta-banner">
+    <div class="container cta-inner">
+      <div>
+        <p class="eyebrow">Partner With Us</p>
+
+        <h2>
+          Help Build the Next Generation of Young Ugandan Leaders.
+        </h2>
+
+        <p>
+          Every cohort we run depends on partners who believe in what
+          young Ugandans are capable of. Get in touch to find out how
+          your organization can be part of the next season.
+        </p>
+      </div>
+
+      <a href="/partner-with-us" class="btn btn-primary btn-lg">
+        Partner With Us
+      </a>
+    </div>
+  </section>
+
+</div>

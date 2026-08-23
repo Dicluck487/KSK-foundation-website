@@ -1,11 +1,11 @@
 :root {
---color-primary: #6d0064;
+--color-primary: #d67301;
 --color-dark: #2c2d30;
 --color-dark-2: #081220;
 --color-text: #141010;
 --color-muted: #0f1c36;
 --color-bg-alt: #f6f5f3;
---color-border: #e5e5e5;
+--color-border: #fa931a;
 --radius: 10px;
 --max-width: 1160px;
 --font: 'Poppins', sans-serif;
@@ -278,11 +278,60 @@ background-color: #6e0257;
 height: 18px;
 }
 
+.primary {
+    background-color: #6e0257;
+    color: #fff;
+
+    height: 40px;
+    padding: 0 28px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 0;
+
+    /* Parallelogram shape */
+    clip-path: polygon(
+        12% 0,
+        100% 0,
+        88% 100%,
+        0 100%
+    );
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
 
 .btn-outline {
 background: var(--color-primary);
 color: #fff;
-background-color: #fc9004;
+background-color: #fc8804;
+    /* background-color: #6e0257; */
+    /* color: #fff; */
+
+    height: 40px;
+    padding: 0 28px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 0;
+
+    /* Parallelogram shape */
+    clip-path: polygon(
+        12% 0,
+        100% 0,
+        88% 100%,
+        0 100%
+    );
+
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
@@ -387,59 +436,256 @@ color: var(--color-primary);
 }
 
 /* Dropdown */
+/* ==========================================
+   ABOUT KSK - LARGE MEGA DROPDOWN
+   ========================================== */
 
 .has-dropdown {
-position: relative;
+    position: relative;
 }
+
+
+/* ==========================================
+   MEGA DROPDOWN CONTAINER
+   ========================================== */
 
 .mega-dropdown {
-display: none;
-position: absolute;
-top: calc(100% + 14px);
-left: 50%;
-transform: translateX(-50%);
-background: #fff;
-border: 1px solid var(--color-border);
-border-radius: var(--radius);
-padding: 20px;
-width: 640px;
-gap: 18px;
-grid-template-columns: repeat(3, 1fr);
-box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-z-index: 50;
+    display: none;
+
+    position: absolute;
+
+    /*
+     * Keep the dropdown inside the screen.
+     * It is wide, but will shrink on smaller screens.
+     */
+    width: 900px;
+    max-width: calc(100vw - 40px);
+
+    /*
+     * Position it below the navigation.
+     */
+    top: calc(100% + 12px);
+
+    /*
+     * Instead of centering it directly on the
+     * small About KSK button, shift it slightly
+     * to the right.
+     */
+    left: 50%;
+    transform: translateX(-42%);
+
+    /*
+     * Space inside the dropdown.
+     */
+    padding: 30px;
+
+    /*
+     * Space between cards.
+     */
+    gap: 25px;
+
+    /*
+     * Three equal cards.
+     */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    /*
+     * Prevent content from escaping the dropdown.
+     */
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.15);
+
+    z-index: 9999;
 }
+
+
+/* ==========================================
+   SHOW DROPDOWN ON HOVER
+   ========================================== */
 
 .has-dropdown:hover .mega-dropdown {
-display: grid;
+    display: grid;
 }
+
+
+/* ==========================================
+   SHOW DROPDOWN AFTER CLICK
+   ========================================== */
+
+.has-dropdown.active .mega-dropdown {
+    display: grid;
+}
+
+
+/* ==========================================
+   DROPDOWN CARDS
+   ========================================== */
 
 .mega-item {
-display: block;
-color: var(--color-text);
+    display: block;
+
+    width: 100%;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
+
+
+/* Card hover effect */
+.mega-item:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+
+/* ==========================================
+   CARD IMAGES
+   ========================================== */
 
 .mega-item img {
-width: 100%;
-height: 100px;
-object-fit: cover;
-border-radius: 8px;
-margin-bottom: 10px;
-display: block;
+    display: block;
+
+    width: 100%;
+
+    /*
+     * Keep all images the same size.
+     */
+    height: 180px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
 }
+
+
+/* ==========================================
+   CARD TITLE
+   ========================================== */
 
 .mega-item h4 {
-margin: 0 0 6px;
-font-size: 0.95rem;
+    margin: 18px 0 10px;
+
+    font-size: 20px;
+
+    line-height: 1.3;
+
+    font-weight: 700;
+
+    /*
+     * Prevent title from being squeezed.
+     */
+    word-wrap: break-word;
 }
+
+
+/* ==========================================
+   CARD DESCRIPTION
+   ========================================== */
 
 .mega-item p {
-margin: 0;
-font-size: 0.8rem;
-line-height: 1.4;
+    margin: 0;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+    color: #666;
+
+    /*
+     * Allow text to wrap naturally.
+     */
+    overflow-wrap: break-word;
 }
 
-.mega-item:hover h4 {
-color: var(--color-primary);
+
+/* ==========================================
+   DESKTOP - LARGE SCREENS
+   ========================================== */
+
+@media (min-width: 1200px) {
+
+    .mega-dropdown {
+        width: 900px;
+
+        /*
+         * This gives the menu a little more
+         * room on the right side.
+         */
+        transform: translateX(-42%);
+    }
+
+}
+
+
+/* ==========================================
+   MEDIUM SCREENS
+   ========================================== */
+
+@media (min-width: 901px) and (max-width: 1199px) {
+
+    .mega-dropdown {
+        width: 850px;
+
+        max-width: calc(100vw - 30px);
+
+        transform: translateX(-45%);
+    }
+
+}
+
+
+/* ==========================================
+   MOBILE / TABLET
+   ========================================== */
+
+@media (max-width: 900px) {
+
+    .mega-dropdown {
+        width: calc(100vw - 30px);
+
+        max-width: calc(100vw - 30px);
+
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        grid-template-columns: 1fr;
+
+        padding: 20px;
+
+        gap: 20px;
+
+        max-height: 80vh;
+
+        overflow-y: auto;
+    }
+
+
+    .mega-item img {
+        height: 200px;
+    }
+
 }
 
 /* Mobile toggle */
@@ -466,7 +712,7 @@ HERO SECTION
 .hero {
 position: relative;
 width: 100%;
-min-height: 650px;
+min-height: 630px;
 overflow: hidden;
 display: flex;
 align-items: center;
@@ -504,7 +750,7 @@ transform: scale(1.03);
 }
 
 .hero-slide.active {
-opacity: 1;
+opacity: 50;
 animation: heroZoom 20s ease-in-out;
 }
 
@@ -519,9 +765,9 @@ z-index: 1;
 background:
     linear-gradient(
         90deg,
-        rgba(0, 0, 0, 0.75) 0%,
-        rgba(0, 0, 0, 0.55) 45%,
-        rgba(0, 0, 0, 0.20) 100%
+        rgba(0, 0, 0, 0.74) 0%,
+        rgba(0, 0, 0, 0.418) 45%,
+        rgba(0, 0, 0, 0.007) 100%
     );
 
 
@@ -686,7 +932,7 @@ color: var(--color-text);
 }
 
 .checklist li::before {
-content: '✓';
+content: '.';
 position: absolute;
 left: 0;
 color: var(--color-primary);
@@ -731,31 +977,241 @@ margin: 0;
 TESTIMONIALS
 ========================================== */
 
-.testimonial-grid {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 24px;
-margin-top: 40px;
+/* =========================================================
+   ALUMNI VOICES / TESTIMONIALS
+========================================================= */
+
+.testimonials {
+    overflow: hidden;
 }
+
+.testimonials .max-w {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 35px;
+}
+
+
+/* Three cards in one row */
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+
+/* Individual card */
 
 .testimonial-card {
-background: var(--color-bg-alt);
-border-radius: var(--radius);
-padding: 28px;
-margin: 0;
+    display: grid;
+    grid-template-columns: 46% 54%;
+
+    min-height: 250px;
+
+    margin: 0;
+    padding: 0;
+
+    overflow: hidden;
+
+    background: #fff;
+
+    border-radius: 0 16px 16px 0;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
 }
 
-.testimonial-card .avatar {
-width: 56px;
-height: 56px;
-border-radius: 50%;
-object-fit: cover;
-margin-bottom: 16px;
+
+/* Person image */
+
+.testimonial-image {
+    width: 100%;
+    height: 100%;
+    min-height: 250px;
+    overflow: hidden;
 }
 
-.testimonial-card footer {
-font-size: 0.9rem;
-color: var(--color-muted);
+.testimonial-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center top;
+
+    transition: transform 0.4s ease;
+}
+
+.testimonial-card:hover .testimonial-image img {
+    transform: scale(1.04);
+}
+
+
+/* Right-hand colored section */
+
+.testimonial-content {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 22px 18px;
+
+    background: #5f1756;
+
+    color: #fff;
+}
+
+
+/* Small circular logo/badge */
+
+.testimonial-badge {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 12px;
+
+    border-radius: 50%;
+
+    background: #fff;
+    color: #056b83;
+
+    font-size: 0.38rem;
+    font-weight: 800;
+    text-align: center;
+    letter-spacing: 0.04em;
+}
+
+
+/* Alumni Voices */
+
+.testimonial-label {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: rgba(255,255,255,0.75);
+
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+
+/* Name */
+
+.testimonial-content h3 {
+    margin: 0 0 10px;
+
+    color: #fff;
+
+    font-size: 0.95rem;
+    line-height: 1.25;
+    text-transform: uppercase;
+}
+
+.testimonial-content h3 strong {
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 1.05rem;
+}
+
+
+/* Quote */
+
+.testimonial-quote {
+    margin: 0 0 10px;
+
+    color: rgba(255,255,255,0.9);
+
+    font-size: 0.72rem;
+    line-height: 1.5;
+
+    font-style: italic;
+}
+
+
+/* Role */
+
+.testimonial-role {
+    color: rgba(255,255,255,0.65);
+
+    font-size: 0.62rem;
+    line-height: 1.3;
+}
+
+
+/* Button */
+
+.testimonials-more {
+    margin-top: 30px;
+}
+
+@media (max-width: 1100px) {
+
+    .testimonial-grid {
+        grid-template-columns: 1fr;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .testimonial-card {
+        min-height: 260px;
+    }
+
+    .testimonial-image {
+        min-height: 260px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .testimonial-card {
+        grid-template-columns: 42% 58%;
+        min-height: 220px;
+    }
+
+    .testimonial-image {
+        min-height: 220px;
+    }
+
+    .testimonial-content {
+        padding: 16px 13px;
+    }
+
+    .testimonial-badge {
+        width: 32px;
+        height: 32px;
+
+        margin-bottom: 8px;
+    }
+
+    .testimonial-label {
+        font-size: 0.55rem;
+    }
+
+    .testimonial-content h3 {
+        font-size: 0.78rem;
+    }
+
+    .testimonial-content h3 strong {
+        font-size: 0.88rem;
+    }
+
+    .testimonial-quote {
+        font-size: 0.65rem;
+        line-height: 1.4;
+    }
 }
 
 /* ==========================================
@@ -763,27 +1219,28 @@ CTA BANNER
 ========================================== */
 
 .cta-banner {
-background: var(--color-dark);
-color: #fff;
-padding: 56px 0;
+    background: #ffffff;
+    color: #1a0129;
+    padding: 28px 0;
 }
 
 .cta-banner h2 {
-color: #fff;
+    color: #240505;
+    margin: 0 0 8px;
 }
 
 .cta-banner p {
-color: #cfcfcf;
+    color: #26012e;
+    margin: 0;
 }
 
 .cta-inner {
-display: flex;
-align-items: center;
-justify-content: space-between;
-gap: 24px;
-flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
 }
-
 /* ==========================================
 PAGE HEADER
 ========================================== */
@@ -1027,66 +1484,67 @@ FOOTER
 ========================================== */
 
 .site-footer {
-background: var(--color-dark-2);
-color: #cfcfcf;
-padding: 56px 0 0;
+    background: var(--color-dark-2);
+    color: #cfcfcf;
+    padding: 25px 0 0;
 }
 
 .footer-grid {
-display: grid;
-grid-template-columns: 1.4fr 1fr 1fr 1fr;
-gap: 32px;
-padding-bottom: 40px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 20px;
+    padding-bottom: 20px;
 }
 
 .footer-brand p {
-color: #a5a5a5;
-margin: 4px 0;
+    color: #a5a5a5;
+    margin: 2px 0;
 }
 
 .social-links {
-display: flex;
-gap: 12px;
-margin-top: 16px;
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
 }
 
 .social-links a {
-width: 34px;
-height: 34px;
-border-radius: 50%;
-border: 1px solid #444;
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 0.75rem;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
 }
 
 .footer-links h4,
 .footer-contact h4 {
-color: #fff;
-margin-bottom: 16px;
+    color: #fff;
+    margin-bottom: 8px;
 }
 
 .footer-links ul {
-list-style: none;
-padding: 0;
-margin: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .footer-links li {
-margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .footer-links a,
 .footer-contact p {
-color: #a5a5a5;
+    color: #a5a5a5;
+    line-height: 1.4;
 }
 
 .footer-bottom {
-border-top: 1px solid #333;
-padding: 20px 0;
-text-align: center;
-font-size: 0.85rem;
+    border-top: 1px solid #333;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 0.8rem;
 }
 
 /* ==========================================
@@ -1149,19 +1607,28 @@ MOBILE
     gap: 4px;
 }
 
-.has-dropdown:hover .mega-dropdown,
-.mega-dropdown {
-    position: static;
-    display: none;
-    width: 100%;
-    grid-template-columns: 1fr;
-    transform: none;
-    box-shadow: none;
-    border: none;
-    padding: 8px 0 0 16px;
+/* About KSK dropdown */
+.has-dropdown {
+    position: relative;
 }
 
-.has-dropdown.open .mega-dropdown {
+/* Hidden by default */
+.mega-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+}
+
+/* Show when hovering */
+.has-dropdown:hover .mega-dropdown {
+    display: grid;
+}
+
+/* Also show when clicked */
+.has-dropdown.dropdown-open .mega-dropdown {
     display: grid;
 }
 
@@ -1978,4 +2445,184 @@ html {
     height: 350px;
   }
 
+}
+
+
+/* =========================================================
+   PAGE HEADER — TEXT ENTRANCE ANIMATION
+   Applies to every .page-header section site-wide
+========================================================= */
+
+.page-header .section-eyebrow,
+.page-header h1,
+.page-header p {
+  opacity: 0;
+  animation: pageHeaderFadeUp 0.7s ease forwards;
+}
+
+.page-header .section-eyebrow {
+  animation-delay: 0.1s;
+}
+
+.page-header h1 {
+  animation-delay: 0.25s;
+}
+
+.page-header p {
+  animation-delay: 0.4s;
+}
+
+@keyframes pageHeaderFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Respect users who've asked for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .page-header .section-eyebrow,
+  .page-header h1,
+  .page-header p {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+/* =========================================================
+   CONTACT FORM
+   Scoped to #contact-form (ID) so it reliably wins over any
+   conflicting global form/label/input styles elsewhere on the site.
+========================================================= */
+
+#contact-form.contact-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+#contact-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+#contact-form .form-group-full { grid-column: 1 / -1; }
+
+#contact-form .form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 7px;
+  color: #2b1a45 !important;
+}
+#contact-form .form-group label span:not(.optional) { color: #e0392c !important; margin-left: 3px; }
+#contact-form .form-group label .optional {
+  font-weight: 500;
+  color: #9a8cae !important;
+  font-size: 0.75rem;
+  margin-left: 6px;
+}
+
+#contact-form .form-group input,
+#contact-form .form-group select,
+#contact-form .form-group textarea {
+  padding: 12px 14px;
+  border: 1px solid #600563 !important;
+  border-radius: 10px;
+  font-size: 0.94rem;
+  font-family: inherit;
+  background: #fff !important;
+  color: #2b1a45 !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+#contact-form .form-group input::placeholder,
+#contact-form .form-group textarea::placeholder {
+  color: #9a8cae !important;
+}
+
+#contact-form .form-group input:focus,
+#contact-form .form-group select:focus,
+#contact-form .form-group textarea:focus {
+  outline: none;
+  border-color: #b23fd6 !important;
+  box-shadow: 0 0 0 3px rgba(178,63,214,0.14);
+}
+
+#contact-form .form-group textarea { resize: vertical; min-height: 130px; }
+
+#contact-form .form-error {
+  color: #d9483e !important;
+  font-size: 0.78rem;
+  margin-top: 5px;
+  min-height: 1em;
+}
+
+#contact-form .contact-submit {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  margin-top: 4px;
+}
+
+#contact-form .contact-submit .submit-loading { display: none; }
+#contact-form .contact-submit.is-loading .submit-text { display: none; }
+#contact-form .contact-submit.is-loading .submit-loading { display: inline; }
+
+#contact-form .form-security-note {
+  grid-column: 1 / -1;
+  margin: 4px 0 0;
+  font-size: 0.78rem;
+  color: #9a8cae !important;
+  text-align: center;
+}
+
+#contact-form .contact-success,
+#contact-form .contact-error {
+  grid-column: 1 / -1;
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  margin-top: 6px;
+}
+#contact-form .contact-success { background: #e8f8ee !important; color: #1f7a41 !important; }
+#contact-form .contact-error { background: #fdecea !important; color: #b23a2c !important; }
+
+
+.social-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.social-links a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #fff;
+    text-decoration: none;
+    font-size: 17px;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    transform: translateY(-3px);
+    background: #fff;
+    color: #1f7a4d;
+}
+
+.social-links i {
+    line-height: 1;
 }

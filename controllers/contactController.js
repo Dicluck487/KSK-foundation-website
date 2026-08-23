@@ -1,32 +1,46 @@
 // controllers/contactController.js
 const supabase = require('../config/supabase');
 
-// ---------- PUBLIC: called from your existing contact-us.ejs form ----------
-// POST /contact  (hook this into your existing public route)
-async function submitContactForm(req, res) {
-  const { name, email, phone, organization, subject, message } = req.body;
+const REASON_LABELS = {
+  general_enquiry: 'General Enquiry',
+  partnership: 'Partnership',
+  media: 'Media',
+  other: 'Other',
+};
 
-  if (!name || !email || !message) {
-    return res.status(400).send('Name, email and message are required.');
+// ---------- PUBLIC: contact-us.ejs posts here ----------
+// POST /contact-us
+async function submitContactForm(req, res) {
+  const { name, email, organization, reason, message } = req.body;
+
+  const renderArgs = { title: 'Contact KSK Foundation' };
+
+  if (!name || !email || !reason || !message) {
+    return res.render('contact-us', {
+      ...renderArgs,
+      error: 'Name, email, reason, and message are all required.',
+    });
   }
 
   const { error } = await supabase.from('contact_messages').insert({
     name: name.trim(),
     email: email.trim().toLowerCase(),
-    phone: phone || null,
     organization: organization || null,
-    subject: subject || null,
+    subject: REASON_LABELS[reason] || reason,
     message: message.trim(),
   });
 
-  if (error) return res.status(500).send('Something went wrong. Please try again.');
+  if (error) {
+    return res.render('contact-us', {
+      ...renderArgs,
+      error: 'Something went wrong sending your message. Please try again.',
+    });
+  }
 
-  // Adjust to match how your existing contact-us.ejs currently confirms submission.
-  res.redirect('/contact-us?submitted=1');
+  res.render('contact-us', { ...renderArgs, success: true });
 }
 
-// ---------- PUBLIC: "Partner With Us" form ----------
-// POST /partner-with-us
+// ---------- PUBLIC: "Partner With Us" form (unchanged) ----------
 async function submitPartnershipForm(req, res) {
   const { name, organization, email, phone, interest_area, message } = req.body;
 
@@ -48,7 +62,6 @@ async function submitPartnershipForm(req, res) {
 }
 
 // ---------- ADMIN ----------
-// GET /admin/contacts
 async function listMessages(req, res) {
   const { data: messages } = await supabase
     .from('contact_messages')
@@ -57,13 +70,11 @@ async function listMessages(req, res) {
   res.render('admin/contacts', { messages: messages || [] });
 }
 
-// POST /admin/contacts/:id/read
 async function markRead(req, res) {
   await supabase.from('contact_messages').update({ status: 'read' }).eq('id', req.params.id);
   res.redirect('/admin/contacts');
 }
 
-// GET /admin/partnerships
 async function listPartnerships(req, res) {
   const { data: inquiries } = await supabase
     .from('partnership_inquiries')

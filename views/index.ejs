@@ -8,31 +8,34 @@
 <section class="hero">
     <div class="hero-slides">
         <div class="hero-slide active"
-             style="background-image: url('/images/images.jpg');"></div>
+             style="background-image: url('/images/hero1.png');"></div>
         <div class="hero-slide"
-             style="background-image: url('/images/images1.jpg');"></div>
+             style="background-image: url('/images/hero2.png');"></div>
         <div class="hero-slide"
-             style="background-image: url('/images/images2.jpg');"></div>
+             style="background-image: url('/images/hero3.png');"></div>
         <div class="hero-slide"
-             style="background-image: url('/images/2image3.jpg');"></div>
+             style="background-image: url('/images/hero4.jpg');"></div>
         <div class="hero-slide"
-             style="background-image: url('/images/2image5.jpg');"></div>
+             style="background-image: url('/images/hero5.png');"></div>
         <div class="hero-slide"
-             style="background-image: url('/images/2image6.jpg');"></div>
+             style="background-image: url('/images/hero6.jpg');"></div>
         <div class="hero-slide"
-             style="background-image: url('/images/2image7.jpg');"></div>
+             style="background-image: url('/images/hero7.jpg');"></div>
     </div>
 
     <div class="hero-overlay"></div>
 
     <div class="container hero-inner">
         <div class="hero-text">
-            <p class="eyebrow">KSK Foundation</p>
+            <p class="brow">KSK Foundation</p>
+            <p class="lead">Since</p>
 
+            <p class="stat-number">2011</p>
+                        
             <h1>Empowering Young Ugandans to Lead, Innovate and Build.</h1>
 
             <p class="lead">
-                Since 2011, KSK Foundation has been equipping young people
+                KSK Foundation has been equipping young people
                 with the leadership, enterprise and innovation skills they
                 need to thrive through flagship programs, scholarships
                 and mentorship across Uganda.
@@ -47,7 +50,7 @@
                     Partner With Us
                 </a>
 
-                <a href="/newsletter-signup" class="btn btn-primary">
+                <a href="#newsletter-signup" class="btn btn-primary">
                     Subscribe to Updates
                 </a>
             </div>
@@ -157,9 +160,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         and innovation skills.
                     </p>
 
-                    <a href="/programs" class="btn btn-outline">
+                    <!-- <a href="/programs" class="btn btn-outline">
                         View Program
-                    </a>
+                    </a> -->
                 </div>
             </article>
 
@@ -180,9 +183,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         and outdoor experiential learning.
                     </p>
 
-                    <a href="/programs" class="btn btn-outline">
+                    <!-- <a href="/programs" class="btn btn-outline">
                         View Program
-                    </a>
+                    </a> -->
                 </div>
             </article>
 
@@ -204,9 +207,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         distinguished industry practitioners.
                     </p>
 
-                    <a href="/programs" class="btn btn-outline">
+                    <!-- <a href="/programs" class="btn btn-outline">
                         View Program
-                    </a>
+                    </a> -->
                 </div>
             </article>
         </div>
@@ -256,8 +259,10 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
 </section>
 
+<%- include('partials/recent-gallery', { recentPhotos }) %>
+
 <!-- Gallery Preview -->
-<section class="section gallery-preview">
+<!-- <section class="section gallery-preview">
     <div class="container">
         <p class="eyebrow center">Gallery</p>
 
@@ -318,98 +323,160 @@ document.addEventListener("DOMContentLoaded", function () {
             </a>
         </div>
     </div>
-</section>
+</section> -->
 
 <!-- Testimonials Preview -->
+<!-- Alumni Voices / Testimonials Preview -->
 <section class="section testimonials">
     <div class="container">
-        <p class="eyebrow center">Testimonials</p>
+
+        <p class="eyebrow center">Alumni Voices</p>
 
         <h2 class="center">
-            What Our Students Say
+            What Our Alumni Say
         </h2>
 
         <p class="center max-w">
-            We are collecting short reflections from Season VIII graduates
-            and Kaizen alumni. Participant voices will be featured here
-            as they become available.
+            Hear directly from the young people whose journeys have been
+            shaped through KSK Foundation's programs.
         </p>
 
-        <% if (typeof testimonials !== 'undefined' && testimonials && testimonials.length) { %>
-            <div class="testimonial-grid">
-                <% testimonials.slice(0, 3).forEach(function(t) { %>
-                    <blockquote class="testimonial-card">
-                        <img
-                            class="avatar"
-                            src="/images/images2.jpg"
-                            alt="<%= t.name %>"
-                        >
+        <div class="testimonial-grid">
 
-                        <p>
-                            &ldquo;<%= t.quote %>&rdquo;
-                        </p>
+            <!-- Alumni Card 1 -->
+            <article class="testimonial-card">
 
-                        <footer>
-                            <strong><%= t.name %></strong>
-                            &mdash;
-                            <%= t.role %>
-                        </footer>
-                    </blockquote>
-                <% }); %>
-            </div>
-        <% } else { %>
-            <div class="testimonial-grid">
-                <blockquote class="testimonial-card">
-                    <p>
-                        Alumni voices from KSK Foundation's youth programs
-                        will be featured here soon.
+                <div class="testimonial-image">
+                    <img
+                        src="/images/him1.jpg"
+                        alt="KSK Foundation alumna"
+                    >
+                </div>
+
+                <div class="testimonial-content">
+
+                    <div class="testimonial-badge">
+                        KSK 
+                    </div>
+
+                    <!-- <span class="testimonial-label">
+                        ALUMNI VOICES
+                    </span> -->
+
+                    <h3>
+                        <strong>Mr. Johan Van Hecke</strong>
+                    </h3>
+
+                    <p class="testimonial-quote">
+                        &ldquo;KSK Foundation gave me the confidence,
+                        skills and perspective to see new possibilities
+                        for my future.&rdquo;
                     </p>
-                    <footer>
-                        <strong>KSK Foundation Alumni</strong>
-                        &mdash; Coming Soon
-                    </footer>
-                </blockquote>
 
-                <blockquote class="testimonial-card">
-                    <p>
-                        Participant stories will highlight the leadership,
-                        enterprise and innovation journeys shaped through
-                        our programs.
-                    </p>
-                    <footer>
-                        <strong>Program Participants</strong>
-                        &mdash; Coming Soon
-                    </footer>
-                </blockquote>
+                    <span class="testimonial-role">
+                        KSK Foundation Alumni
+                    </span>
 
-                <blockquote class="testimonial-card">
-                    <p>
-                        Follow our updates for new graduate and alumni
-                        reflections.
+                </div>
+
+            </article>
+
+
+            <!-- Alumni Card 2 -->
+            <article class="testimonial-card">
+
+                <div class="testimonial-image">
+                    <img
+                        src="/images/alum3.jpg"
+                        alt="KSK Foundation alumnus"
+                    >
+                </div>
+
+                <div class="testimonial-content">
+
+                    <div class="testimonial-badge">
+                        KSK 
+                    </div>
+
+                    <!-- <span class="testimonial-label">
+                        ALUMNI VOICES
+                    </span> -->
+
+                    <h3>
+                          <strong>Mrs. Rose Lubwama</strong>
+                    </h3>
+
+                    <p class="testimonial-quote">
+                        &ldquo;The experience challenged me to think
+                        differently, lead with purpose and believe in
+                        what I can achieve.&rdquo;
                     </p>
-                    <footer>
-                        <strong>KSK Foundation</strong>
-                        &mdash; Alumni Voices
-                    </footer>
-                </blockquote>
-            </div>
-        <% } %>
+
+                    <span class="testimonial-role">
+                        KSK Foundation Alumni
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <!-- Alumni Card 3 -->
+            <article class="testimonial-card">
+
+                <div class="testimonial-image">
+                    <img
+                        src="/images/alum2.jpg"
+                        alt="KSK Foundation alumna"
+                    >
+                </div>
+
+                <div class="testimonial-content">
+
+                    <div class="testimonial-badge">
+                        KSK
+                    </div>
+
+                    <!-- <span class="testimonial-label">
+                        ALUMNI VOICES
+                    </span> -->
+
+                    <h3>
+                          <strong>Mr. Stephen Kasenge</strong>
+                    </h3>
+
+                    <p class="testimonial-quote">
+                        &ldquo;KSK Foundation connected me with people,
+                        ideas and opportunities that continue to influence
+                        my journey today.&rdquo;
+                    </p>
+
+                    <span class="testimonial-role">
+                        KSK Foundation Alumni
+                    </span>
+
+                </div>
+
+            </article>
+
+        </div>
 
         <div class="center testimonials-more">
             <a href="/testimonials" class="btn btn-outline">
                 Read Alumni Voices
             </a>
         </div>
+
     </div>
 </section>
 
 
-
-
+<div id="newsletter-signup">
 <%- include('partials/newsletter-signup', {
     variant: 'full',
     newsletterSource: 'homepage'
 }) %>
+</div>
 
 
 <!-- Closing Partner CTA -->
@@ -429,8 +496,28 @@ document.addEventListener("DOMContentLoaded", function () {
             </p>
         </div>
 
-        <a href="/sponsorship" class="btn btn-primary btn-lg">
+        <a href="/partner-with-us" class="btn btn-primary btn-lg">
             Partner With Us
         </a>
     </div>
 </section>
+
+<style>
+    .brow {
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-size: 18px;
+        font-weight: 700;
+        color: #e0740f;
+        margin: 0 0 8px;
+    }
+
+    .stat-number {
+        font-size: clamp(32px, 5vw, 48px);
+        font-weight: 800;
+        color: #e0740f;
+        margin: 0 0 12px;
+    }
+</style>
+
+   <script src="/js/stat-counter.js"></script>

@@ -1,24 +1,4 @@
-<!-- =========================================================
-     PUBLICATIONS PAGE
-========================================================= -->
 
-<section class="page-header publications-header">
-  <div class="container">
-
-    <span class="section-eyebrow">
-      KSK FOUNDATION
-    </span>
-
-    <h1>Publications</h1>
-
-    <p>
-      Explore FOCUS Magazine, prospectuses and public-facing annual
-      highlights celebrating the work, achievements and stories of
-      KSK Foundation and its programs.
-    </p>
-
-  </div>
-</section>
 
 
 <!-- =========================================================
@@ -73,36 +53,18 @@
 
   <div class="container">
 
-    <div class="section-heading">
-
-      <span class="section-eyebrow">
-        FOCUS MAGAZINE
-      </span>
-
-      <h2>
-        FOCUS Magazine
-      </h2>
-
-      <p>
-        FOCUS Magazine is a publication of KSK Foundation featuring
-        stories, experiences, achievements and perspectives from the
-        Foundation's programs and community.
-      </p>
-
-    </div>
-
-
+   
     <!-- CURRENT ISSUE -->
 
-    <div class="current-publication">
+    <div class="current-publication" id="section1">
 
       <div class="publication-cover">
 
         <!-- Replace this image with the actual current FOCUS cover -->
         <img
-          src="/images/focus-magazine-current.jpg"
+          src="/documents/focus-magazine-current-cover.jpg"
           alt="FOCUS Magazine current issue"
-          onerror="this.src='/images/2image3.jpg'"
+          onerror="this.src='/images/2image3.jpeg'"
         />
 
         <span class="current-badge">
@@ -146,11 +108,22 @@
 
         <div class="publication-actions">
 
-          <!-- Change # to the actual PDF when available -->
+          <!--
+            Reads the current issue in place, the same way the
+            FOCUS Magazine 2025 / 2026 Prospectus pages on
+            thementorshipclass.com do: the PDF opens inline for
+            reading, with a "download in case of delayed loading"
+            fallback until the reader is closed.
+
+            data-reader-pdf   -> path to the PDF to embed
+            data-reader-title -> title shown above the reader
+          -->
           <a
-            href="#"
+            href="/documents/focus-magazine-current.pdf"
             class="btn btn-primary"
-            onclick="return false;"
+            data-reader-pdf="/documents/focus-magazine-current.pdf"
+            data-reader-title="FOCUS Magazine — Current Issue"
+            onclick="return openPublicationReader(event, this);"
           >
             Read Current Issue
           </a>
@@ -171,6 +144,267 @@
   </div>
 
 </section>
+
+
+
+<section class="section focus-magazine">
+
+  <div class="container">
+
+   
+    <div class="current-publication" id="section1">
+
+      <div class="publication-cover">
+
+        <!-- Replace this image with the actual current FOCUS cover -->
+        <img
+          src="/documents/focus-magazine-current-cover.jpg"
+          alt="FOCUS Magazine current issue"
+          onerror="this.src='/images/2image3.jpeg'"
+        />
+
+        <span class="current-badge">
+          CURRENT ISSUE
+        </span>
+
+      </div>
+
+
+      <div class="publication-details">
+
+        <span class="publication-label">
+          FOCUS MAGAZINE
+        </span>
+
+        <h3>
+          FOCUS Magazine
+        </h3>
+
+        <p class="publication-description">
+          Discover stories from KSK Foundation's programs, hear from
+          participants and alumni, and explore the people and ideas
+          helping young Ugandans become leaders, innovators and
+          entrepreneurs.
+        </p>
+
+        <div class="publication-meta">
+
+          <div>
+            <span>Publication</span>
+            <strong>FOCUS Magazine</strong>
+          </div>
+
+          <div>
+            <span>Status</span>
+            <strong>Current Issue</strong>
+          </div>
+
+        </div>
+
+
+        <div class="publication-actions">
+
+       
+          <a
+            href="/documents/focus-magazine-current.pdf"
+            class="btn btn-primary"
+            data-reader-pdf="/documents/focus-magazine-current.pdf"
+            data-reader-title="FOCUS Magazine — Current Issue"
+            onclick="return openPublicationReader(event, this);"
+          >
+            Read Current Issue
+          </a>
+
+          <a
+            href="#focus-archive"
+            class="btn btn-outline"
+          >
+            View Archive
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section focus-magazine">
+
+  <div class="container">
+
+   
+    <div class="current-publication" id="section2">
+
+      <div class="publication-cover">
+
+        <!-- Replace this image with the actual current FOCUS cover -->
+        <img
+          src="/documents/focus-magazine-current-cover.jpg"
+          alt="FOCUS Magazine current issue"
+          onerror="this.src='/images/2image3.jpeg'"
+        />
+
+        <span class="current-badge">
+          CURRENT ISSUE
+        </span>
+
+      </div>
+
+
+      <div class="publication-details">
+
+        <span class="publication-label">
+          FOCUS MAGAZINE
+        </span>
+
+        <h3>
+          FOCUS Magazine
+        </h3>
+
+        <p class="publication-description">
+          Discover stories from KSK Foundation's programs, hear from
+          participants and alumni, and explore the people and ideas
+          helping young Ugandans become leaders, innovators and
+          entrepreneurs.
+        </p>
+
+        <div class="publication-meta">
+
+          <div>
+            <span>Publication</span>
+            <strong>FOCUS Magazine</strong>
+          </div>
+
+          <div>
+            <span>Status</span>
+            <strong>Current Issue</strong>
+          </div>
+
+        </div>
+
+
+        <div class="publication-actions">
+
+       
+          <a
+            href="/documents/focus-magazine-current.pdf"
+            class="btn btn-primary"
+            data-reader-pdf="/documents/focus-magazine-current.pdf"
+            data-reader-title="FOCUS Magazine — Current Issue"
+            onclick="return openPublicationReader(event, this);"
+          >
+            Read Current Issue
+          </a>
+
+          <a
+            href="#focus-archive"
+            class="btn btn-outline"
+          >
+            View Archive
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section focus-magazine">
+
+  <div class="container">
+
+   
+    <div class="current-publication" id="section3">
+
+      <div class="publication-cover">
+
+        <!-- Replace this image with the actual current FOCUS cover -->
+        <img
+          src="/documents/focus-magazine-current-cover.jpg"
+          alt="FOCUS Magazine current issue"
+          onerror="this.src='/images/2image3.jpeg'"
+        />
+
+        <span class="current-badge">
+          CURRENT ISSUE
+        </span>
+
+      </div>
+
+
+      <div class="publication-details">
+
+        <span class="publication-label">
+          FOCUS MAGAZINE
+        </span>
+
+        <h3>
+          FOCUS Magazine
+        </h3>
+
+        <p class="publication-description">
+          Discover stories from KSK Foundation's programs, hear from
+          participants and alumni, and explore the people and ideas
+          helping young Ugandans become leaders, innovators and
+          entrepreneurs.
+        </p>
+
+        <div class="publication-meta">
+
+          <div>
+            <span>Publication</span>
+            <strong>FOCUS Magazine</strong>
+          </div>
+
+          <div>
+            <span>Status</span>
+            <strong>Current Issue</strong>
+          </div>
+
+        </div>
+
+
+        <div class="publication-actions">
+
+       
+          <a
+            href="/documents/focus-magazine-current.pdf"
+            class="btn btn-primary"
+            data-reader-pdf="/documents/focus-magazine-current.pdf"
+            data-reader-title="FOCUS Magazine — Current Issue"
+            onclick="return openPublicationReader(event, this);"
+          >
+            Read Current Issue
+          </a>
+
+          <a
+            href="#focus-archive"
+            class="btn btn-outline"
+          >
+            View Archive
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+
 
 
 <!-- =========================================================
@@ -364,7 +598,12 @@
               figures from KSK Foundation's programs.
             </p>
 
-            <!-- Replace # when the document is available -->
+            <!--
+              Once this year's document is available, set
+              data-reader-pdf to its path (and update the label)
+              to make it open in the same inline reader as the
+              current issue — see the Current Issue button above.
+            -->
             <a
               href="#"
               class="year-link"
@@ -528,9 +767,9 @@
             <div class="publication-card-image">
 
               <img
-                src="<%= p.image || '/images/2image3.jpg' %>"
+                src="<%= p.image || '/images/2image3.jpeg' %>"
                 alt="<%= p.title %>"
-                onerror="this.src='/images/2image3.jpg'"
+                onerror="this.src='/images/2image3.jpeg'"
               />
 
             </div>
@@ -633,6 +872,140 @@
   </div>
 
 </section>
+
+
+<!-- =========================================================
+     INLINE PUBLICATION READER
+     Opens over the page when a "Read"/"Coming Soon"-turned-live
+     link has a data-reader-pdf attribute (see the Current Issue
+     button above). Matches the read-inline-then-download pattern
+     used on thementorshipclass.com's publication pages.
+========================================================= -->
+
+<div
+  class="publication-reader"
+  id="publication-reader"
+  aria-hidden="true"
+>
+
+  <div
+    class="publication-reader-backdrop"
+    onclick="closePublicationReader();"
+  ></div>
+
+  <div
+    class="publication-reader-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="publication-reader-title"
+  >
+
+    <div class="publication-reader-bar">
+
+      <span
+        class="publication-reader-title"
+        id="publication-reader-title"
+      >
+        Reading
+      </span>
+
+      <div class="publication-reader-bar-actions">
+
+        <a
+          class="btn btn-outline btn-sm"
+          id="publication-reader-download"
+          href="#"
+          download
+        >
+          Download
+        </a>
+
+        <button
+          type="button"
+          class="publication-reader-icon-btn"
+          id="publication-reader-fullscreen"
+          aria-label="View full page"
+          title="View full page"
+          onclick="window.togglePublicationFullscreen();"
+        >
+          &#x26F6;
+        </button>
+
+        <button
+          type="button"
+          class="publication-reader-close"
+          aria-label="Close reader"
+          onclick="closePublicationReader();"
+        >
+          &times;
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="publication-reader-body">
+
+      <!-- Realistic page-turn flipbook, rendered client-side from
+           the PDF via PDF.js + PageFlip — same reading experience
+           as the flipbook viewer on thementorshipclass.com. Falls
+           back automatically to a plain embedded PDF if either
+           library fails to load. -->
+      <div class="publication-flipbook-wrap" id="publication-flipbook-wrap">
+
+        <div class="publication-flipbook" id="publication-flipbook"></div>
+
+        <div class="publication-flip-controls" id="publication-flip-controls">
+
+          <button
+            type="button"
+            id="publication-flip-prev"
+            aria-label="Previous page"
+          >
+            &lsaquo;
+          </button>
+
+          <span id="publication-flip-pageindicator">
+            &nbsp;
+          </span>
+
+          <button
+            type="button"
+            id="publication-flip-next"
+            aria-label="Next page"
+          >
+            &rsaquo;
+          </button>
+
+        </div>
+
+        <div class="publication-flip-loading" id="publication-flip-loading">
+          <span>Loading pages&hellip;</span>
+        </div>
+
+      </div>
+
+      <!-- Plain fallback viewer — hidden unless the flipbook
+           can't initialize. -->
+      <iframe
+        id="publication-reader-frame"
+        title="Publication reader"
+        class="publication-reader-frame-fallback"
+        src=""
+      ></iframe>
+
+      <p class="publication-reader-fallback">
+        Taking a while to load?
+        <a id="publication-reader-fallback-link" href="#" download>
+          Download the document instead
+        </a>.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
 
 
 <!-- =========================================================
@@ -1176,4 +1549,644 @@
 
   }
 
+
+  /* =========================================================
+     INLINE PUBLICATION READER
+  ========================================================= */
+
+  .publication-reader {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+  }
+
+  .publication-reader.is-open {
+    display: block;
+  }
+
+  .publication-reader-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(20, 18, 17, 0.72);
+  }
+
+  .publication-reader-panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: min(1320px, 97vw);
+    height: min(93vh, 1500px);
+    margin: 3.5vh auto 0;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+  }
+
+  /* True fullscreen — entered via the expand button in the bar */
+  .publication-reader-panel:fullscreen,
+  .publication-reader-panel:-webkit-full-screen {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .publication-reader-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 16px 20px;
+    background: var(--color-bg-alt, #f6f5f3);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .publication-reader-title {
+    font-weight: 800;
+    font-size: 0.95rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .publication-reader-bar-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+  }
+
+  .btn-sm {
+    padding: 8px 16px;
+    font-size: 0.78rem;
+  }
+
+  .publication-reader-icon-btn,
+  .publication-reader-close {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.06);
+    color: inherit;
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .publication-reader-icon-btn {
+    font-size: 1rem;
+  }
+
+  .publication-reader-icon-btn:hover,
+  .publication-reader-close:hover {
+    background: rgba(0,0,0,0.12);
+  }
+
+  .publication-reader-icon-btn.is-active {
+    background: var(--color-primary, #e0392c);
+    color: #fff;
+  }
+
+  .publication-reader-body {
+    position: relative;
+    flex: 1;
+    background: #3d3a38;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* -------- flipbook -------- */
+
+  .publication-flipbook-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .publication-flipbook {
+    position: relative;
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  /* page-flip positions its own wrapper element with an inline
+     pixel width/height once it initializes — center that wrapper
+     itself, not just its contents, so the book sits mid-panel
+     from the very first render instead of only once fullscreen
+     forces a resize/re-center. */
+  .publication-flipbook > div {
+    margin: 0 auto;
+  }
+
+  /* Each page rendered by PDF.js */
+  .publication-flipbook .page {
+    background: #fff;
+    box-shadow: 0 0 18px rgba(0,0,0,0.25);
+  }
+
+  .publication-flipbook .page canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .publication-flip-controls {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 14px 0 34px;
+    flex-shrink: 0;
+  }
+
+  .publication-flip-controls button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+
+  .publication-flip-controls button:hover {
+    background: rgba(255,255,255,0.22);
+  }
+
+  .publication-flip-controls button:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+
+  #publication-flip-pageindicator {
+    min-width: 90px;
+    text-align: center;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .publication-flip-loading {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    background: #3d3a38;
+  }
+
+  .publication-flip-loading.is-visible {
+    display: flex;
+  }
+
+  /* -------- plain fallback -------- */
+
+  .publication-reader-frame-fallback {
+    display: none;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .publication-reader-body.is-fallback .publication-flipbook-wrap {
+    display: none;
+  }
+
+  .publication-reader-body.is-fallback .publication-reader-frame-fallback {
+    display: block;
+  }
+
+  .publication-reader-fallback {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 14px;
+    margin: 0;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #fff;
+    pointer-events: none;
+  }
+
+  .publication-reader-fallback a {
+    color: #fff;
+    font-weight: 800;
+    text-decoration: underline;
+    pointer-events: auto;
+  }
+
+  body.publication-reader-open {
+    overflow: hidden;
+  }
+
+  @media (max-width: 600px) {
+
+    .publication-reader-panel {
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      border-radius: 0;
+    }
+
+  }
+
 </style>
+
+
+<!-- =========================================================
+     PAGE JS — inline publication reader (page-flip)
+
+     Uses PDF.js to rasterize each page of the PDF in the browser,
+     then PageFlip to give it a realistic page-turn effect — the
+     same flipbook experience as the magazine pages on
+     thementorshipclass.com. If either library fails to load, or
+     rendering throws, it falls back automatically to a plain
+     embedded PDF with a download link.
+
+     Swap the CDN URLs below for self-hosted copies (e.g. installed
+     via npm and served from /public/vendor/) whenever you'd rather
+     not depend on a third-party CDN in production.
+========================================================= -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://unpkg.com/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+
+<script>
+
+  (function () {
+
+    var flipInstance = null;
+    var renderToken = 0; // guards against a stale render finishing after a newer one starts
+
+    // -------- flip sound --------
+    // Synthesized in-browser (short filtered noise burst that
+    // sweeps down in pitch) so there's no extra audio file to
+    // host — plays on every page turn, however it was triggered
+    // (buttons, swipe, or arrow keys).
+    var flipAudioCtx = null;
+
+    function playFlipSound() {
+      try {
+        if (!flipAudioCtx) {
+          var Ctx = window.AudioContext || window.webkitAudioContext;
+          if (!Ctx) return;
+          flipAudioCtx = new Ctx();
+        }
+        if (flipAudioCtx.state === 'suspended') flipAudioCtx.resume();
+
+        var ctx = flipAudioCtx;
+        var now = ctx.currentTime;
+        var duration = 0.26;
+
+        var bufferSize = Math.round(ctx.sampleRate * duration);
+        var buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        var data = buffer.getChannelData(0);
+        for (var i = 0; i < bufferSize; i++) {
+          // white noise, tapered off toward the end for a "swish"
+          data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / bufferSize, 2);
+        }
+
+        var noise = ctx.createBufferSource();
+        noise.buffer = buffer;
+
+        var filter = ctx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.Q.value = 0.8;
+        filter.frequency.setValueAtTime(2400, now);
+        filter.frequency.exponentialRampToValueAtTime(500, now + duration);
+
+        var gain = ctx.createGain();
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.exponentialRampToValueAtTime(0.3, now + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
+
+        noise.start(now);
+        noise.stop(now + duration);
+      } catch (e) {
+        // Audio is a nice-to-have — never let it break page flipping.
+      }
+    }
+
+    function setPdfWorker() {
+      if (window.pdfjsLib) {
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+          'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+      }
+    }
+
+    function useFallbackViewer(pdf) {
+
+      var body = document.querySelector('.publication-reader-body');
+      var frame = document.getElementById('publication-reader-frame');
+
+      body.classList.add('is-fallback');
+      frame.src = pdf;
+
+      document.getElementById('publication-flip-loading').classList.remove('is-visible');
+
+    }
+
+    function updatePageIndicator(current, total) {
+
+      var indicator = document.getElementById('publication-flip-pageindicator');
+      var prevBtn = document.getElementById('publication-flip-prev');
+      var nextBtn = document.getElementById('publication-flip-next');
+
+      indicator.textContent = 'Page ' + current + ' / ' + total;
+      prevBtn.disabled = current <= 1;
+      nextBtn.disabled = current >= total;
+
+    }
+
+    async function renderFlipbook(pdf) {
+
+      var myToken = ++renderToken;
+
+      var container = document.getElementById('publication-flipbook');
+      var loading = document.getElementById('publication-flip-loading');
+      var body = document.querySelector('.publication-reader-body');
+
+      body.classList.remove('is-fallback');
+      container.innerHTML = '';
+      loading.classList.add('is-visible');
+
+      // Keep the nav buttons inert until there's an actual book to
+      // flip, so an early click can't silently do nothing.
+      document.getElementById('publication-flip-prev').disabled = true;
+      document.getElementById('publication-flip-next').disabled = true;
+      document.getElementById('publication-flip-pageindicator').textContent = '';
+
+      if (!window.pdfjsLib || !window.St || !window.St.PageFlip) {
+        useFallbackViewer(pdf);
+        return;
+      }
+
+      try {
+
+        setPdfWorker();
+
+        var doc = await window.pdfjsLib.getDocument(pdf).promise;
+        var maxW = 0, maxH = 0;
+
+        for (var i = 1; i <= doc.numPages; i++) {
+
+          if (myToken !== renderToken) return; // a newer reader was opened
+
+          var page = await doc.getPage(i);
+          // Render at a high base resolution (and match device
+          // pixel ratio, capped so huge desktop monitors don't
+          // over-render) so pages stay sharp when the flipbook is
+          // stretched to fill a large panel or fullscreen.
+          var renderScale = 2.2 * Math.min(window.devicePixelRatio || 1, 2);
+          var viewport = page.getViewport({ scale: renderScale });
+
+          var canvas = document.createElement('canvas');
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+
+          await page.render({
+            canvasContext: canvas.getContext('2d'),
+            viewport: viewport
+          }).promise;
+
+          var pageEl = document.createElement('div');
+          pageEl.className = 'page';
+          pageEl.appendChild(canvas);
+          container.appendChild(pageEl);
+
+          maxW = Math.max(maxW, viewport.width);
+          maxH = Math.max(maxH, viewport.height);
+
+        }
+
+        if (myToken !== renderToken) return;
+
+        if (flipInstance) {
+          try { flipInstance.destroy(); } catch (e) {}
+          flipInstance = null;
+        }
+
+        flipInstance = new window.St.PageFlip(container, {
+          width: Math.round(maxW) || 400,
+          height: maxH || 560,
+          size: 'stretch',
+          // Let the flipbook grow to fill most of the (now larger)
+          // reader panel, and further still in true fullscreen —
+          // 'stretch' scales pages up to these bounds while
+          // keeping their aspect ratio. width/height above must
+          // match a SINGLE page's real aspect ratio (not half of
+          // it) — PageFlip lays two of these side by side itself
+          // for the two-page spread, so halving the width here
+          // squeezes every page into a box twice as tall as it
+          // should be, which is what was making documents look
+          // narrow and hard to read.
+          minWidth: 320,
+          maxWidth: 950,
+          minHeight: 450,
+          maxHeight: 2400,
+          // false so page 1 opens as part of a normal two-page
+          // spread like every other page, instead of being
+          // treated as a standalone "cover" that flips alone.
+          showCover: false,
+          usePortrait: true,
+          maxShadowOpacity: 0.5,
+          mobileScrollSupport: true
+        });
+
+        flipInstance.loadFromHTML(container.querySelectorAll('.page'));
+
+        var total = flipInstance.getPageCount();
+        updatePageIndicator(flipInstance.getCurrentPageIndex() + 1, total);
+
+        flipInstance.on('flip', function (e) {
+          updatePageIndicator(e.data + 1, total);
+          playFlipSound();
+        });
+
+        loading.classList.remove('is-visible');
+
+        // 'stretch' mode measures its container on init, but the
+        // panel can still be settling into its final layout at
+        // that exact moment (fonts/backdrop transition etc.), so
+        // the book can end up sized/centered against a stale
+        // measurement. A resize nudge one tick later re-centers
+        // it without waiting for the user to hit fullscreen.
+        setTimeout(function () {
+          window.dispatchEvent(new Event('resize'));
+        }, 50);
+
+      } catch (err) {
+
+        if (myToken !== renderToken) return;
+        useFallbackViewer(pdf);
+
+      }
+
+    }
+
+    window.openPublicationReader = function (event, el) {
+
+      if (event) event.preventDefault();
+
+      var pdf = el.getAttribute('data-reader-pdf');
+      if (!pdf) return false;
+
+      var title = el.getAttribute('data-reader-title') || 'Reading';
+
+      var modal = document.getElementById('publication-reader');
+      var titleEl = document.getElementById('publication-reader-title');
+      var downloadBtn = document.getElementById('publication-reader-download');
+      var fallbackLink = document.getElementById('publication-reader-fallback-link');
+
+      titleEl.textContent = title;
+      downloadBtn.href = pdf;
+      fallbackLink.href = pdf;
+
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('publication-reader-open');
+
+      renderFlipbook(pdf);
+
+      return false;
+
+    };
+
+    window.closePublicationReader = function () {
+
+      renderToken++; // invalidate any render still in flight
+
+      if (document.fullscreenElement || document.webkitFullscreenElement) {
+        if (document.exitFullscreen) document.exitFullscreen();
+        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+      }
+
+      var modal = document.getElementById('publication-reader');
+      var frame = document.getElementById('publication-reader-frame');
+      var body = document.querySelector('.publication-reader-body');
+
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('publication-reader-open');
+
+      frame.src = '';
+      body.classList.remove('is-fallback');
+
+      if (flipInstance) {
+        try { flipInstance.destroy(); } catch (e) {}
+        flipInstance = null;
+      }
+
+    };
+
+    window.togglePublicationFullscreen = function () {
+
+      var panel = document.querySelector('.publication-reader-panel');
+      var isFullscreen = document.fullscreenElement || document.webkitFullscreenElement;
+
+      if (!isFullscreen) {
+        if (panel.requestFullscreen) panel.requestFullscreen();
+        else if (panel.webkitRequestFullscreen) panel.webkitRequestFullscreen();
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+      }
+
+    };
+
+    function onFullscreenChange() {
+
+      var btn = document.getElementById('publication-reader-fullscreen');
+      var isFullscreen = document.fullscreenElement || document.webkitFullscreenElement;
+
+      if (btn) btn.classList.toggle('is-active', !!isFullscreen);
+
+      // 'stretch' mode re-measures its container on window resize;
+      // fullscreen doesn't always fire one reliably in every
+      // browser, so nudge it manually.
+      window.dispatchEvent(new Event('resize'));
+
+    }
+
+    document.addEventListener('fullscreenchange', onFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', onFullscreenChange);
+
+    document.getElementById('publication-flip-prev').addEventListener('click', function () {
+      if (flipInstance) flipInstance.flipPrev('bottom');
+    });
+
+    document.getElementById('publication-flip-next').addEventListener('click', function () {
+      if (flipInstance) flipInstance.flipNext('bottom');
+    });
+
+    document.addEventListener('keydown', function (e) {
+
+      var modal = document.getElementById('publication-reader');
+      if (!modal || !modal.classList.contains('is-open')) return;
+
+      if (e.key === 'Escape') {
+        // If in fullscreen, let the browser's own Escape handling
+        // exit fullscreen first rather than also closing the
+        // reader in the same keystroke.
+        if (!(document.fullscreenElement || document.webkitFullscreenElement)) {
+          window.closePublicationReader();
+        }
+      } else if (e.key === 'ArrowRight' && flipInstance) {
+        flipInstance.flipNext('bottom');
+      } else if (e.key === 'ArrowLeft' && flipInstance) {
+        flipInstance.flipPrev('bottom');
+      }
+
+    });
+
+    // Delegated handler: any future link/button anywhere on the
+    // page with a data-reader-pdf attribute automatically opens in
+    // the same reader — no extra wiring needed as more issues,
+    // prospectuses or year-in-review documents are added.
+    document.addEventListener('click', function (e) {
+
+      var trigger = e.target.closest('[data-reader-pdf]');
+      if (!trigger) return;
+
+      // Already handled directly via onclick for elements that set
+      // it inline; this covers ones added later without an onclick.
+      if (trigger.hasAttribute('onclick')) return;
+
+      window.openPublicationReader(e, trigger);
+
+    });
+
+  })();
+
+</script>
