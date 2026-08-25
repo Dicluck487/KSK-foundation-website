@@ -14,7 +14,7 @@
     --line: #ddd9d0;
     --accent: #a87532;
     --accent-deep: #ecc390;
-    --navy: #1d2a34;
+    --navy: #2a172e;
     color: var(--ink);
     background: var(--paper);
     -webkit-font-smoothing: antialiased;
@@ -208,11 +208,29 @@
     gap: 0;
   }
 
+    .ksk-programs .checklist2 {
+    list-style: none;
+    margin: 24px 0 28px;
+    padding: 0;
+    display: grid;
+    gap: 0;
+  }
+
+
   .ksk-programs .checklist li {
     position: relative;
     padding: 11px 0 11px 21px;
     font-size: 15px;
     color: var(--ink);
+    font-weight: 500;
+    border-top: 1px solid var(--line);
+  }
+
+  .checklist2 li {
+    position: relative;
+    padding: 11px 0 11px 21px;
+    font-size: 15px;
+    color: #f7f5f0;
     font-weight: 500;
     border-top: 1px solid var(--line);
   }
@@ -438,6 +456,22 @@
     }
   }
 
+  .program {
+    background-color: #280130;
+    color: #f7f5f0;
+
+  }
+  .pro {
+    color: #f7f5f0;
+  }
+
+  .camph2 {
+    color: #f7f5f0;
+  }
+
+  .campp {
+    color: #bdbcba;
+  }
  
 
 
@@ -469,7 +503,9 @@
     
   </section>
 </div>
-<div></div>
+<div> 
+  <p></p>
+</div>
 
   <!-- Jump Menu -->
   <nav class="program-jumpmenu" aria-label="Jump to a program">
@@ -496,14 +532,14 @@
 
 
   <!-- ============ MSWRP ============ -->
-  <section class="section program-detail" id="mswrp">
+  <section class="section program-detail alt-bg" id="mswrp">
     <div class="container two-col">
       <div>
         <p class="eyebrow">Flagship Youth Program &middot; Now in Season VIII</p>
 
         <h2>Making Students World Ready Program</h2>
 
-        <p>
+        <p >
           Now in its eighth consecutive year, the Making Students
           World Ready Program is KSK Foundation's flagship initiative.
           Over eight intensive weeks, participants move through
@@ -514,14 +550,14 @@
           concepts they've developed themselves.
         </p>
 
-        <p>
+        <p >
           The program has been graced by guests including Hon. Maria
           Kiwanuka, and draws on a growing bench of over 30 industry
           professionals each season who volunteer as facilitators
           and mentors.
         </p>
 
-        <ul class="checklist">
+        <ul class="checklist2">
           <li>Personal branding &amp; leadership foundations</li>
           <li>Enterprise &amp; career development</li>
           <li>Applied innovation &amp; project development</li>
@@ -554,7 +590,7 @@
   </section>
 
   <!-- ============ KAIZEN ============ -->
-  <section class="section program-detail alt-bg" id="kaizen">
+  <section class="program" id="kaizen">
     <div class="container two-col reverse">
       <a href="/gallery?category=kaizen" class="program-image-link" aria-label="View Kaizen Teen Boot Camp gallery">
         <img
@@ -567,9 +603,9 @@
       <div>
         <p class="eyebrow">Teen Development &middot; Residential</p>
 
-        <h2>Kaizen Teen Boot Camp</h2>
+        <h2 class="camph2">Kaizen Teen Boot Camp</h2>
 
-        <p>
+        <p class="campp">
           The Kaizen Teen Boot Camp gives teenagers a hands-on,
           immersive week of life-skills learning, engaging the whole
           young person through a deliberate mix of academic workshops
@@ -599,7 +635,7 @@
   </section>
 
   <!-- ============ FSA ============ -->
-  <section class="section program-detail" id="fsa">
+  <section class="section feature" id="fsa">
     <div class="container two-col">
       <div>
         <p class="eyebrow">Professional Development</p>

@@ -59,7 +59,7 @@
           <i class="fas fa-users"></i>
         </div>
 
-        <h3>Leadership</h3>
+        <h3 class="head">Leadership</h3>
 
         <p>
           Developing self-awareness, accountability and the confidence to lead.
@@ -73,7 +73,7 @@
           <i class="fas fa-lightbulb"></i>
         </div>
 
-        <h3>Innovation</h3>
+        <h3 class="head">Innovation</h3>
 
         <p>
           Building problem-solving skills through applied, project-based learning.
@@ -87,7 +87,7 @@
           <i class="fas fa-chart-line"></i>
         </div>
 
-        <h3>Enterprise</h3>
+        <h3 class="head">Enterprise</h3>
 
         <p>
           Nurturing entrepreneurial thinking, financial literacy and business acumen.
@@ -98,14 +98,19 @@
   </div>
 </section>
 
-<section class="section">
+<section class="about">
+  <section><div>
+
+  </div></section>
+  
   <div class="container">
+    <div><p class="purple">...</p></div>
     <h2>Our History</h2>
-    <p>Founded in 2011, KSK Foundation has grown its programming from a single initiative into a portfolio of three flagship programs: the Making Students World Ready Program, now in its eighth season, the Financial Services Academy, and the Kaizen Teen Boot Camp.</p>
-    <p>Over the years the Foundation has also supported scholarship placements at King's College Budo, Gayaza High School and Masaka School of the Deaf, and contributed to community initiatives such as literary and civic events.</p>
+    <p class="aboutp">Founded in 2011, KSK Foundation has grown its programming from a single initiative into a portfolio of three flagship programs: the Making Students World Ready Program, now in its eighth season, the Financial Services Academy, and the Kaizen Teen Boot Camp.</p>
+    <p class="aboutp">Over the years the Foundation has also supported scholarship placements at King's College Budo, Gayaza High School and Masaka School of the Deaf, and contributed to community initiatives such as literary and civic events.</p>
 
     <h2>Our Story</h2>
-    <p>Today, KSK Foundation designs and delivers flagship youth programs, administers scholarships for deserving students, and publishes FOCUS Magazine, all in service of building a generation of young Ugandans who are confident, skilled and ready for the world.</p>
+    <p class="aboutp">Today, KSK Foundation designs and delivers flagship youth programs, administers scholarships for deserving students, and publishes FOCUS Magazine, all in service of building a generation of young Ugandans who are confident, skilled and ready for the world.</p>
   </div>
 </section>
 
@@ -123,7 +128,7 @@
           <i class="fas fa-shield-halved"></i>
         </div>
 
-        <h3>Integrity</h3>
+        <h3 class="head">Integrity</h3>
 
         <p>
           We promote accountability and responsible leadership as young people
@@ -140,7 +145,7 @@
           <i class="fas fa-arrow-trend-up"></i>
         </div>
 
-        <h3>Growth</h3>
+        <h3 class="head">Growth</h3>
 
         <p>
           We focus on practical learning, mentorship and real-world skills
@@ -157,7 +162,7 @@
           <i class="fas fa-people-group"></i>
         </div>
 
-        <h3>Community</h3>
+        <h3 class="head">Community</h3>
 
         <p>
           We empower communities through youth development, scholarships and
@@ -176,6 +181,17 @@
    KSK FOUNDATION - ABOUT FEATURE
    ========================================================= */
 
+h3, h2 {
+  color: #ffffff;
+}
+
+.head {
+   color: #464545;
+}
+.purple{
+  color: hsl(327, 97%, 14%);
+}
+
 .about-feature {
   width: 100%;
   max-width: 1500px;
@@ -185,7 +201,17 @@
   min-height: 305px;
   max-height: 550px;
   overflow: hidden;
-  background: #630137;
+  
+}
+
+.about {
+background: hsl(327, 97%, 14%);
+/* color: #ffffff; */
+min-height: 380px;
+
+}
+.aboutp {
+  color: #b4b4b4;
 }
 
 /* Image -------------------------------------------------- */

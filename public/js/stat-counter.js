@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var target = parsed.numeric;
     var suffix = parsed.suffix;
-    var duration = 3400; // ms
+    var duration = 2400; // ms
     var startTime = null;
 
     function step(timestamp) {
