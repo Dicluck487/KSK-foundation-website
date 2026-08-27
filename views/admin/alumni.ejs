@@ -2,61 +2,515 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hero — KSK Admin</title>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Alumni — KSK Foundation</title>
+
   <link rel="stylesheet" href="/css/admin.css">
+
+  <style>
+    .alumni-page {
+      padding: 30px;
+    }
+
+    .alumni-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      gap: 20px;
+    }
+
+    .alumni-header h1 {
+      margin: 0;
+    }
+
+    .add-form {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font: inherit;
+    }
+
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .btn-add {
+      margin-top: 18px;
+      background: #0d6efd;
+      color: white;
+      border: 0;
+      padding: 11px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .alumni-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fill, minmax(300px, 1fr));
+
+      gap: 25px;
+    }
+
+    .alumni-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .alumni-photo {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .no-photo {
+      height: 230px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f1f1f1;
+      color: #777;
+    }
+
+    .alumni-content {
+      padding: 18px;
+    }
+
+    .alumni-content h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .alumni-meta {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 6px;
+    }
+
+    .testimonial {
+      margin-top: 15px;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .actions form {
+      margin: 0;
+    }
+
+    .actions button {
+      border: 0;
+      border-radius: 6px;
+      padding: 9px 14px;
+      cursor: pointer;
+    }
+
+    .publish {
+      background: #198754;
+      color: #fff;
+    }
+
+    .draft {
+      background: #6c757d;
+      color: #fff;
+    }
+
+    .delete {
+      background: #dc3545;
+      color: #fff;
+    }
+
+    .empty-state {
+      padding: 50px;
+      background: #fff;
+      border-radius: 12px;
+      text-align: center;
+      color: #666;
+    }
+
+    @media (max-width: 700px) {
+      .alumni-page {
+        padding: 15px;
+      }
+
+      .alumni-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-group.full {
+        grid-column: auto;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div class="admin-shell">
+
+<div class="alumni-page">
   <%- include('partials/sidebar', { active: 'gallery' }) %>
-  <main class="admin-main">
-    <div class="admin-topbar"><h1>Hero</h1></div>
 
-    <% if (currentAdmin.role !== 'viewer') { %>
-    <div class="panel">
-      <h2>Upload photo</h2>
-      <form method="POST" action="/admin/alumni/upload" enctype="multipart/form-data" class="form-grid">
-        <div><label>Photo</label><input type="file" name="photo" accept="image/*" required></div>
-        <div><label>Title</label><input type="text" name="title"></div>
-        
-        <div><label>Year</label><input type="number" name="year" placeholder="2026"></div>
-        <div><label>Alt text</label><input type="text" name="alt_text"></div>
-        <button type="submit" class="btn primary">Upload</button>
-      </form>
-    </div>
-    <% } %>
+  <div class="alumni-header">
 
-    <div class="panel">
-      <h2>All photos</h2>
-      <% if (photos.length === 0) { %>
-        <div class="empty-state">No photos uploaded yet.</div>
-      <% } else { %>
-        <table class="admin-table">
-          <thead><tr><th></th><th>Title</th><th>Category</th><th>Status</th><th></th></tr></thead>
-          <tbody>
-            <% photos.forEach(p => { %>
-              <tr>
-                <td><img class="thumb" src="<%= p.url %>" alt="<%= p.alt_text || '' %>"></td>
-                <td><%= p.title || '—' %></td>
-                <td><%= p.category || '—' %></td>
-                <td><span class="badge <%= p.status %>"><%= p.status %></span></td>
-                <td>
-                  <% if (currentAdmin.role !== 'viewer') { %>
-                    <form method="POST" action="/admin/alumni/<%= p.id %>/status" style="display:inline;">
-                      <input type="hidden" name="status" value="<%= p.status === 'published' ? 'draft' : 'published' %>">
-                      <button type="submit" class="btn small"><%= p.status === 'published' ? 'Unpublish' : 'Publish' %></button>
-                    </form>
-                    <form method="POST" action="/admin/alumni/<%= p.id %>/delete" style="display:inline;" onsubmit="return confirm('Delete this photo?');">
-                      <button type="submit" class="btn small danger">Delete</button>
-                    </form>
-                  <% } %>
-                </td>
-              </tr>
-            <% }) %>
-          </tbody>
-        </table>
-      <% } %>
+    <div>
+      <h1>Alumni</h1>
+
+      <p>
+        Manage KSK Foundation alumni profiles and testimonials.
+      </p>
     </div>
-  </main>
+
+    <a href="/admin/dashboard">
+      ← Back to Dashboard
+    </a>
+
+  </div>
+
+
+  <!-- =====================================================
+       ADD ALUMNI
+  ====================================================== -->
+
+  <div class="add-form">
+
+    <h2>Add Alumni</h2>
+
+    <p>
+      Upload the alumni photo to the
+      <strong>alumni</strong>
+      Supabase Storage bucket first.
+    </p>
+
+    <form
+      action="/admin/alumni"
+      method="POST"
+    >
+
+      <div class="form-grid">
+
+        <div class="form-group">
+
+          <label for="name">
+            Name *
+          </label>
+
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="John Doe"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="cohort">
+            Cohort *
+          </label>
+
+          <input
+            type="text"
+            id="cohort"
+            name="cohort"
+            placeholder="Season VIII — 2025"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="program">
+            Program *
+          </label>
+
+          <input
+            type="text"
+            id="program"
+            name="program"
+            placeholder="MSWRP"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="photo_path">
+            Photo Storage Path
+          </label>
+
+          <input
+            type="text"
+            id="photo_path"
+            name="photo_path"
+            placeholder="john.jpg"
+          >
+
+        </div>
+
+
+        <div class="form-group full">
+
+          <label for="testimonial">
+            Testimonial
+          </label>
+
+          <textarea
+            id="testimonial"
+            name="testimonial"
+            placeholder="What the alumni said about the program..."
+          ></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="status">
+            Status
+          </label>
+
+          <select
+            id="status"
+            name="status"
+          >
+
+            <option value="published">
+              Published
+            </option>
+
+            <option value="draft">
+              Draft
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <button
+        type="submit"
+        class="btn-add"
+      >
+        Add Alumni
+      </button>
+
+    </form>
+
+  </div>
+
+
+  <!-- =====================================================
+       ALUMNI LIST
+  ====================================================== -->
+
+  <% if (!alumni || alumni.length === 0) { %>
+
+    <div class="empty-state">
+
+      <h2>No Alumni Records</h2>
+
+      <p>
+        Add your first alumni profile above.
+      </p>
+
+    </div>
+
+  <% } else { %>
+
+    <div class="alumni-grid">
+
+      <% alumni.forEach(function(person) { %>
+
+        <div class="alumni-card">
+
+
+          <% if (person.public_url) { %>
+
+            <img
+              src="<%= person.public_url %>"
+              alt="<%= person.name %>"
+              class="alumni-photo"
+            >
+
+          <% } else { %>
+
+            <div class="no-photo">
+              No photo
+            </div>
+
+          <% } %>
+
+
+          <div class="alumni-content">
+
+            <h3>
+              <%= person.name %>
+            </h3>
+
+
+            <div class="alumni-meta">
+              <strong>Cohort:</strong>
+              <%= person.cohort %>
+            </div>
+
+
+            <div class="alumni-meta">
+              <strong>Program:</strong>
+              <%= person.program %>
+            </div>
+
+
+            <div class="alumni-meta">
+              <strong>Status:</strong>
+              <%= person.status %>
+            </div>
+
+
+            <% if (person.testimonial) { %>
+
+              <div class="testimonial">
+                "<%= person.testimonial %>"
+              </div>
+
+            <% } %>
+
+
+            <div class="actions">
+
+
+              <% if (person.status !== 'published') { %>
+
+                <form
+                  action="/admin/alumni/<%= person.id %>/status"
+                  method="POST"
+                >
+
+                  <input
+                    type="hidden"
+                    name="status"
+                    value="published"
+                  >
+
+                  <button
+                    type="submit"
+                    class="publish"
+                  >
+                    Publish
+                  </button>
+
+                </form>
+
+              <% } %>
+
+
+              <% if (person.status === 'published') { %>
+
+                <form
+                  action="/admin/alumni/<%= person.id %>/status"
+                  method="POST"
+                >
+
+                  <input
+                    type="hidden"
+                    name="status"
+                    value="draft"
+                  >
+
+                  <button
+                    type="submit"
+                    class="draft"
+                  >
+                    Set Draft
+                  </button>
+
+                </form>
+
+              <% } %>
+
+
+              <form
+                action="/admin/alumni/<%= person.id %>/delete"
+                method="POST"
+                onsubmit="return confirm('Delete this alumni record?');"
+              >
+
+                <button
+                  type="submit"
+                  class="delete"
+                >
+                  Delete
+                </button>
+
+              </form>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      <% }); %>
+
+    </div>
+
+  <% } %>
+
 </div>
+
 </body>
 </html>

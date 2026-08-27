@@ -158,22 +158,21 @@ router.get('/cohorts', (req, res) => {
   });
 });
 
-// router.get('/publications', (req, res) => {
-//   res.render('publications', {
-//     title: 'Publications',
-//     description: 'Prospectuses and magazines published by the program.',
-//     publications
-//   });
-// });
 
-router.get('/publications', (req, res) => {
-    res.render('publications', {
-        title: 'Publications',
-        description: 'Prospectuses and magazines published by the program.',
-        publications
-    });
+
+router.get('/publications', async (req, res, next) => {
+    try {
+        const publications = await publicationController.getPublishedPublications();
+
+        res.render('publications', {
+            title: 'Publications',
+            description: 'Publications from KSK Foundation.',
+            publications
+        });
+    } catch (error) {
+        next(error);
+    }
 });
-
 router.get('/news-events', (req, res) => {
   res.render('news-events', {
     title: 'News & Events',
@@ -203,29 +202,7 @@ router.get('/privacy-policy', (req, res) => {
     description: 'How we handle your data.'
   });
 });
-// router.get('/publications', (req, res) => {
-//     res.render('publications', {
-//         title: 'Publications',
-//         description: 'Prospectuses and magazines published by the program.',
-//         publications
-//     });
-// });
 
-// router.get('/publications/:slug', (req, res, next) => {
-//     const publication = publications.find(
-//         p => p.slug === req.params.slug
-//     );
-
-//     if (!publication) {
-//         return next();
-//     }
-
-//     res.render('publication-detail', {
-//         title: publication.title,
-//         description: publication.description,
-//         publication
-//     });
-// });
 
 router.get('/contact-us', (req, res) => {
   res.render('contact-us', { title: 'Contact KSK Foundation' });
