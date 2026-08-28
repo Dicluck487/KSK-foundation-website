@@ -17,8 +17,8 @@ function requireAuth(req, res, next) {
         req.session.returnTo = req.originalUrl;
     }
 
-    // return res.redirect('/admin/login');
-    return res.redirect('/auth/login');
+    return res.redirect('/admin/login');
+    // return res.redirect('/auth/login');
 }
 
 

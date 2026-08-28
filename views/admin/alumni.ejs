@@ -1,62 +1,297 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Hero — KSK Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alumni Voices — KSK Admin</title>
   <link rel="stylesheet" href="/css/admin.css">
 </head>
+
 <body>
+
 <div class="admin-shell">
-  <%- include('partials/sidebar', { active: 'gallery' }) %>
+
+  <%- include('partials/sidebar', { active: 'alumni' }) %>
+
   <main class="admin-main">
-    <div class="admin-topbar"><h1>Hero</h1></div>
+
+    <div class="admin-topbar">
+      <h1>Manage Alumni Voices</h1>
+    </div>
 
     <% if (currentAdmin.role !== 'viewer') { %>
-    <div class="panel">
-      <h2>Upload photo</h2>
-      <form method="POST" action="/admin/alumni/upload" enctype="multipart/form-data" class="form-grid">
-        <div><label>Photo</label><input type="file" name="photo" accept="image/*" required></div>
-        <div><label>Title</label><input type="text" name="title"></div>
-        
-        <div><label>Year</label><input type="number" name="year" placeholder="2026"></div>
-        <div><label>Alt text</label><input type="text" name="alt_text"></div>
-        <button type="submit" class="btn primary">Upload</button>
-      </form>
-    </div>
+
+      <!-- Add Alumni Voice -->
+      <div class="panel">
+
+        <h2>Add Alumni Voice</h2>
+
+        <form
+          method="POST"
+          action="/admin/alumni/upload"
+          enctype="multipart/form-data"
+          class="form-grid"
+        >
+
+          <!-- Photo -->
+          <div>
+            <label for="image">Photo</label>
+
+            <input
+              type="file"
+              id="image"
+              name="image"
+              accept="image/*"
+              required
+            >
+          </div>
+
+          <!-- Name -->
+          <div>
+            <label for="name">Name</label>
+
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Alumni name"
+              required
+            >
+          </div>
+
+          <!-- Year -->
+          <div>
+            <label for="year">Year</label>
+
+            <select
+              id="year"
+              name="year"
+              required
+            >
+              <option value="">Select year</option>
+            </select>
+          </div>
+
+          <!-- Program -->
+          <div>
+            <label for="program">Program</label>
+
+            <select
+              id="program"
+              name="program"
+              required
+            >
+              <option value="">Select program</option>
+
+              <option value="Making Students World Ready Program">
+                Making Students World Ready Program
+              </option>
+
+              <option value="Kaizen Teen Boot Camp">
+                Kaizen Teen Boot Camp
+              </option>
+
+              <option value="Financial Services Academy">
+                Financial Services Academy
+              </option>
+
+              <option value="Scholarships">
+                Scholarships
+              </option>
+            </select>
+          </div>
+
+          <!-- Testimonial -->
+          <div>
+            <label for="testimonial">Testimonial</label>
+
+            <textarea
+              id="testimonial"
+              name="testimonial"
+              placeholder="What they said..."
+              rows="5"
+              required
+            ></textarea>
+          </div>
+
+          <!-- Submit -->
+          <button
+            type="submit"
+            class="btn primary"
+          >
+            Add Alumni Voice
+          </button>
+
+        </form>
+
+      </div>
+
     <% } %>
 
+
+    <!-- All Alumni Voices -->
     <div class="panel">
-      <h2>All photos</h2>
-      <% if (photos.length === 0) { %>
-        <div class="empty-state">No photos uploaded yet.</div>
+
+      <h2>All Alumni Voices</h2>
+
+      <% if (alumni.length === 0) { %>
+
+        <div class="empty-state">
+          No alumni voices yet.
+        </div>
+
       <% } else { %>
+
         <table class="admin-table">
-          <thead><tr><th></th><th>Title</th><th>Category</th><th>Status</th><th></th></tr></thead>
+
+          <thead>
+            <tr>
+              <th>Photo</th>
+              <th>Name</th>
+              <th>Year</th>
+              <th>Program</th>
+              <th>Testimonial</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
           <tbody>
-            <% photos.forEach(p => { %>
+
+            <% alumni.forEach(a => { %>
+
               <tr>
-                <td><img class="thumb" src="<%= p.url %>" alt="<%= p.alt_text || '' %>"></td>
-                <td><%= p.title || '—' %></td>
-                <td><%= p.category || '—' %></td>
-                <td><span class="badge <%= p.status %>"><%= p.status %></span></td>
+
+                <!-- Photo -->
                 <td>
-                  <% if (currentAdmin.role !== 'viewer') { %>
-                    <form method="POST" action="/admin/alumni/<%= p.id %>/status" style="display:inline;">
-                      <input type="hidden" name="status" value="<%= p.status === 'published' ? 'draft' : 'published' %>">
-                      <button type="submit" class="btn small"><%= p.status === 'published' ? 'Unpublish' : 'Publish' %></button>
-                    </form>
-                    <form method="POST" action="/admin/alumni/<%= p.id %>/delete" style="display:inline;" onsubmit="return confirm('Delete this photo?');">
-                      <button type="submit" class="btn small danger">Delete</button>
-                    </form>
+                  <% if (a.image_url) { %>
+
+                    <img
+                      class="thumb"
+                      src="<%= a.image_url %>"
+                      alt="<%= a.name %>"
+                    >
+
+                  <% } else { %>
+
+                    <span>—</span>
+
                   <% } %>
                 </td>
+
+                <!-- Name -->
+                <td>
+                  <%= a.name %>
+                </td>
+
+                <!-- Year -->
+                <td>
+                  <%= a.year || '—' %>
+                </td>
+
+                <!-- Program -->
+                <td>
+                  <%= a.program || '—' %>
+                </td>
+
+                <!-- Testimonial -->
+                <td>
+                  <%= a.testimonial %>
+                </td>
+
+                <!-- Status -->
+                <td>
+                  <span class="badge <%= a.status %>">
+                    <%= a.status %>
+                  </span>
+                </td>
+
+                <!-- Actions -->
+                <td>
+
+                  <% if (currentAdmin.role !== 'viewer') { %>
+
+                    <% if (a.status === 'draft') { %>
+
+                      <form
+                        method="POST"
+                        action="/admin/alumni/<%= a.id %>/publish"
+                        style="display:inline;"
+                      >
+                        <button
+                          type="submit"
+                          class="btn small"
+                        >
+                          Publish
+                        </button>
+                      </form>
+
+                    <% } else { %>
+
+                      <form
+                        method="POST"
+                        action="/admin/alumni/<%= a.id %>/draft"
+                        style="display:inline;"
+                      >
+                        <button
+                          type="submit"
+                          class="btn small"
+                        >
+                          Move to Draft
+                        </button>
+                      </form>
+
+                    <% } %>
+
+                  <% } %>
+
+                </td>
+
               </tr>
+
             <% }) %>
+
           </tbody>
+
         </table>
+
       <% } %>
+
     </div>
+
   </main>
+
 </div>
+
+
+<!-- Dynamic Year Dropdown -->
+<script>
+
+  const yearSelect = document.getElementById('year');
+
+  if (yearSelect) {
+
+    const currentYear = new Date().getFullYear();
+
+    const firstYear = 2023;
+
+    for (
+      let year = currentYear;
+      year >= firstYear;
+      year--
+    ) {
+
+      const option = document.createElement('option');
+
+      option.value = year;
+      option.textContent = year;
+
+      yearSelect.appendChild(option);
+    }
+  }
+
+</script>
+
 </body>
 </html>

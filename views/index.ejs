@@ -5,22 +5,13 @@
 ========================================================= -->
 
 <!-- Hero Section -->
+<!-- Hero Section -->
 <section class="hero">
     <div class="hero-slides">
-        <div class="hero-slide active"
-             style="background-image: url('/images/hero1.png');"></div>
-        <div class="hero-slide"
-             style="background-image: url('/images/hero2.png');"></div>
-        <div class="hero-slide"
-             style="background-image: url('/images/hero3.png');"></div>
-        <div class="hero-slide"
-             style="background-image: url('/images/hero4.jpg');"></div>
-        <div class="hero-slide"
-             style="background-image: url('/images/hero5.png');"></div>
-        <div class="hero-slide"
-             style="background-image: url('/images/hero6.jpg');"></div>
-        <div class="hero-slide"
-             style="background-image: url('/images/hero7.jpg');"></div>
+        <% heroImages.forEach((img, i) => { %>
+            <div class="hero-slide <%= i === 0 ? 'active' : '' %>"
+                 style="background-image: url('<%= img.image_url %>');"></div>
+        <% }) %>
     </div>
 
     <div class="hero-overlay"></div>
@@ -261,208 +252,74 @@ document.addEventListener("DOMContentLoaded", function () {
 
 <%- include('partials/recent-gallery', { recentPhotos }) %>
 
-<!-- Gallery Preview -->
-<!-- <section class="section gallery-preview">
-    <div class="container">
-        <p class="eyebrow center">Gallery</p>
-
-        <h2 class="center">
-            Moments That Bring Our Work to Life
-        </h2>
-
-        <p class="center max-w">
-            Explore highlights from KSK Foundation programs, learning
-            experiences, graduations, boot camps and youth activities.
-        </p>
-
-        <div class="gallery-grid">
-            <a href="/gallery" class="gallery-item">
-                <img src="/images/images.jpg"
-                     alt="KSK Foundation event"
-                     loading="lazy">
-            </a>
-
-            <a href="/gallery" class="gallery-item">
-                <img src="/images/2image1.jpg"
-                     alt="KSK Foundation youth program"
-                     loading="lazy">
-            </a>
-
-            <a href="/gallery" class="gallery-item">
-                <img src="/images/2image2.jpg"
-                     alt="KSK Foundation boot camp"
-                     loading="lazy">
-            </a>
-
-            <a href="/gallery" class="gallery-item">
-                <img src="/images/2image3.jpg"
-                     alt="KSK Foundation learning session"
-                     loading="lazy">
-            </a>
-
-            <a href="/gallery" class="gallery-item">
-                <img src="/images/2image5.jpg"
-                     alt="KSK Foundation program activity"
-                     loading="lazy">
-            </a>
-
-            <a href="/gallery" class="gallery-item">
-                <img src="/images/2image6.jpg"
-                     alt="KSK Foundation youth activity"
-                     loading="lazy">
-            </a>
-
-            <a href="/gallery" class="gallery-item">
-                <img src="/images/2image7.jpg"
-                     alt="KSK Foundation community activity"
-                     loading="lazy">
-            </a>
-
-            <a href="/gallery" class="gallery-item gallery-more">
-                <span>View Full Gallery</span>
-            </a>
-        </div>
-    </div>
-</section> -->
 
 <!-- Testimonials Preview -->
-<!-- Alumni Voices / Testimonials Preview -->
-<section class="section testimonials">
-    <div class="container">
+<section class="section alumni-preview">
+  <div class="container">
 
-        <p class="eyebrow center">Alumni Voices</p>
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">ALUMNI VOICES</span>
+        <h2>What Our Alumni Say</h2>
+      </div>
 
-        <h2 class="center">
-            What Our Alumni Say
-        </h2>
+      <a href="/alumni" class="btn secondary">
+        View All Alumni
+      </a>
+    </div>
 
-        <p class="center max-w">
-            Hear directly from the young people whose journeys have been
-            shaped through KSK Foundation's programs.
-        </p>
+    <% if (latestAlumni && latestAlumni.length > 0) { %>
 
-        <div class="testimonial-grid">
+      <div class="alumni-preview-grid">
 
-            <!-- Alumni Card 1 -->
-            <article class="testimonial-card">
+        <% latestAlumni.forEach(alumni => { %>
 
-                <div class="testimonial-image">
-                    <img
-                        src="/images/him1.jpg"
-                        alt="KSK Foundation alumna"
-                    >
-                </div>
+          <article class="alumni-preview-card">
 
-                <div class="testimonial-content">
+            <% if (alumni.image_url || alumni.photo_path) { %>
+              <div class="alumni-preview-image">
+                <img
+                  src="<%= alumni.image_url || alumni.photo_path %>"
+                  alt="<%= alumni.name %>"
+                  loading="lazy"
+                >
+              </div>
+            <% } %>
 
-                    <div class="testimonial-badge">
-                        KSK 
-                    </div>
+            <div class="alumni-preview-content">
 
-                    <!-- <span class="testimonial-label">
-                        ALUMNI VOICES
-                    </span> -->
+              <span class="alumni-program">
+                <%= alumni.program || 'KSK Foundation Alumni' %>
+              </span>
 
-                    <h3>
-                        <strong>Mr. Johan Van Hecke</strong>
-                    </h3>
+              <h3>
+                <%= alumni.name %>
+              </h3>
 
-                    <p class="testimonial-quote">
-                        &ldquo;KSK Foundation gave me the confidence,
-                        skills and perspective to see new possibilities
-                        for my future.&rdquo;
-                    </p>
+              <p class="alumni-quote">
+                “<%= alumni.testimonial %>”
+              </p>
 
-                    <span class="testimonial-role">
-                        KSK Foundation Alumni
-                    </span>
+            </div>
 
-                </div>
+          </article>
 
-            </article>
+        <% }) %>
 
+      </div>
 
-            <!-- Alumni Card 2 -->
-            <article class="testimonial-card">
+    <% } else { %>
 
-                <div class="testimonial-image">
-                    <img
-                        src="/images/alum3.jpg"
-                        alt="KSK Foundation alumnus"
-                    >
-                </div>
+      <div class="empty-state">
+        Alumni voices will appear here as they are published.
+      </div>
 
-                <div class="testimonial-content">
+    <% } %>
 
-                    <div class="testimonial-badge">
-                        KSK 
-                    </div>
-
-                    <!-- <span class="testimonial-label">
-                        ALUMNI VOICES
-                    </span> -->
-
-                    <h3>
-                          <strong>Mrs. Rose Lubwama</strong>
-                    </h3>
-
-                    <p class="testimonial-quote">
-                        &ldquo;The experience challenged me to think
-                        differently, lead with purpose and believe in
-                        what I can achieve.&rdquo;
-                    </p>
-
-                    <span class="testimonial-role">
-                        KSK Foundation Alumni
-                    </span>
-
-                </div>
-
-            </article>
-
-
-            <!-- Alumni Card 3 -->
-            <article class="testimonial-card">
-
-                <div class="testimonial-image">
-                    <img
-                        src="/images/alum2.jpg"
-                        alt="KSK Foundation alumna"
-                    >
-                </div>
-
-                <div class="testimonial-content">
-
-                    <div class="testimonial-badge">
-                        KSK
-                    </div>
-
-                    <!-- <span class="testimonial-label">
-                        ALUMNI VOICES
-                    </span> -->
-
-                    <h3>
-                          <strong>Mr. Stephen Kasenge</strong>
-                    </h3>
-
-                    <p class="testimonial-quote">
-                        &ldquo;KSK Foundation connected me with people,
-                        ideas and opportunities that continue to influence
-                        my journey today.&rdquo;
-                    </p>
-
-                    <span class="testimonial-role">
-                        KSK Foundation Alumni
-                    </span>
-
-                </div>
-
-            </article>
-
-        </div>
 
         <div class="center testimonials-more">
-            <a href="/testimonials" class="btn btn-outline">
+            <!-- <a href="/testimonials" class="btn btn-outline"> -->
+                <a href="/alumni" class="btn btn-outline"></a>
                 Read Alumni Voices
             </a>
         </div>

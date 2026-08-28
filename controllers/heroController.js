@@ -1,102 +1,107 @@
-// controllers/heroController.js
 const supabase = require('../config/supabase');
+const { v4: uuidv4 } = require('uuid');
 
-const BUCKET = 'hero';
+const BUCKET = 'hero-images';
 
 function publicUrl(storagePath) {
+  if (!storagePath) return null;
   const { data } = supabase.storage.from(BUCKET).getPublicUrl(storagePath);
   return data.publicUrl;
 }
 
-// GET /admin/hero
-async function listGallery(req, res) {
-  const { data: photos } = await supabase
-    .from('hero')
-    .select('*')
-    .order('created_at', { ascending: false });
+// GET /admin/hero - list all uploaded hero images
+exports.listHero = async (req, res, next) => {
+  try {
+    const { data, error } = await supabase
+      .from('hero_images')
+      .select('*')
+      .order('display_order', { ascending: true })
+      .order('created_at', { ascending: false });
 
-  const withUrls = (photos || []).map((p) => ({ ...p, url: publicUrl(p.storage_path) }));
-  res.render('admin/hero', { photos: withUrls });
-}
+    if (error) throw error;
+
+    const images = (data || []).map((img) => ({
+      ...img,
+      image_url: publicUrl(img.storage_path),
+    }));
+
+    res.render('admin/hero', { images });
+  } catch (error) {
+    next(error);
+  }
+};
 
 // POST /admin/hero/upload
-async function uploadPhoto(req, res) {
-  if (!req.file) {
-    return res.redirect('/admin/hero');
+exports.uploadHero = async (req, res, next) => {
+  try {
+    if (!req.file) return res.status(400).send('No file uploaded');
+
+    const { title, alt_text } = req.body;
+    const ext = req.file.originalname.split('.').pop();
+    const storagePath = `${uuidv4()}.${ext}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from(BUCKET)
+      .upload(storagePath, req.file.buffer, { contentType: req.file.mimetype });
+
+    if (uploadError) throw uploadError;
+
+    const { error: dbError } = await supabase.from('hero_images').insert({
+      title: title || null,
+      alt_text: alt_text || null,
+      storage_path: storagePath,
+      status: 'draft',
+    });
+
+    if (dbError) throw dbError;
+    res.redirect('/admin/hero');
+  } catch (error) {
+    next(error);
   }
-  const { title, description, category, year, alt_text } = req.body;
+};
 
-  const ext = req.file.originalname.split('.').pop();
-  const storagePath = `hero/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+// POST /admin/hero/:id/publish
+exports.publishHero = async (req, res, next) => {
+  try {
+    const { error } = await supabase
+      .from('hero_images')
+      .update({ status: 'published', updated_at: new Date() })
+      .eq('id', req.params.id);
 
-  const { error: uploadErr } = await supabase.storage
-    .from(BUCKET)
-    .upload(storagePath, req.file.buffer, { contentType: req.file.mimetype });
-
-  if (uploadErr) {
-    return res.render('admin/error', { title: 'Upload failed', message: uploadErr.message });
+    if (error) throw error;
+    res.redirect('/admin/hero');
+  } catch (error) {
+    next(error);
   }
+};
 
-  await supabase.from('hero').insert({
-    title: title || null,
-    description: description || null,
-    storage_path: storagePath,
-    category: category || null,
-    year: year ? Number(year) : null,
-    alt_text: alt_text || null,
-    status: 'draft',
-    uploaded_by: req.session.user.id,
-  });
+// POST /admin/hero/:id/draft
+exports.setDraftHero = async (req, res, next) => {
+  try {
+    const { error } = await supabase
+      .from('hero_images')
+      .update({ status: 'draft', updated_at: new Date() })
+      .eq('id', req.params.id);
 
-  res.redirect('/admin/hero');
-}
-
-// POST /admin/hero/:id/status  (publish/unpublish)
-async function setPhotoStatus(req, res) {
-  const { id } = req.params;
-  const { status } = req.body;
-  if (!['draft', 'published'].includes(status)) return res.redirect('/admin/hero');
-  await supabase.from('hero').update({ status }).eq('id', id);
-  res.redirect('/admin/hero');
-}
-
-// POST /admin/hero/:id/delete
-async function deletePhoto(req, res) {
-  const { id } = req.params;
-  const { data: photo } = await supabase.from('hero').select('storage_path').eq('id', id).single();
-  if (photo) {
-    await supabase.storage.from(BUCKET).remove([photo.storage_path]);
+    if (error) throw error;
+    res.redirect('/admin/hero');
+  } catch (error) {
+    next(error);
   }
-  await supabase.from('hero').delete().eq('id', id);
-  res.redirect('/admin/');
-}hero
+};
 
-// Used by the PUBLIC hero.ejs page to show only published photos.
-async function getPublishedGallery() {
-  const { data: photos } = await supabase
-    .from('hero')
+// used by the public homepage
+exports.getPublishedHero = async () => {
+  const { data, error } = await supabase
+    .from('hero_images')
     .select('*')
     .eq('status', 'published')
+    .order('display_order', { ascending: true })
     .order('created_at', { ascending: false });
-  return (photos || []).map((p) => ({ ...p, url: publicUrl(p.storage_path) }));
-}
 
-// Used by the homepage to show a small "recent photos" preview.
-async function getRecentGalleryPhotos(limit = 3) {
-  const { data: photos } = await supabase
-    .from('hero')
-    .select('*')
-    .eq('status', 'published')
-    .order('created_at', { ascending: false })
-    .limit(limit);
-  return (photos || []).map((p) => ({ ...p, url: publicUrl(p.storage_path) }));
-}
-
-module.exports = {
-  listGallery,
-  uploadPhoto,
-  setPhotoStatus,
-  deletePhoto,
-  getPublishedGallery,
-  getRecentGalleryPhotos,
+  if (error) throw error;
+  return (data || []).map((img) => ({
+    ...img,
+    image_url: publicUrl(img.storage_path),
+  }));
 };

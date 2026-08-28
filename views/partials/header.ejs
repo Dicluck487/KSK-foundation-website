@@ -73,32 +73,66 @@
             </li>
 
             <!-- Publications -->
-            <li class="has-dropdown">
-                <a href="#" class="dropdown-toggle">
-                    Publications ⌄
-                </a>
+<li class="has-dropdown">
+    <a href="/publications" class="dropdown-toggle">
+        Publications ⌄
+    </a>
 
-                <div class="mega-dropdown">
+    <div class="mega-dropdown">
 
-                    <a href="/publications/#section1" class="mega-item">
-                        <img src="/images/2image3.jpeg" alt="Prospectus">
-                        <h4>2026 Prospectus</h4>
-                    </a>
+  <% if (publishedPublications && publishedPublications.length > 0) { %>
 
-                    <a href="/publications/#section2" class="mega-item">
-                        <img src="/images/2image3.jpeg" alt="Magazine 2025">
-                        <h4>Magazine 2025</h4>
-                    </a>
-                    
+    <% publishedPublications.slice(0, 3).forEach(function(pub) { %>
 
-                    <a href="/publications/#section3" class="mega-item">
-                        <img src="/images/2image3.jpeg" alt="Magazine 2024">
-                        <h4>Magazine 2024</h4>
-                    </a>
+        <a
+            href="/publications/<%= pub.id %>"
+            class="mega-item"
+        >
 
-                </div>
-            </li>
+            <% if (pub.cover_url) { %>
 
+                <img
+                    src="<%= pub.cover_url %>"
+                    alt="<%= pub.title %>"
+                >
+
+            <% } else { %>
+
+                <img
+                    src="/images/logo.jpg"
+                    alt="<%= pub.title %>"
+                >
+
+            <% } %>
+
+            <h4>
+                <%= pub.title %>
+            </h4>
+
+            <% if (pub.year) { %>
+                <span><%= pub.year %></span>
+            <% } %>
+
+        </a>
+
+    <% }); %>
+
+<% } else { %>
+
+    <!-- <a href="/publications" class="mega-item">
+        <img
+            src="/images/logo.jpg"
+            alt="KSK Foundation Publications"
+        > -->
+
+        <h4>Publications</h4>
+        <span>View our publications</span>
+    </a>
+
+<% } %>
+
+    </div>
+</li>
 
             <!-- Contact -->
             <li>

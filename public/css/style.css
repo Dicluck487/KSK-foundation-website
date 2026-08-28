@@ -2630,3 +2630,138 @@ html {
 .social-links i {
     line-height: 1;
 }
+
+.alumni-preview {
+    padding: 80px 0;
+    background: #f8f8f6;
+}
+
+.alumni-preview .section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.alumni-preview .eyebrow {
+    display: block;
+    margin-bottom: 10px;
+    color: #d97900;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.alumni-preview .section-heading h2 {
+    margin: 0;
+    color: #111827;
+    font-size: clamp(30px, 4vw, 46px);
+    line-height: 1.1;
+    font-weight: 700;
+}
+
+.alumni-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.alumni-preview-card {
+    overflow: hidden;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.alumni-preview-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.11);
+}
+
+.alumni-preview-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+.alumni-preview-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.alumni-preview-card:hover .alumni-preview-image img {
+    transform: scale(1.04);
+}
+
+.alumni-preview-content {
+    padding: 28px 24px 30px;
+}
+
+.alumni-program {
+    display: block;
+    margin-bottom: 12px;
+    color: #d97900;
+    font-size: 12px;
+    line-height: 1.4;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+}
+
+.alumni-preview-content h3 {
+    margin: 0 0 16px;
+    color: #111827;
+    font-size: 22px;
+    line-height: 1.25;
+}
+
+.alumni-quote {
+    margin: 0;
+    color: #24344d;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.alumni-year {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: #f2f3f5;
+    color: #555;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+@media (max-width: 900px) {
+    .alumni-preview-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .alumni-preview {
+        padding: 60px 0;
+    }
+
+    .alumni-preview .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .alumni-preview-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .alumni-preview-image {
+        height: 230px;
+    }
+}
