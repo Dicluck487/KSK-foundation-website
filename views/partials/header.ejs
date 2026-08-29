@@ -80,56 +80,48 @@
 
     <div class="mega-dropdown">
 
-  <% if (publishedPublications && publishedPublications.length > 0) { %>
+        <% if (publishedPublications && publishedPublications.length > 0) { %>
 
-    <% publishedPublications.slice(0, 3).forEach(function(pub) { %>
+            <% publishedPublications.slice(0, 3).forEach(function(pub) { %>
 
-        <a
-            href="/publications/<%= pub.id %>"
-            class="mega-item"
-        >
-
-            <% if (pub.cover_url) { %>
-
-                <img
-                    src="<%= pub.cover_url %>"
-                    alt="<%= pub.title %>"
+                <a
+                    href="/publications#publication-<%= pub.id %>"
+                    class="mega-item"
                 >
 
-            <% } else { %>
+                    <img
+                        src="<%= pub.cover_url || '/images/magazinn.jpeg' %>"
+                        alt="<%= pub.title %>"
+                    >
 
+                    <h4>
+                        <%= pub.title %>
+                    </h4>
+
+                    <% if (pub.description) { %>
+                        <p><%= pub.description %></p>
+                    <% } %>
+
+                    <% if (pub.year) { %>
+                        <span><%= pub.year %></span>
+                    <% } %>
+
+                </a>
+
+            <% }); %>
+
+        <% } else { %>
+
+            <a href="/publications" class="mega-item">
                 <img
-                    src="/images/logo.jpg"
-                    alt="<%= pub.title %>"
+                    src="/images/magazinn.jpeg"
+                    alt="KSK Foundation Publications"
                 >
+                <h4>Publications</h4>
+                <span>View our publications</span>
+            </a>
 
-            <% } %>
-
-            <h4>
-                <%= pub.title %>
-            </h4>
-
-            <% if (pub.year) { %>
-                <span><%= pub.year %></span>
-            <% } %>
-
-        </a>
-
-    <% }); %>
-
-<% } else { %>
-
-    <!-- <a href="/publications" class="mega-item">
-        <img
-            src="/images/logo.jpg"
-            alt="KSK Foundation Publications"
-        > -->
-
-        <h4>Publications</h4>
-        <span>View our publications</span>
-    </a>
-
-<% } %>
+        <% } %>
 
     </div>
 </li>
@@ -149,16 +141,6 @@
             <li>
 <a href="/faq">FAQ</a>
             </li>
-
-            
-            <!-- News & Events -->
-            <!-- <li>
-                <a href="/news-events" class="<%= currentPath === '/news-events' ? 'active' : '' %>">
-                    News &amp; Events
-                </a>
-            </li> -->
-
-            
 
         </ul>
     </nav>

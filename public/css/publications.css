@@ -1,0 +1,265 @@
+/* ==========================================
+   PUBLICATIONS PAGE
+========================================== */
+
+.publication-hero {
+    padding: 60px 0 30px;
+    text-align: center;
+}
+
+.publication-hero .lead,
+.publication-hero p {
+    max-width: 650px;
+    margin: 0 auto;
+    color: var(--color-muted);
+}
+
+.section-heading {
+    max-width: 700px;
+    margin: 0 auto 40px;
+    text-align: center;
+}
+
+.section-heading p {
+    color: var(--color-muted);
+    margin: 0;
+}
+
+
+/* ---------- CURRENT ISSUE ---------- */
+
+.current-publication-card {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 40px;
+
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
+
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.publication-cover {
+    width: 100%;
+    height: 100%;
+    min-height: 340px;
+}
+
+.publication-cover img {
+    width: 100%;
+    height: 100%;
+    min-height: 340px;
+    object-fit: cover;
+    display: block;
+}
+
+.publication-info {
+    padding: 40px 40px 40px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.publication-label {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.publication-info h2 {
+    margin: 0 0 12px;
+    font-size: 1.8rem;
+}
+
+.publication-year {
+    display: inline-block;
+    margin-bottom: 16px;
+    padding: 4px 14px;
+    border-radius: 999px;
+    background: var(--color-bg-alt);
+    color: var(--color-dark);
+    font-size: 0.85rem;
+    font-weight: 700;
+    width: fit-content;
+}
+
+.publication-description {
+    color: var(--color-muted);
+    margin-bottom: 24px;
+}
+
+.publication-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.publication-unavailable {
+    color: #999;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+
+/* ---------- ARCHIVE GRID ---------- */
+
+.magazine-archive-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px;
+}
+
+.magazine-archive-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.magazine-archive-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.11);
+}
+
+.magazine-archive-cover {
+    width: 100%;
+    height: 280px;
+}
+
+.magazine-archive-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.magazine-archive-content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.archive-year {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    width: fit-content;
+}
+
+.magazine-archive-content h3 {
+    margin: 0 0 10px;
+    font-size: 1.15rem;
+}
+
+.archive-description {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+
+    /* Clamp long descriptions so cards stay a consistent height */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+    flex: 1;
+}
+
+.archive-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}
+
+.archive-actions .btn {
+    font-size: 0.85rem;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 36px;
+}
+
+
+/* ---------- EMPTY STATES ---------- */
+
+.publication-empty {
+    text-align: center;
+    padding: 60px 25px;
+    border-radius: 18px;
+    background: var(--color-bg-alt);
+    border: 1px dashed rgba(0, 0, 0, 0.12);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.publication-empty-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #fff;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.publication-empty h3 {
+    margin-bottom: 8px;
+}
+
+.publication-empty p {
+    color: var(--color-muted);
+    margin: 0;
+}
+
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 900px) {
+
+    .current-publication-card {
+        grid-template-columns: 1fr;
+    }
+
+    .publication-cover,
+    .publication-cover img {
+        min-height: 280px;
+    }
+
+    .publication-info {
+        padding: 30px;
+    }
+
+    .magazine-archive-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .magazine-archive-list {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+

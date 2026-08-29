@@ -2765,3 +2765,158 @@ html {
         height: 230px;
     }
 }
+
+
+
+/* ==========================================
+   PUBLICATIONS — anchor offset
+   So jumping to #publication-<id> doesn't hide
+   the card under the sticky header.
+========================================== */
+
+.current-publication-card,
+.magazine-archive-card {
+    scroll-margin-top: 110px;
+}
+
+
+/* ==========================================
+   PDF READER OVERLAY
+========================================== */
+
+.pdf-reader-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.7);
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.pdf-reader-overlay.open {
+    display: flex;
+}
+
+.pdf-reader-container {
+    width: 100%;
+    max-width: 900px;
+    height: 90vh;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.pdf-reader-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    border-bottom: 1px solid #eee;
+}
+
+.pdf-reader-label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--color-primary);
+    text-transform: uppercase;
+}
+
+.pdf-reader-header h2 {
+    margin: 4px 0 0;
+    font-size: 1.1rem;
+}
+
+.pdf-reader-close {
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    color: #666;
+}
+
+.pdf-reader-body {
+    flex: 1;
+    overflow: hidden;
+    background: #f5f5f5;
+}
+
+.pdf-reader-footer {
+    padding: 14px 24px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+/* ==========================================
+   ADMIN — publications table
+========================================== */
+
+.admin-page {
+    padding: 40px 0;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.admin-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.admin-flash {
+    background: #e6f6ea;
+    color: #1e8a3d;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+    text-align: left;
+    padding: 12px 10px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+.admin-table-thumb {
+    width: 50px;
+    height: 65px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.admin-table-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.btn-danger {
+    background: #d9483e;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-danger:hover {
+    background: #b23a2c;
+}
+
+

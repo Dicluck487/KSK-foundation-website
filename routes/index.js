@@ -75,6 +75,9 @@ router.get('/', async (req, res, next) => {
     next(error);
   }
 });
+
+
+
 // Full gallery page
 router.get('/gallery', async (req, res, next) => {
   try {
@@ -91,6 +94,13 @@ router.get('/who-we-are', (req, res) => {
     description: 'Learn about our mission, story, and approach to peer-to-peer mentorship.'
   });
 });
+router.get('/testimonials', (req, res) => {
+  res.render('testimonials', {
+    title: 'Testimonials',
+    description: 'Hear from our alumni and community members.'
+  });
+});
+
 
 // Alumni page — 3 most recent show on homepage, everyone older shows here
 router.get('/alumni', async (req, res) => {
@@ -247,5 +257,85 @@ router.get('/leadership', (req, res) => {
     description: 'Meet the leadership and governance community guiding KSK Foundation.'
   });
 });
+
+
+const supabase = require('../config/supabase');
+
+
+router.get('/publications', async (req, res) => {
+
+    try {
+
+        const { data, error } = await supabase
+            .from('publications')
+            .select('*')
+            .eq('status', 'published')
+            .order('year', { ascending: false })
+            .order('created_at', { ascending: false });
+
+
+        if (error) {
+            console.error('Publications loading error:', error);
+            throw error;
+        }
+
+
+        const publications = (data || []).map(pub => {
+
+            const coverUrl = pub.cover_path
+                ? supabase.storage
+                    .from('publications')
+                    .getPublicUrl(pub.cover_path)
+                    .data.publicUrl
+                : '/images/logo.jpg';
+
+
+            const documentUrl = pub.document_path
+                ? supabase.storage
+                    .from('publications')
+                    .getPublicUrl(pub.document_path)
+                    .data.publicUrl
+                : null;
+
+
+            return {
+                ...pub,
+                coverUrl,
+                documentUrl
+            };
+
+        });
+
+
+        /*
+         * The newest publication becomes the current issue.
+         */
+        const currentPublication = publications[0] || null;
+
+
+        res.render('publications', {
+
+            currentPublication,
+
+            publications,
+
+            publishedPublications: res.locals.publishedPublications
+
+        });
+
+
+    } catch (err) {
+
+        console.error('Publications page error:', err);
+
+        res.status(500).send(
+            'Unable to load publications.'
+        );
+
+    }
+
+});
+
+
 
 module.exports = router;
