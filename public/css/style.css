@@ -32,12 +32,41 @@
 
 .testimonials-more
 
+
+
 * {
   box-sizing: border-box;
   }
 
 html {
 scroll-behavior: smooth;
+}
+
+
+
+/* FOR DYNAMIC SCREEN SIZES */
+@media (max-width: 1024px) {
+  .ksk-programs .container {
+    padding: 0 22px;
+  }
+  .ksk-programs .program-grid {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 400px) {
+  .ksk-programs .page-header {
+    padding: 76px 0 48px;
+  }
+  .ksk-programs .hero-actions .btn,
+  .ksk-programs .jumpmenu-inner a {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+  .ksk-programs .checklist li,
+  .ksk-programs .checklist2 li {
+    font-size: 14px;
+  }
 }
 
 body {
@@ -278,7 +307,8 @@ transition: all 0.2s ease;
 background: var(--color-primary);
 color: #fff;
 background-color: #6e0257;
-height: 18px;
+/* height: 18px; */
+padding: 11px 20px
 }
 
 .primary {
@@ -316,8 +346,9 @@ background-color: #fc8804;
     /* background-color: #6e0257; */
     /* color: #fff; */
 
-    height: 40px;
+    /* height: 40px; */
     padding: 0 28px;
+    padding: 11px 20px;
 
     display: inline-flex;
     align-items: center;
@@ -2553,7 +2584,7 @@ html {
 #contact-form .form-group select:focus,
 #contact-form .form-group textarea:focus {
   outline: none;
-  border-color: #b23fd6 !important;
+  border-color: #561358 !important;
   box-shadow: 0 0 0 3px rgba(178,63,214,0.14);
 }
 
@@ -2718,7 +2749,7 @@ html {
 
 .alumni-preview-content h3 {
     margin: 0 0 16px;
-    color: #111827;
+    color: #561358;
     font-size: 22px;
     line-height: 1.25;
 }
@@ -2789,7 +2820,7 @@ html {
     position: fixed;
     inset: 0;
     z-index: 10000;
-    background: rgba(0, 0, 0, 0.7);
+    background: #561358;
     align-items: center;
     justify-content: center;
     padding: 30px;
@@ -2919,4 +2950,271 @@ html {
     background: #b23a2c;
 }
 
+
+
+/* ==========================================
+   PUBLICATION READER (flipbook)
+========================================== */
+
+.publication-reader {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: #561358;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.publication-reader.is-open {
+    display: flex;
+}
+
+body.publication-reader-open {
+    overflow: hidden;
+}
+
+.publication-reader-panel {
+    width: 100%;
+    max-width: 1100px;
+    height: 92vh;
+    background: #561358;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+
+/* Fullscreen: let the panel fill the whole screen */
+.publication-reader-panel:fullscreen,
+.publication-reader-panel:-webkit-full-screen {
+    max-width: none;
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+}
+
+
+/* ---------- HEADER ---------- */
+
+.publication-reader-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    background: #561358;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.publication-reader-label {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+}
+
+.publication-reader-header h2 {
+    margin: 4px 0 0;
+    font-size: 1.05rem;
+    color: #fff;
+}
+
+.publication-reader-header-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.publication-reader-icon-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+
+.publication-reader-icon-btn:hover,
+.publication-reader-icon-btn.is-active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+
+/* ---------- BODY ---------- */
+
+.publication-reader-body {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at center, #2a1e37 0%, #150e1c 100%);
+}
+
+/* Flipbook wrap fills the body by default... */
+.publication-flip-wrap {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.publication-flipbook {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.publication-flipbook .page {
+    background: #fff;
+}
+
+.publication-flipbook .page canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* ...and the fallback iframe/link are hidden until .is-fallback is set */
+.publication-reader-frame,
+.publication-reader-fallback-link {
+    display: none;
+}
+
+.publication-reader-body.is-fallback .publication-flip-wrap {
+    display: none;
+}
+
+.publication-reader-body.is-fallback .publication-reader-frame {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.publication-reader-body.is-fallback .publication-reader-fallback-link {
+    display: inline-block;
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    text-decoration: none;
+}
+
+
+/* ---------- LOADING ---------- */
+
+.publication-flip-loading {
+    display: none;
+    position: absolute;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    background: rgba(21, 14, 28, 0.7);
+    z-index: 2;
+}
+
+.publication-flip-loading.is-visible {
+    display: flex;
+}
+
+
+/* ---------- NAV ---------- */
+
+.publication-flip-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 3;
+    transition: background 0.2s ease;
+}
+
+.publication-flip-nav:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.28);
+}
+
+.publication-flip-nav:disabled {
+    opacity: 0.25;
+    cursor: default;
+}
+
+.publication-flip-prev {
+    left: 16px;
+}
+
+.publication-flip-next {
+    right: 16px;
+}
+
+.publication-flip-pageindicator {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    font-size: 0.8rem;
+    z-index: 3;
+}
+
+
+/* ---------- FOOTER ---------- */
+
+.publication-reader-footer {
+    padding: 14px 24px;
+    background: #241a2e;
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 700px) {
+
+    .publication-reader-panel {
+        height: 96vh;
+        border-radius: 10px;
+    }
+
+    .publication-flip-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1.3rem;
+    }
+
+    .publication-reader-header h2 {
+        font-size: 0.92rem;
+    }
+
+}
 

@@ -1,12 +1,7 @@
-// controllers/authController.js
 const bcrypt = require('bcryptjs');
 const supabase = require('../config/supabase');
 
 // GET /admin/login
-// function getLogin(req, res) {
-//   res.render('admin/login', { error: null });
-// }
-
 function getLogin(req, res) {
     res.render('admin/login', {
         layout: false,
@@ -27,11 +22,19 @@ async function postLogin(req, res) {
     .maybeSingle();
 
   if (error || !user) {
-    return res.render('admin/login', { error: 'Invalid email or password.' });
+    return res.render('admin/login', {
+      layout: false,
+      title: 'Admin Login',
+      description: 'KSK Foundation administrator login',
+      error: 'Invalid email or password.',
+    });
   }
 
   if (user.status !== 'active') {
     return res.render('admin/login', {
+      layout: false,
+      title: 'Admin Login',
+      description: 'KSK Foundation administrator login',
       error: user.status === 'pending'
         ? 'Your account is still pending approval by a Super Admin.'
         : 'This account is not active. Contact a Super Admin.',
@@ -39,8 +42,14 @@ async function postLogin(req, res) {
   }
 
   const valid = await bcrypt.compare(password, user.password_hash);
+
   if (!valid) {
-    return res.render('admin/login', { error: 'Invalid email or password.' });
+    return res.render('admin/login', {
+      layout: false,
+      title: 'Admin Login',
+      description: 'KSK Foundation administrator login',
+      error: 'Invalid email or password.',
+    });
   }
 
   req.session.user = {
@@ -53,6 +62,7 @@ async function postLogin(req, res) {
 
   const redirectTo = req.session.returnTo || '/admin/dashboard';
   delete req.session.returnTo;
+
   res.redirect(redirectTo);
 }
 
@@ -63,7 +73,13 @@ function logout(req, res) {
 
 // GET /admin/apply  — public "request admin access" form
 function getApply(req, res) {
-  res.render('admin/apply', { error: null, success: false });
+  res.render('admin/apply', {
+    layout: false,
+    title: 'Request Admin Access',
+    description: 'Request administrator access to the KSK Foundation website.',
+    error: null,
+    success: false,
+  });
 }
 
 // POST /admin/apply
@@ -72,6 +88,9 @@ async function postApply(req, res) {
 
   if (!name || !email || !reason) {
     return res.render('admin/apply', {
+      layout: false,
+      title: 'Request Admin Access',
+      description: 'Request administrator access to the KSK Foundation website.',
       error: 'Name, email, and reason for access are required.',
       success: false,
     });
@@ -88,6 +107,9 @@ async function postApply(req, res) {
 
   if (error) {
     return res.render('admin/apply', {
+      layout: false,
+      title: 'Request Admin Access',
+      description: 'Request administrator access to the KSK Foundation website.',
       error: 'Something went wrong submitting your application. Please try again.',
       success: false,
     });
@@ -95,7 +117,13 @@ async function postApply(req, res) {
 
   // IMPORTANT: this NEVER grants access. It just queues a request that a
   // Super Admin has to review and approve from /admin/applications.
-  res.render('admin/apply', { error: null, success: true });
+  res.render('admin/apply', {
+    layout: false,
+    title: 'Request Admin Access',
+    description: 'Request administrator access to the KSK Foundation website.',
+    error: null,
+    success: true,
+  });
 }
 
 module.exports = { getLogin, postLogin, logout, getApply, postApply };

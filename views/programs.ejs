@@ -15,7 +15,7 @@
     --accent: #a87532;
     --accent-deep: #ecc390;
     --navy: #2a172e;
-    color: var(--ink);
+    /* color: var(--ink); */
     background: var(--paper);
     -webkit-font-smoothing: antialiased;
   }
@@ -38,7 +38,7 @@
 
   .ksk-programs p {
     line-height: 1.7;
-    color: var(--ink-soft);
+    color: white;
     margin: 0 0 16px;
   }
 
@@ -459,18 +459,29 @@
   .program {
     background-color: #280130;
     color: #f7f5f0;
+  }
 
+  .program .checklist li {
+    color: #bdbcba;
   }
   .pro {
     color: #f7f5f0;
   }
 
   .camph2 {
-    color: #f7f5f0;
+    color: #413005;
   }
 
   .campp {
-    color: #bdbcba;
+    color: #352403;
+  }
+
+  .prog {
+    color: #fff;
+  }
+
+  .prog1 {
+    color: #fff;
   }
  
 
@@ -511,13 +522,16 @@
   <nav class="program-jumpmenu" aria-label="Jump to a program">
     <div class="container jumpmenu-inner">
        <a href="#mswrp" class="btn btn-primary ">
-            Making Students World Ready
+             World Ready
           </a>
            <a href="#kaizen" class="btn btn-primary">
             Kaizen Teen Boot Camp
           </a>
            <a href="#fsa" class="btn btn-primary">
             Financial Services Academy
+          </a>
+          <a href="#scholarships" class="btn btn-primary">
+            Scholarships
           </a>
            <a href="#upcoming" class="btn btn-primary">
             Upcoming Initiatives
@@ -530,16 +544,69 @@
   </nav>
 
 
+    <!-- ============ Scholarships ============ -->
+  <section class="section feature" id="scholarships">
+    <div class="container two-col reverse">
+      <a href="/gallery?category=kaizen" class="program-image-link" aria-label="View scholarship beneficiaries">
+        <img
+          src="/images/scholarship1.png"
+          alt="Scholarship beneficiaries"
+          class="rounded-img tall"
+        >
+      </a>
+
+      <div>
+        <p class="eyebrow">Investing in Potential &middot; Scholarships</p>
+
+        <h2 class="camph2">Scholarships</h2>
+
+        <p class="campp">
+          KSK Foundation invests in the potential of young people through
+          scholarships and academic opportunities. To date, 18 scholarships
+          totaling UGX 70,004,740 have been awarded, with two further awards
+          scheduled for clearance in 2026.
+        </p>
+
+        <ul class="checklist">
+          <li>Kings College Budo &mdash; 10 scholarships</li>
+          <li>Gayaza High School &mdash; 5 scholarships</li>
+          <li>Masaka School for Children with Special Needs &mdash; 2 scholarships</li>
+          <li>National &amp; Regional Academic Competitions &mdash; 1 scholarship</li>
+          <li>WRP Hackathon Awards (2017 to 2025) &mdash; 8 awards totaling UGX 20,400,000</li>
+        </ul>
+
+        <!-- <p class="campp">
+          <strong>A partnership with KSK Foundation also offers:</strong>
+          direct access to high-potential young talent, brand visibility
+          through a network of schools, alumni, facilitators and community
+          stakeholders, a credible community-investment story, and flexible
+          engagement from cash sponsorship to facilitator support and
+          in-kind contributions.
+        </p> -->
+
+        <div class="hero-actions">
+          <a href="/contact-us?reason=scholarships" class="btn btn-primary">
+            Inquire about Scholarships
+          </a>
+          <a href="/gallery?category=kaizen" class="btn btn-outline">
+            Beneficiaries
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
 
   <!-- ============ MSWRP ============ -->
-  <section class="section program-detail alt-bg" id="mswrp">
+  <section class="program" id="mswrp">
     <div class="container two-col">
       <div>
         <p class="eyebrow">Flagship Youth Program &middot; Now in Season VIII</p>
 
-        <h2>Making Students World Ready Program</h2>
+        <h2 class="prog1">Making Students World Ready Program</h2>
 
-        <p >
+        <p class="prog" >
           Now in its eighth consecutive year, the Making Students
           World Ready Program is KSK Foundation's flagship initiative.
           Over eight intensive weeks, participants move through
@@ -550,7 +617,7 @@
           concepts they've developed themselves.
         </p>
 
-        <p >
+        <p class="prog" >
           The program has been graced by guests including Hon. Maria
           Kiwanuka, and draws on a growing bench of over 30 industry
           professionals each season who volunteer as facilitators
@@ -581,7 +648,7 @@
 
       <a href="/gallery?category=mswrp" class="program-image-link" aria-label="View MSWRP gallery">
         <img
-          src="/images/2image1.jpg"
+          src="/images/worldready.jpg"
           alt="Making Students World Ready Program participants"
           class="rounded-img tall"
         >
@@ -590,11 +657,11 @@
   </section>
 
   <!-- ============ KAIZEN ============ -->
-  <section class="program" id="kaizen">
+  <section class="section feature" id="kaizen">
     <div class="container two-col reverse">
       <a href="/gallery?category=kaizen" class="program-image-link" aria-label="View Kaizen Teen Boot Camp gallery">
         <img
-          src="/images/2image5.jpg"
+          src="/images/KAIZEN.jpg"
           alt="Kaizen Teen Boot Camp activities"
           class="rounded-img tall"
         >
@@ -635,14 +702,14 @@
   </section>
 
   <!-- ============ FSA ============ -->
-  <section class="section feature" id="fsa">
+  <section class="program" id="fsa">
     <div class="container two-col">
       <div>
         <p class="eyebrow">Professional Development</p>
 
-        <h2>Financial Services Academy</h2>
+        <h2 class="prog1">Financial Services Academy</h2>
 
-        <p>
+        <p class="prog">
           The Financial Services Academy is a professional
           development platform designed to equip participants with
           practical, current knowledge across the full breadth of
@@ -673,13 +740,15 @@
 
       <a href="/gallery?category=fsa" class="program-image-link" aria-label="View Financial Services Academy gallery">
         <img
-          src="/images/2image3.jpg"
+          src="/images/WRP.jpg"
           alt="Financial Services Academy session"
           class="rounded-img tall"
         >
       </a>
     </div>
   </section>
+
+
 
   <!-- ============ UPCOMING INITIATIVES ============ -->
   <section class="section upcoming-initiatives" id="upcoming">

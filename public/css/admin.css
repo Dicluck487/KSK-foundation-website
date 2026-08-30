@@ -268,7 +268,7 @@ table.admin-table tr:last-child td { border-bottom: none; }
   box-shadow: 0 0 0 3px rgba(124,31,160,0.12);
 }
 
-.btn.primary {
+.auth-card .btn.primary {
   width: 100%;
   padding: 0.8rem;
   background: linear-gradient(135deg, #7c1fa0 0%, #5e1680 100%);
@@ -282,7 +282,7 @@ table.admin-table tr:last-child td { border-bottom: none; }
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.btn.primary:hover {
+.auth-card .btn.primary:hover {
   transform: translateY(-1px);
   box-shadow: 0 8px 20px rgba(124,31,160,0.35);
 }

@@ -119,6 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </section>
 
 <!-- Our Programs Preview -->
+<!-- Our Programs Preview -->
 <section class="section programs-preview">
     <div class="container">
         <p class="eyebrow center">Our Programs</p>
@@ -136,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <div class="program-grid">
             <article class="program-card">
                 <img
-                    src="/images/2image1.jpg"
+                    src="/images/WorldReady.jpg"
                     alt="Making Students World Ready Program"
                     class="rounded-img"
                 >
@@ -159,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             <article class="program-card">
                 <img
-                    src="/images/2image2.jpg"
+                    src="/images/KAIZEN.jpg"
                     alt="Kaizen Teen Boot Camp"
                     class="rounded-img"
                 >
@@ -182,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             <article class="program-card">
                 <img
-                    src="/images/2image3.jpg"
+                    src="/images/WRP.jpg"
                     alt="Financial Services Academy"
                     class="rounded-img"
                 >
@@ -196,6 +197,28 @@ document.addEventListener("DOMContentLoaded", function () {
                         graduates covering finance, accounting, taxation,
                         AI in finance and capital markets, delivered by
                         distinguished industry practitioners.
+                    </p>
+
+                    <!-- <a href="/programs" class="btn btn-outline">
+                        View Program
+                    </a> -->
+                </div>
+            </article>
+
+            <article class="program-card">
+                <img
+                    src="/images/scholarship.jpg"
+                    alt="KSK Foundation Scholarships"
+                    class="rounded-img"
+                >
+
+                <div class="program-card-content">
+                    <p class="eyebrow">Scholarships</p>
+                    <h3>Scholarships</h3>
+
+                    <p>
+                        Scholarship opportunities supporting young Ugandans
+                        through KSK Foundation's partner schools.
                     </p>
 
                     <!-- <a href="/programs" class="btn btn-outline">
@@ -377,4 +400,43 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 </style>
 
+<style>
+    /* Four-program preview: all cards on one line */
+    .programs-preview .program-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 22px;
+    }
+
+    .programs-preview .program-card {
+        min-width: 0;
+        height: 100%;
+    }
+
+    .programs-preview .program-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+    }
+
+    .programs-preview .program-card-content {
+        height: calc(100% - 220px);
+        box-sizing: border-box;
+    }
+
+    @media (max-width: 900px) {
+        .programs-preview .program-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @media (max-width: 600px) {
+        .programs-preview .program-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
    <script src="/js/stat-counter.js"></script>
+
+
