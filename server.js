@@ -128,6 +128,8 @@ app.use('/', authRouter);
 // ---------------------------------------------------------
 
 app.use('/admin', adminRouter);
+app.use('/admin', heroRouter);
+app.use('/admin', alumniRouter);
 
 // Hero administration routes.
 app.use('/admin', heroRouter);
@@ -165,6 +167,7 @@ app.use((err, req, res, next) => {
   );
 
 });
+
 
 
 // =========================================================

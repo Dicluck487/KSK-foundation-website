@@ -1,6 +1,7 @@
 // controllers/heroController.js
 
 const supabase = require('../config/supabase');
+const { v4: uuidv4 } = require('uuid');
 
 /**
  * GET /admin/hero-images

@@ -32,12 +32,41 @@
 
 .testimonials-more
 
+
+
 * {
   box-sizing: border-box;
   }
 
 html {
 scroll-behavior: smooth;
+}
+
+
+
+/* FOR DYNAMIC SCREEN SIZES */
+@media (max-width: 1024px) {
+  .ksk-programs .container {
+    padding: 0 22px;
+  }
+  .ksk-programs .program-grid {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 400px) {
+  .ksk-programs .page-header {
+    padding: 76px 0 48px;
+  }
+  .ksk-programs .hero-actions .btn,
+  .ksk-programs .jumpmenu-inner a {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+  .ksk-programs .checklist li,
+  .ksk-programs .checklist2 li {
+    font-size: 14px;
+  }
 }
 
 body {
@@ -278,7 +307,8 @@ transition: all 0.2s ease;
 background: var(--color-primary);
 color: #fff;
 background-color: #6e0257;
-height: 18px;
+/* height: 18px; */
+padding: 11px 20px
 }
 
 .primary {
@@ -316,8 +346,9 @@ background-color: #fc8804;
     /* background-color: #6e0257; */
     /* color: #fff; */
 
-    height: 40px;
+    /* height: 40px; */
     padding: 0 28px;
+    padding: 11px 20px;
 
     display: inline-flex;
     align-items: center;
@@ -2553,7 +2584,7 @@ html {
 #contact-form .form-group select:focus,
 #contact-form .form-group textarea:focus {
   outline: none;
-  border-color: #b23fd6 !important;
+  border-color: #561358 !important;
   box-shadow: 0 0 0 3px rgba(178,63,214,0.14);
 }
 

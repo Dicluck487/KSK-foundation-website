@@ -1,105 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Publications — KSK Foundation
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="/css/publications.css"
+    >
+</head>
+
+
+<body>
 
 
 
-<!-- =========================================================
-     PUBLICATIONS INTRO
-========================================================= -->
 
-<section class="section publications-intro">
+    <!-- =====================================================
+         CURRENT ISSUE
+    ====================================================== -->
 
-  <div class="container">
+    <section
+        class="section current-publication"
+        id="current-issue"
+    >
 
-    <div class="publications-intro-grid">
+        <div class="container">
 
-      <div>
+            <div class="section-heading">
 
-        <span class="section-eyebrow">
-          OUR PUBLICATIONS
-        </span>
+                <span class="section-eyebrow">
+                    KSK FOUNDATION, CURRENT ISSUE
+                </span>
 
-        <h2>
-          Stories, Insights &amp; Impact
-        </h2>
+                <h2>
+                    Latest Publication
+                </h2>
 
-      </div>
+                <p>
+                    Read the latest publication from
+                    KSK Foundation.Explore our magazines, reports and publications
+                documenting the work, stories and impact of
+                KSK Foundation.
+                </p>
 
-      <div>
-
-        <p>
-          Our publications document the experiences, achievements and
-          opportunities created through KSK Foundation's programs.
-        </p>
-
-        <p>
-          From participant stories and program insights to annual
-          highlights, these publications provide a window into the
-          Foundation's work and its growing community.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================================
-     FOCUS MAGAZINE
-========================================================= -->
-
-<section class="section focus-magazine">
-
-  <div class="container">
-
-   
-    <!-- CURRENT ISSUE -->
-
-    <div class="current-publication" id="section1">
-
-      <div class="publication-cover">
+            </div>
 
         <!-- Replace this image with the actual current FOCUS cover -->
         <img src="<%= currentPublication.coverUrl %>">
 
-        <span class="current-badge">
-          CURRENT ISSUE
-        </span>
+            <% if (currentPublication) { %>
 
-      </div>
+                <div class="current-publication-card">
 
 
-      <div class="publication-details">
+                    <!-- COVER -->
+                    <div class="publication-cover">
 
-        <span class="publication-label">
-          FOCUS MAGAZINE
-        </span>
+                        <img
+                            src="<%= currentPublication.coverUrl || '/images/logo.jpg' %>"
+                            alt="<%= currentPublication.title %>"
+                            onerror="this.src='/images/logo.jpg'"
+                        >
 
-        <h3>
-          FOCUS Magazine
-        </h3>
+                    </div>
 
-        <p class="publication-description">
-          Discover stories from KSK Foundation's programs, hear from
-          participants and alumni, and explore the people and ideas
-          helping young Ugandans become leaders, innovators and
-          entrepreneurs.
-        </p>
 
-        <div class="publication-meta">
+                    <!-- INFORMATION -->
+                    <div class="publication-info">
 
-          <div>
-            <span>Publication</span>
-            <strong>FOCUS Magazine</strong>
-          </div>
+                        <span class="publication-label">
+                            CURRENT ISSUE
+                        </span>
 
-          <div>
-            <span>Status</span>
-            <strong>Current Issue</strong>
-          </div>
 
-        </div>
+                        <h2>
+                            <%= currentPublication.title %>
+                        </h2>
 
 
         <div class="publication-actions">
@@ -128,26 +119,34 @@
             View Archive
           </a>
 
-        </div>
+                            <div class="publication-year">
+                                <%= currentPublication.year %>
+                            </div>
 
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
+                        <% } %>
 
 
+                        <p class="publication-description">
 
-<section class="section focus-magazine">
+                            <%= currentPublication.description ||
+                                'Explore this publication from KSK Foundation.' %>
 
-  <div class="container">
+                        </p>
 
-   
-    <div class="current-publication" id="section1">
 
-      <div class="publication-cover">
+                        <div class="publication-actions">
+
+                            <% if (currentPublication.documentUrl) { %>
+
+                                <!-- READ -->
+                                <a
+                                    href="<%= currentPublication.documentUrl %>"
+                                    class="btn primary"
+                                    data-reader-pdf="<%= currentPublication.documentUrl %>"
+                                    data-reader-title="<%= currentPublication.title %>"
+                                >
+                                    Read Current Issue
+                                </a>
 
         <!-- Replace this image with the actual current FOCUS cover -->
         <img src="<%= currentPublication.coverUrl %>">
@@ -155,42 +154,35 @@
           CURRENT ISSUE
         </span>
 
-      </div>
+                            <% } else { %>
+
+                                <span class="publication-unavailable">
+                                    Magazine document unavailable.
+                                </span>
+
+                            <% } %>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            <% } else { %>
 
 
-      <div class="publication-details">
+                <!-- NO CURRENT PUBLICATION -->
 
-        <span class="publication-label">
-          FOCUS MAGAZINE
-        </span>
+                <div class="publication-empty">
 
-        <h3>
-          FOCUS Magazine
-        </h3>
+                    <h3>
+                        No publications available yet
+                    </h3>
 
-        <p class="publication-description">
-          Discover stories from KSK Foundation's programs, hear from
-          participants and alumni, and explore the people and ideas
-          helping young Ugandans become leaders, innovators and
-          entrepreneurs.
-        </p>
-
-        <div class="publication-meta">
-
-          <div>
-            <span>Publication</span>
-            <strong>FOCUS Magazine</strong>
-          </div>
-
-          <div>
-            <span>Status</span>
-            <strong>Current Issue</strong>
-          </div>
-
-        </div>
-
-
-        <div class="publication-actions">
+                    <p>
+                        Our latest publication will appear here
+                        once it has been published.
+                    </p>
 
        
           <a
@@ -200,75 +192,58 @@
     Read Current Issue
 </a>
 
-          <a
-            href="#focus-archive"
-            class="btn btn-outline"
-          >
-            View Archive
-          </a>
+            <% } %>
 
         </div>
 
-      </div>
+    </section>
 
-    </div>
 
-  </div>
 
-</section>
+    <!-- =====================================================
+         PUBLICATION ARCHIVE
+    ====================================================== -->
 
-<section class="section focus-magazine">
+    <section
+        class="section publication-archive"
+        id="focus-archive"
+    >
 
-  <div class="container">
+        <div class="container">
 
-   
-    <div class="current-publication" id="section2">
-
-      <div class="publication-cover">
 
         <!-- Replace this image with the actual current FOCUS cover -->
         <img src="<%= currentPublication.coverUrl %>">
 
-        <span class="current-badge">
-          CURRENT ISSUE
-        </span>
+                <span class="section-eyebrow">
+                    MAGAZINE ARCHIVE
+                </span>
 
-      </div>
+                <h2>
+                    Previous Issues
+                </h2>
 
+                <p>
+                    Browse all published issues of
+                    KSK Foundation publications.
+                </p>
 
-      <div class="publication-details">
-
-        <span class="publication-label">
-          FOCUS MAGAZINE
-        </span>
-
-        <h3>
-          FOCUS Magazine
-        </h3>
-
-        <p class="publication-description">
-          Discover stories from KSK Foundation's programs, hear from
-          participants and alumni, and explore the people and ideas
-          helping young Ugandans become leaders, innovators and
-          entrepreneurs.
-        </p>
-
-        <div class="publication-meta">
-
-          <div>
-            <span>Publication</span>
-            <strong>FOCUS Magazine</strong>
-          </div>
-
-          <div>
-            <span>Status</span>
-            <strong>Current Issue</strong>
-          </div>
-
-        </div>
+            </div>
 
 
-        <div class="publication-actions">
+
+            <% if (publications && publications.length > 0) { %>
+
+
+                <div class="magazine-archive-list">
+
+
+                    <% publications.forEach(function(pub) { %>
+
+
+                        <!-- =================================================
+                             INDIVIDUAL PUBLICATION
+                        ================================================== -->
 
        
           <a
@@ -278,75 +253,55 @@
     Read Current Issue
 </a>
 
-          <a
-            href="#focus-archive"
-            class="btn btn-outline"
-          >
-            View Archive
-          </a>
 
-        </div>
+                            <!-- COVER -->
 
-      </div>
+                            <div class="magazine-archive-cover">
 
-    </div>
+                                <img
+                                    src="<%= pub.coverUrl || '/images/logo.jpg' %>"
+                                    alt="<%= pub.title %>"
+                                    loading="lazy"
+                                    onerror="this.src='/images/logo.jpg'"
+                                >
 
-  </div>
+                            </div>
 
-</section>
 
-<section class="section focus-magazine">
 
-  <div class="container">
+                            <!-- CONTENT -->
 
-   
-    <div class="current-publication" id="section3">
+                            <div class="magazine-archive-content">
 
-      <div class="publication-cover">
 
         <!-- Replace this image with the actual current FOCUS cover -->
         <img src="<%= currentPublication.coverUrl %>">
 
-        <span class="current-badge">
-          CURRENT ISSUE
-        </span>
+                                    <span class="archive-year">
+                                        <%= pub.year %>
+                                    </span>
 
-      </div>
-
-
-      <div class="publication-details">
-
-        <span class="publication-label">
-          FOCUS MAGAZINE
-        </span>
-
-        <h3>
-          FOCUS Magazine
-        </h3>
-
-        <p class="publication-description">
-          Discover stories from KSK Foundation's programs, hear from
-          participants and alumni, and explore the people and ideas
-          helping young Ugandans become leaders, innovators and
-          entrepreneurs.
-        </p>
-
-        <div class="publication-meta">
-
-          <div>
-            <span>Publication</span>
-            <strong>FOCUS Magazine</strong>
-          </div>
-
-          <div>
-            <span>Status</span>
-            <strong>Current Issue</strong>
-          </div>
-
-        </div>
+                                <% } %>
 
 
-        <div class="publication-actions">
+                                <h3>
+                                    <%= pub.title %>
+                                </h3>
+
+
+                                <p class="archive-description">
+
+                                    <%= pub.description ||
+                                        'Explore this publication from KSK Foundation.' %>
+
+                                </p>
+
+
+
+                                <!-- ACTIONS -->
+
+                                <div class="archive-actions">
+
 
        
           <a
@@ -356,1808 +311,520 @@
     Read Current Issue
 </a>
 
-          <a
-            href="#focus-archive"
-            class="btn btn-outline"
-          >
-            View Archive
-          </a>
+
+                                        <!-- READ -->
+
+                                        <a
+                                            href="<%= pub.documentUrl %>"
+                                            class="btn primary"
+                                            data-reader-pdf="<%= pub.documentUrl %>"
+                                            data-reader-title="<%= pub.title %>"
+                                        >
+                                            Read Magazine
+                                        </a>
+
+
+
+                                        <!-- DOWNLOAD -->
+
+                                        <a
+                                            href="<%= pub.documentUrl %>"
+                                            class="btn btn-outline"
+                                            download
+                                        >
+                                            Download
+                                        </a>
+
+
+                                    <% } else { %>
+
+
+                                        <span class="publication-unavailable">
+                                            Document unavailable
+                                        </span>
+
+
+                                    <% } %>
+
+
+                                </div>
+
+
+                            </div>
+
+
+                        </article>
+
+
+                    <% }); %>
+
+
+                </div>
+
+
+            <% } else { %>
+
+
+                <!-- =================================================
+                     EMPTY ARCHIVE
+                ================================================== -->
+
+                <div class="publication-empty">
+
+                    <div class="publication-empty-icon">
+                        +
+                    </div>
+
+                    <h3>
+                        Publications Coming Soon
+                    </h3>
+
+                    <p>
+                        Published publications will automatically
+                        appear here.
+                    </p>
+
+                </div>
+
+
+            <% } %>
+
 
         </div>
 
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
+    </section>
 
 
 
+    <!-- =====================================================
+         PUBLICATION READER (flipbook)
+    ====================================================== -->
+
+    <div
+        class="publication-reader"
+        id="publication-reader"
+        aria-hidden="true"
+    >
+
+        <div class="publication-reader-panel">
 
 
+            <!-- READER HEADER -->
 
-<!-- =========================================================
-     FOCUS MAGAZINE ARCHIVE
-========================================================= -->
+            <div class="publication-reader-header">
 
-<section
-  class="section publication-archive"
-  id="focus-archive"
->
+                <div>
 
-  <div class="container">
+                    <span class="publication-reader-label">
+                        KSK FOUNDATION
+                    </span>
 
-    <div class="section-heading">
+                    <h2 id="publication-reader-title">
+                        Publication
+                    </h2>
 
-      <span class="section-eyebrow">
-        MAGAZINE ARCHIVE
-      </span>
+                </div>
 
-      <h2>
-        Previous FOCUS Issues
-      </h2>
+                <div class="publication-reader-header-actions">
 
-      <p>
-        Browse previous issues of FOCUS Magazine as they become
-        available in digital form.
-      </p>
+                    <button
+                        type="button"
+                        id="publication-reader-fullscreen"
+                        class="publication-reader-icon-btn"
+                        onclick="window.togglePublicationFullscreen()"
+                        aria-label="Toggle fullscreen"
+                    >
+                        ⛶
+                    </button>
 
-    </div>
+                    <button
+                        type="button"
+                        class="publication-reader-icon-btn"
+                        onclick="window.closePublicationReader()"
+                        aria-label="Close publication reader"
+                    >
+                        &times;
+                    </button>
 
+                </div>
 
-    <div class="archive-grid">
-
-      <!--
-        ADD FUTURE MAGAZINE ISSUES HERE.
-
-        Example:
-
-        <article class="archive-card">
-
-          <div class="archive-cover">
-            <img
-              src="/images/focus-2025.jpg"
-              alt="FOCUS Magazine 2025"
-            />
-          </div>
-
-          <div class="archive-content">
-
-            <span class="archive-year">
-              2025
-            </span>
-
-            <h3>
-              FOCUS Magazine — 2025
-            </h3>
-
-            <p>
-              Stories and highlights from KSK Foundation's programs.
-            </p>
-
-            <a href="/publications/focus-2025">
-              Read Issue →
-            </a>
-
-          </div>
-
-        </article>
-      -->
+            </div>
 
 
-      <!-- EMPTY ARCHIVE STATE -->
+            <!-- READER BODY -->
 
-      <div class="archive-empty">
+            <div class="publication-reader-body">
 
-        <div class="archive-empty-icon">
-          +
+                <!-- Flipbook mode -->
+                <div class="publication-flip-wrap">
+
+                    <div id="publication-flipbook" class="publication-flipbook"></div>
+
+                    <div id="publication-flip-loading" class="publication-flip-loading">
+                        Loading pages…
+                    </div>
+
+                    <button
+                        type="button"
+                        id="publication-flip-prev"
+                        class="publication-flip-nav publication-flip-prev"
+                        aria-label="Previous page"
+                    >
+                        ‹
+                    </button>
+
+                    <button
+                        type="button"
+                        id="publication-flip-next"
+                        class="publication-flip-nav publication-flip-next"
+                        aria-label="Next page"
+                    >
+                        ›
+                    </button>
+
+                    <span id="publication-flip-pageindicator" class="publication-flip-pageindicator"></span>
+
+                </div>
+
+                <!-- Fallback mode (plain embedded PDF) -->
+                <iframe
+                    id="publication-reader-frame"
+                    class="publication-reader-frame"
+                    title="Publication preview"
+                ></iframe>
+
+                <a
+                    href="#"
+                    id="publication-reader-fallback-link"
+                    class="publication-reader-fallback-link"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    Open in a new tab
+                </a>
+
+            </div>
+
+
+            <!-- READER FOOTER -->
+
+            <div class="publication-reader-footer">
+
+                <a
+                    href="#"
+                    class="btn primary"
+                    id="publication-reader-download"
+                    download
+                >
+                    Download Magazine
+                </a>
+
+            </div>
+
+
         </div>
-
-        <h3>
-          More Issues Coming Soon
-        </h3>
-
-        <p>
-          Previous digital issues of FOCUS Magazine will be added
-          here as they become available.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================================
-     ANNUAL HIGHLIGHTS
-========================================================= -->
-
-<section class="section annual-highlights">
-
-  <div class="container">
-
-    <div class="section-heading">
-
-      <span class="section-eyebrow">
-        ANNUAL HIGHLIGHTS
-      </span>
-
-      <h2>
-        Year in Review
-      </h2>
-
-      <p>
-        A public-facing look at the people, programs and achievements
-        that shaped each year at KSK Foundation.
-      </p>
-
-    </div>
-
-
-    <div class="annual-highlights-intro">
-
-      <div class="annual-icon">
-        <span>YR</span>
-      </div>
-
-      <div>
-
-        <h3>
-          Celebrating Progress &amp; Impact
-        </h3>
-
-        <p>
-          Our Year in Review publications will highlight cohort numbers,
-          program milestones, participant achievements, partnerships and
-          other approved public-facing highlights from each year.
-        </p>
-
-        <p>
-          These summaries are designed to celebrate the Foundation's
-          impact in an accessible format for participants, alumni,
-          partners, sponsors and the wider community.
-        </p>
-
-      </div>
 
     </div>
 
 
     <!-- =====================================================
-         YEAR ARCHIVE
-    ===================================================== -->
+         SCRIPTS
+    ====================================================== -->
 
-    <div class="year-review-section">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://unpkg.com/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
 
-      <div class="year-review-header">
+    <script>
+   
 
-        <h3>
-          Annual Highlights Archive
-        </h3>
+(function () {
+    'use strict';
 
-        <span>
-          By Year
-        </span>
+    var PDF_SCALE = 1.5;
 
-      </div>
+    var reader = document.getElementById('publication-reader');
 
-
-      <div class="year-grid">
-
-
-        <!-- 2025 -->
-
-        <article class="year-card">
-
-          <span class="year">
-            2025
-          </span>
-
-          <div>
-
-            <h4>
-              Year in Review 2025
-            </h4>
-
-            <p>
-              Annual highlights and approved public-facing impact
-              figures from KSK Foundation's programs.
-            </p>
-
-            <!--
-              Once this year's document is available, set
-              data-reader-pdf to its path (and update the label)
-              to make it open in the same inline reader as the
-              current issue — see the Current Issue button above.
-            -->
-            <a
-              href="#"
-              class="year-link"
-              onclick="return false;"
-            >
-              Coming Soon
-            </a>
-
-          </div>
-
-        </article>
-
-
-        <!-- 2024 -->
-
-        <article class="year-card">
-
-          <span class="year">
-            2024
-          </span>
-
-          <div>
-
-            <h4>
-              Year in Review 2024
-            </h4>
-
-            <p>
-              Program highlights, achievements and community stories
-              from the year.
-            </p>
-
-            <a
-              href="#"
-              class="year-link"
-              onclick="return false;"
-            >
-              Coming Soon
-            </a>
-
-          </div>
-
-        </article>
-
-
-        <!-- FUTURE YEARS -->
-
-        <article class="year-card year-card-placeholder">
-
-          <span class="year">
-            +
-          </span>
-
-          <div>
-
-            <h4>
-              Future Editions
-            </h4>
-
-            <p>
-              Additional annual highlights will be published here
-              once approved for public release.
-            </p>
-
-          </div>
-
-        </article>
-
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================================
-     ANNUAL REPORT NOTICE
-========================================================= -->
-
-<section class="section report-notice">
-
-  <div class="container">
-
-    <div class="report-notice-card">
-
-      <div class="report-notice-icon">
-        !
-      </div>
-
-      <div>
-
-        <span class="section-eyebrow">
-          PUBLICATION NOTE
-        </span>
-
-        <h3>
-          About KSK Foundation's Annual Reports
-        </h3>
-
-        <p>
-          The Publications page is intended for public-facing
-          Year in Review summaries and approved highlights rather
-          than the Foundation's internal Annual Reports.
-        </p>
-
-        <p>
-          Internal Annual Reports may contain Board-level financial
-          and governance matters and are therefore not published
-          here unless specifically approved by the Foundation.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================================
-     PROSPECTUSES & OTHER PUBLICATIONS
-========================================================= -->
-
-<section class="section other-publications">
-
-  <div class="container">
-
-    <div class="section-heading">
-
-      <span class="section-eyebrow">
-        OTHER PUBLICATIONS
-      </span>
-
-      <h2>
-        Prospectuses &amp; Program Documents
-      </h2>
-
-      <p>
-        Explore prospectuses and other public documents that provide
-        more information about KSK Foundation's programs.
-      </p>
-
-    </div>
-
-
-    <div class="publications-grid">
-
-      <% if (publications && publications.length) { %>
-
-        <% publications.forEach(function(p) { %>
-
-          <a
-            href="/publications/<%= p.slug %>"
-            class="publication-card"
-          >
-
-            <div class="publication-card-image">
-
-              <img
-                src="<%= p.image || '/images/2image3.jpeg' %>"
-                alt="<%= p.title %>"
-                onerror="this.src='/images/2image3.jpeg'"
-              />
-
-            </div>
-
-            <div class="publication-card-content">
-
-              <span class="publication-card-type">
-                PUBLICATION
-              </span>
-
-              <h3>
-                <%= p.title %>
-              </h3>
-
-              <p>
-                <%= p.description %>
-              </p>
-
-              <span class="publication-read">
-                Read Publication →
-              </span>
-
-            </div>
-
-          </a>
-
-        <% }); %>
-
-      <% } else { %>
-
-        <div class="archive-empty">
-
-          <div class="archive-empty-icon">
-            +
-          </div>
-
-          <h3>
-            Publications Coming Soon
-          </h3>
-
-          <p>
-            Prospectuses and additional public-facing publications
-            will be added here as they become available.
-          </p>
-
-        </div>
-
-      <% } %>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================================
-     CTA
-========================================================= -->
-
-<section class="cta-banner publications-cta">
-
-  <div class="container cta-inner">
-
-    <div>
-
-      <span class="section-eyebrow">
-        STAY CONNECTED
-      </span>
-
-      <h2>
-        Want to learn more about KSK Foundation?
-      </h2>
-
-      <p>
-        Explore our programs, meet our community and discover how
-        you can support the next generation of young Ugandans.
-      </p>
-
-    </div>
-
-    <div class="cta-actions">
-
-      <a
-        href="/contact-us"
-        class="btn btn-primary btn-lg"
-      >
-        Get In Touch
-      </a>
-
-      <a
-        href="/programs"
-        class="btn btn-outline btn-lg"
-      >
-        Explore Our Programs
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================================
-     INLINE PUBLICATION READER
-     Opens over the page when a "Read"/"Coming Soon"-turned-live
-     link has a data-reader-pdf attribute (see the Current Issue
-     button above). Matches the read-inline-then-download pattern
-     used on thementorshipclass.com's publication pages.
-========================================================= -->
-
-<div
-  class="publication-reader"
-  id="publication-reader"
-  aria-hidden="true"
->
-
-  <div
-    class="publication-reader-backdrop"
-    onclick="closePublicationReader();"
-  ></div>
-
-  <div
-    class="publication-reader-panel"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="publication-reader-title"
-  >
-
-    <div class="publication-reader-bar">
-
-      <span
-        class="publication-reader-title"
-        id="publication-reader-title"
-      >
-        Reading
-      </span>
-
-      <div class="publication-reader-bar-actions">
-
-        <a
-          class="btn btn-outline btn-sm"
-          id="publication-reader-download"
-          href="#"
-          download
-        >
-          Download
-        </a>
-
-        <button
-          type="button"
-          class="publication-reader-icon-btn"
-          id="publication-reader-fullscreen"
-          aria-label="View full page"
-          title="View full page"
-          onclick="window.togglePublicationFullscreen();"
-        >
-          &#x26F6;
-        </button>
-
-        <button
-          type="button"
-          class="publication-reader-close"
-          aria-label="Close reader"
-          onclick="closePublicationReader();"
-        >
-          &times;
-        </button>
-
-      </div>
-
-    </div>
-
-    <div class="publication-reader-body">
-
-      <!-- Realistic page-turn flipbook, rendered client-side from
-           the PDF via PDF.js + PageFlip — same reading experience
-           as the flipbook viewer on thementorshipclass.com. Falls
-           back automatically to a plain embedded PDF if either
-           library fails to load. -->
-      <div class="publication-flipbook-wrap" id="publication-flipbook-wrap">
-
-        <div class="publication-flipbook" id="publication-flipbook"></div>
-
-        <div class="publication-flip-controls" id="publication-flip-controls">
-
-          <button
-            type="button"
-            id="publication-flip-prev"
-            aria-label="Previous page"
-          >
-            &lsaquo;
-          </button>
-
-          <span id="publication-flip-pageindicator">
-            &nbsp;
-          </span>
-
-          <button
-            type="button"
-            id="publication-flip-next"
-            aria-label="Next page"
-          >
-            &rsaquo;
-          </button>
-
-        </div>
-
-        <div class="publication-flip-loading" id="publication-flip-loading">
-          <span>Loading pages&hellip;</span>
-        </div>
-
-      </div>
-
-      <!-- Plain fallback viewer — hidden unless the flipbook
-           can't initialize. -->
-      <iframe
-        id="publication-reader-frame"
-        title="Publication reader"
-        class="publication-reader-frame-fallback"
-        src=""
-      ></iframe>
-
-      <p class="publication-reader-fallback">
-        Taking a while to load?
-        <a id="publication-reader-fallback-link" href="#" download>
-          Download the document instead
-        </a>.
-      </p>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- =========================================================
-     PAGE CSS
-========================================================= -->
-
-<style>
-
-  /* =========================================================
-     HEADER
-  ========================================================= */
-
-  .publications-header {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .publications-header .section-eyebrow {
-    color: rgba(255,255,255,0.8);
-  }
-
-
-  /* =========================================================
-     INTRO
-  ========================================================= */
-
-  .publications-intro-grid {
-    display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .publications-intro-grid h2 {
-    margin: 0;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    line-height: 1.1;
-  }
-
-  .publications-intro-grid p {
-    margin: 0 0 15px;
-    color: var(--color-muted, #6b7280);
-    line-height: 1.8;
-  }
-
-
-  /* =========================================================
-     SECTION HEADINGS
-  ========================================================= */
-
-  .section-heading {
-    max-width: 760px;
-    margin-bottom: 45px;
-  }
-
-  .section-heading h2 {
-    margin: 0 0 15px;
-  }
-
-  .section-heading p {
-    margin: 0;
-    color: var(--color-muted, #6b7280);
-    line-height: 1.8;
-  }
-
-  .section-eyebrow {
-    display: inline-block;
-    margin-bottom: 12px;
-    color: var(--color-primary, #e0392c);
-    font-size: 0.72rem;
-    font-weight: 900;
-    letter-spacing: 0.12em;
-  }
-
-
-  /* =========================================================
-     FOCUS MAGAZINE
-  ========================================================= */
-
-  .focus-magazine {
-    background: var(--color-bg-alt, #f6f5f3);
-  }
-
-  .current-publication {
-    display: grid;
-    grid-template-columns: 380px 1fr;
-    gap: 70px;
-    align-items: center;
-  }
-
-  .publication-cover {
-    position: relative;
-  }
-
-  .publication-cover img {
-    display: block;
-    width: 100%;
-    max-height: 520px;
-    object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.15);
-  }
-
-  .current-badge {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    padding: 8px 13px;
-    border-radius: 30px;
-    background: var(--color-primary, #e0392c);
-    color: #fff;
-    font-size: 0.68rem;
-    font-weight: 900;
-    letter-spacing: 0.08em;
-  }
-
-  .publication-label {
-    color: var(--color-primary, #e0392c);
-    font-size: 0.72rem;
-    font-weight: 900;
-    letter-spacing: 0.1em;
-  }
-
-  .publication-details h3 {
-    margin: 10px 0 18px;
-    font-size: clamp(2rem, 4vw, 3rem);
-  }
-
-  .publication-description {
-    max-width: 650px;
-    color: var(--color-muted, #6b7280);
-    line-height: 1.8;
-    font-size: 1rem;
-  }
-
-  .publication-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 35px;
-    margin: 28px 0;
-  }
-
-  .publication-meta div {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .publication-meta span {
-    color: var(--color-muted, #6b7280);
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  .publication-meta strong {
-    font-size: 0.9rem;
-  }
-
-  .publication-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-
-  /* =========================================================
-     ARCHIVE
-  ========================================================= */
-
-  .publication-archive {
-    background: #fff;
-  }
-
-  .archive-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-
-  .archive-empty {
-    grid-column: 1 / -1;
-    padding: 60px 30px;
-    text-align: center;
-    border: 1px dashed rgba(0,0,0,0.15);
-    border-radius: 18px;
-    background: var(--color-bg-alt, #f6f5f3);
-  }
-
-  .archive-empty-icon {
-    width: 55px;
-    height: 55px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-    border-radius: 50%;
-    background: rgba(224,57,44,0.1);
-    color: var(--color-primary, #e0392c);
-    font-size: 1.6rem;
-    font-weight: 700;
-  }
-
-  .archive-empty h3 {
-    margin: 0 0 10px;
-  }
-
-  .archive-empty p {
-    max-width: 520px;
-    margin: auto;
-    color: var(--color-muted, #6b7280);
-    line-height: 1.7;
-  }
-
-
-  /* =========================================================
-     ANNUAL HIGHLIGHTS
-  ========================================================= */
-
-  .annual-highlights {
-    background: var(--color-bg-alt, #f6f5f3);
-  }
-
-  .annual-highlights-intro {
-    display: grid;
-    grid-template-columns: 90px 1fr;
-    gap: 30px;
-    padding: 40px;
-    margin-bottom: 50px;
-    border-radius: 20px;
-    background: #fff;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-  }
-
-  .annual-icon {
-    width: 75px;
-    height: 75px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 18px;
-    background: var(--color-primary, #e0392c);
-    color: #fff;
-    font-size: 0.85rem;
-    font-weight: 900;
-  }
-
-  .annual-highlights-intro h3 {
-    margin: 0 0 15px;
-    font-size: 1.5rem;
-  }
-
-  .annual-highlights-intro p {
-    margin: 0 0 12px;
-    color: var(--color-muted, #6b7280);
-    line-height: 1.8;
-  }
-
-
-  /* =========================================================
-     YEAR ARCHIVE
-  ========================================================= */
-
-  .year-review-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-  }
-
-  .year-review-header h3 {
-    margin: 0;
-  }
-
-  .year-review-header span {
-    color: var(--color-muted, #6b7280);
-    font-size: 0.8rem;
-  }
-
-  .year-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-
-  .year-card {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    gap: 20px;
-    padding: 28px;
-    border-radius: 16px;
-    background: #fff;
-    border: 1px solid rgba(0,0,0,0.06);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-
-  .year-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.07);
-  }
-
-  .year {
-    color: var(--color-primary, #e0392c);
-    font-size: 1.8rem;
-    font-weight: 900;
-  }
-
-  .year-card h4 {
-    margin: 0 0 10px;
-  }
-
-  .year-card p {
-    margin: 0 0 15px;
-    color: var(--color-muted, #6b7280);
-    font-size: 0.85rem;
-    line-height: 1.6;
-  }
-
-  .year-link {
-    color: var(--color-primary, #e0392c);
-    font-size: 0.8rem;
-    font-weight: 800;
-    text-decoration: none;
-  }
-
-  .year-card-placeholder {
-    opacity: 0.7;
-    border-style: dashed;
-  }
-
-
-  /* =========================================================
-     REPORT NOTICE
-  ========================================================= */
-
-  .report-notice {
-    background: #fff;
-  }
-
-  .report-notice-card {
-    display: grid;
-    grid-template-columns: 65px 1fr;
-    gap: 25px;
-    padding: 35px;
-    border-left: 4px solid var(--color-primary, #e0392c);
-    border-radius: 0 16px 16px 0;
-    background: var(--color-bg-alt, #f6f5f3);
-  }
-
-  .report-notice-icon {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: rgba(224,57,44,0.1);
-    color: var(--color-primary, #e0392c);
-    font-weight: 900;
-  }
-
-  .report-notice-card h3 {
-    margin: 0 0 12px;
-  }
-
-  .report-notice-card p {
-    margin: 0 0 12px;
-    color: var(--color-muted, #6b7280);
-    line-height: 1.7;
-  }
-
-
-  /* =========================================================
-     OTHER PUBLICATIONS
-  ========================================================= */
-
-  .other-publications {
-    background: var(--color-bg-alt, #f6f5f3);
-  }
-
-  .publications-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-  }
-
-  .publication-card {
-    display: block;
-    overflow: hidden;
-    border-radius: 18px;
-    background: #fff;
-    color: inherit;
-    text-decoration: none;
-    border: 1px solid rgba(0,0,0,0.06);
-    transition:
-      transform 0.25s ease,
-      box-shadow 0.25s ease;
-  }
-
-  .publication-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 18px 40px rgba(0,0,0,0.08);
-  }
-
-  .publication-card-image {
-    height: 220px;
-    overflow: hidden;
-  }
-
-  .publication-card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-  }
-
-  .publication-card:hover img {
-    transform: scale(1.04);
-  }
-
-  .publication-card-content {
-    padding: 25px;
-  }
-
-  .publication-card-type {
-    color: var(--color-primary, #e0392c);
-    font-size: 0.65rem;
-    font-weight: 900;
-    letter-spacing: 0.1em;
-  }
-
-  .publication-card h3 {
-    margin: 8px 0 10px;
-  }
-
-  .publication-card p {
-    margin: 0 0 18px;
-    color: var(--color-muted, #6b7280);
-    line-height: 1.6;
-    font-size: 0.88rem;
-  }
-
-  .publication-read {
-    color: var(--color-primary, #e0392c);
-    font-size: 0.8rem;
-    font-weight: 800;
-  }
-
-
-  /* =========================================================
-     CTA
-  ========================================================= */
-
-  .publications-cta .section-eyebrow {
-    color: rgba(255,255,255,0.8);
-  }
-
-  .publications-cta h2 {
-    margin-bottom: 10px;
-  }
-
-  .publications-cta p {
-    max-width: 650px;
-  }
-
-  .cta-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-
-  /* =========================================================
-     RESPONSIVE
-  ========================================================= */
-
-  @media (max-width: 1000px) {
-
-    .current-publication {
-      grid-template-columns: 300px 1fr;
-      gap: 45px;
-    }
-
-    .archive-grid,
-    .year-grid,
-    .publications-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-  }
-
-
-  @media (max-width: 800px) {
-
-    .publications-intro-grid {
-      grid-template-columns: 1fr;
-      gap: 30px;
-    }
-
-    .current-publication {
-      grid-template-columns: 1fr;
-    }
-
-    .publication-cover {
-      max-width: 380px;
-    }
-
-  }
-
-
-  @media (max-width: 600px) {
-
-    .archive-grid,
-    .year-grid,
-    .publications-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .annual-highlights-intro,
-    .report-notice-card {
-      grid-template-columns: 1fr;
-      padding: 25px;
-    }
-
-    .year-review-header {
-      align-items: flex-start;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .publication-actions,
-    .cta-actions {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .publication-actions .btn,
-    .cta-actions .btn {
-      text-align: center;
-    }
-
-  }
-
-
-  /* =========================================================
-     INLINE PUBLICATION READER
-  ========================================================= */
-
-  .publication-reader {
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-    display: none;
-  }
-
-  .publication-reader.is-open {
-    display: block;
-  }
-
-  .publication-reader-backdrop {
-    position: absolute;
-    inset: 0;
-    background: rgba(20, 18, 17, 0.72);
-  }
-
-  .publication-reader-panel {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: min(1320px, 97vw);
-    height: min(93vh, 1500px);
-    margin: 3.5vh auto 0;
-    border-radius: 16px;
-    overflow: hidden;
-    background: #fff;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.35);
-  }
-
-  /* True fullscreen — entered via the expand button in the bar */
-  .publication-reader-panel:fullscreen,
-  .publication-reader-panel:-webkit-full-screen {
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    border-radius: 0;
-  }
-
-  .publication-reader-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 16px 20px;
-    background: var(--color-bg-alt, #f6f5f3);
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-  }
-
-  .publication-reader-title {
-    font-weight: 800;
-    font-size: 0.95rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .publication-reader-bar-actions {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex-shrink: 0;
-  }
-
-  .btn-sm {
-    padding: 8px 16px;
-    font-size: 0.78rem;
-  }
-
-  .publication-reader-icon-btn,
-  .publication-reader-close {
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    border-radius: 50%;
-    background: rgba(0,0,0,0.06);
-    color: inherit;
-    font-size: 1.3rem;
-    line-height: 1;
-    cursor: pointer;
-  }
-
-  .publication-reader-icon-btn {
-    font-size: 1rem;
-  }
-
-  .publication-reader-icon-btn:hover,
-  .publication-reader-close:hover {
-    background: rgba(0,0,0,0.12);
-  }
-
-  .publication-reader-icon-btn.is-active {
-    background: var(--color-primary, #e0392c);
-    color: #fff;
-  }
-
-  .publication-reader-body {
-    position: relative;
-    flex: 1;
-    background: #3d3a38;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  /* -------- flipbook -------- */
-
-  .publication-flipbook-wrap {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .publication-flipbook {
-    position: relative;
-    flex: 1;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    z-index: 1;
-  }
-
-  /* page-flip positions its own wrapper element with an inline
-     pixel width/height once it initializes — center that wrapper
-     itself, not just its contents, so the book sits mid-panel
-     from the very first render instead of only once fullscreen
-     forces a resize/re-center. */
-  .publication-flipbook > div {
-    margin: 0 auto;
-  }
-
-  /* Each page rendered by PDF.js */
-  .publication-flipbook .page {
-    background: #fff;
-    box-shadow: 0 0 18px rgba(0,0,0,0.25);
-  }
-
-  .publication-flipbook .page canvas {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
-  .publication-flip-controls {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    padding: 14px 0 34px;
-    flex-shrink: 0;
-  }
-
-  .publication-flip-controls button {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.12);
-    color: #fff;
-    font-size: 1.4rem;
-    cursor: pointer;
-  }
-
-  .publication-flip-controls button:hover {
-    background: rgba(255,255,255,0.22);
-  }
-
-  .publication-flip-controls button:disabled {
-    opacity: 0.35;
-    cursor: default;
-  }
-
-  #publication-flip-pageindicator {
-    min-width: 90px;
-    text-align: center;
-    color: #fff;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-  }
-
-  .publication-flip-loading {
-    position: absolute;
-    inset: 0;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 0.9rem;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    background: #3d3a38;
-  }
-
-  .publication-flip-loading.is-visible {
-    display: flex;
-  }
-
-  /* -------- plain fallback -------- */
-
-  .publication-reader-frame-fallback {
-    display: none;
-    width: 100%;
-    height: 100%;
-    border: 0;
-  }
-
-  .publication-reader-body.is-fallback .publication-flipbook-wrap {
-    display: none;
-  }
-
-  .publication-reader-body.is-fallback .publication-reader-frame-fallback {
-    display: block;
-  }
-
-  .publication-reader-fallback {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 14px;
-    margin: 0;
-    text-align: center;
-    font-size: 0.8rem;
-    color: #fff;
-    pointer-events: none;
-  }
-
-  .publication-reader-fallback a {
-    color: #fff;
-    font-weight: 800;
-    text-decoration: underline;
-    pointer-events: auto;
-  }
-
-  body.publication-reader-open {
-    overflow: hidden;
-  }
-
-  @media (max-width: 600px) {
-
-    .publication-reader-panel {
-      width: 100vw;
-      height: 100vh;
-      margin: 0;
-      border-radius: 0;
-    }
-
-  }
-
-</style>
-
-
-<!-- =========================================================
-     PAGE JS — inline publication reader (page-flip)
-
-     Uses PDF.js to rasterize each page of the PDF in the browser,
-     then PageFlip to give it a realistic page-turn effect — the
-     same flipbook experience as the magazine pages on
-     thementorshipclass.com. If either library fails to load, or
-     rendering throws, it falls back automatically to a plain
-     embedded PDF with a download link.
-
-     Swap the CDN URLs below for self-hosted copies (e.g. installed
-     via npm and served from /public/vendor/) whenever you'd rather
-     not depend on a third-party CDN in production.
-========================================================= -->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<script src="https://unpkg.com/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
-
-<script>
-
-  (function () {
-
-    var flipInstance = null;
-    var renderToken = 0; // guards against a stale render finishing after a newer one starts
-
-    // -------- flip sound --------
-    // Synthesized in-browser (short filtered noise burst that
-    // sweeps down in pitch) so there's no extra audio file to
-    // host — plays on every page turn, however it was triggered
-    // (buttons, swipe, or arrow keys).
-    var flipAudioCtx = null;
-
-    function playFlipSound() {
-      try {
-        if (!flipAudioCtx) {
-          var Ctx = window.AudioContext || window.webkitAudioContext;
-          if (!Ctx) return;
-          flipAudioCtx = new Ctx();
-        }
-        if (flipAudioCtx.state === 'suspended') flipAudioCtx.resume();
-
-        var ctx = flipAudioCtx;
-        var now = ctx.currentTime;
-        var duration = 0.26;
-
-        var bufferSize = Math.round(ctx.sampleRate * duration);
-        var buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-        var data = buffer.getChannelData(0);
-        for (var i = 0; i < bufferSize; i++) {
-          // white noise, tapered off toward the end for a "swish"
-          data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / bufferSize, 2);
-        }
-
-        var noise = ctx.createBufferSource();
-        noise.buffer = buffer;
-
-        var filter = ctx.createBiquadFilter();
-        filter.type = 'bandpass';
-        filter.Q.value = 0.8;
-        filter.frequency.setValueAtTime(2400, now);
-        filter.frequency.exponentialRampToValueAtTime(500, now + duration);
-
-        var gain = ctx.createGain();
-        gain.gain.setValueAtTime(0.0001, now);
-        gain.gain.exponentialRampToValueAtTime(0.3, now + 0.02);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
-
-        noise.connect(filter);
-        filter.connect(gain);
-        gain.connect(ctx.destination);
-
-        noise.start(now);
-        noise.stop(now + duration);
-      } catch (e) {
-        // Audio is a nice-to-have — never let it break page flipping.
-      }
-    }
-
-    function setPdfWorker() {
-      if (window.pdfjsLib) {
-        window.pdfjsLib.GlobalWorkerOptions.workerSrc =
-          'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-      }
-    }
-
-    function useFallbackViewer(pdf) {
-
-      var body = document.querySelector('.publication-reader-body');
-      var frame = document.getElementById('publication-reader-frame');
-
-      body.classList.add('is-fallback');
-      frame.src = pdf;
-
-      document.getElementById('publication-flip-loading').classList.remove('is-visible');
-
-    }
-
-    function updatePageIndicator(current, total) {
-
-      var indicator = document.getElementById('publication-flip-pageindicator');
-      var prevBtn = document.getElementById('publication-flip-prev');
-      var nextBtn = document.getElementById('publication-flip-next');
-
-      indicator.textContent = 'Page ' + current + ' / ' + total;
-      prevBtn.disabled = current <= 1;
-      nextBtn.disabled = current >= total;
-
-    }
-
-    async function renderFlipbook(pdf) {
-
-      var myToken = ++renderToken;
-
-      var container = document.getElementById('publication-flipbook');
-      var loading = document.getElementById('publication-flip-loading');
-      var body = document.querySelector('.publication-reader-body');
-
-      body.classList.remove('is-fallback');
-      container.innerHTML = '';
-      loading.classList.add('is-visible');
-
-      // Keep the nav buttons inert until there's an actual book to
-      // flip, so an early click can't silently do nothing.
-      document.getElementById('publication-flip-prev').disabled = true;
-      document.getElementById('publication-flip-next').disabled = true;
-      document.getElementById('publication-flip-pageindicator').textContent = '';
-
-      if (!window.pdfjsLib || !window.St || !window.St.PageFlip) {
-        useFallbackViewer(pdf);
+    if (!reader) {
         return;
-      }
-
-      try {
-
-        setPdfWorker();
-
-        var doc = await window.pdfjsLib.getDocument(pdf).promise;
-        var maxW = 0, maxH = 0;
-
-        for (var i = 1; i <= doc.numPages; i++) {
-
-          if (myToken !== renderToken) return; // a newer reader was opened
-
-          var page = await doc.getPage(i);
-          // Render at a high base resolution (and match device
-          // pixel ratio, capped so huge desktop monitors don't
-          // over-render) so pages stay sharp when the flipbook is
-          // stretched to fill a large panel or fullscreen.
-          var renderScale = 2.2 * Math.min(window.devicePixelRatio || 1, 2);
-          var viewport = page.getViewport({ scale: renderScale });
-
-          var canvas = document.createElement('canvas');
-          canvas.width = viewport.width;
-          canvas.height = viewport.height;
-
-          await page.render({
-            canvasContext: canvas.getContext('2d'),
-            viewport: viewport
-          }).promise;
-
-          var pageEl = document.createElement('div');
-          pageEl.className = 'page';
-          pageEl.appendChild(canvas);
-          container.appendChild(pageEl);
-
-          maxW = Math.max(maxW, viewport.width);
-          maxH = Math.max(maxH, viewport.height);
-
-        }
-
-        if (myToken !== renderToken) return;
-
-        if (flipInstance) {
-          try { flipInstance.destroy(); } catch (e) {}
-          flipInstance = null;
-        }
-
-        flipInstance = new window.St.PageFlip(container, {
-          width: Math.round(maxW) || 400,
-          height: maxH || 560,
-          size: 'stretch',
-          // Let the flipbook grow to fill most of the (now larger)
-          // reader panel, and further still in true fullscreen —
-          // 'stretch' scales pages up to these bounds while
-          // keeping their aspect ratio. width/height above must
-          // match a SINGLE page's real aspect ratio (not half of
-          // it) — PageFlip lays two of these side by side itself
-          // for the two-page spread, so halving the width here
-          // squeezes every page into a box twice as tall as it
-          // should be, which is what was making documents look
-          // narrow and hard to read.
-          minWidth: 320,
-          maxWidth: 950,
-          minHeight: 450,
-          maxHeight: 2400,
-          // false so page 1 opens as part of a normal two-page
-          // spread like every other page, instead of being
-          // treated as a standalone "cover" that flips alone.
-          showCover: false,
-          usePortrait: true,
-          maxShadowOpacity: 0.5,
-          mobileScrollSupport: true
-        });
-
-        flipInstance.loadFromHTML(container.querySelectorAll('.page'));
-
-        var total = flipInstance.getPageCount();
-        updatePageIndicator(flipInstance.getCurrentPageIndex() + 1, total);
-
-        flipInstance.on('flip', function (e) {
-          updatePageIndicator(e.data + 1, total);
-          playFlipSound();
-        });
-
-        loading.classList.remove('is-visible');
-
-        // 'stretch' mode measures its container on init, but the
-        // panel can still be settling into its final layout at
-        // that exact moment (fonts/backdrop transition etc.), so
-        // the book can end up sized/centered against a stale
-        // measurement. A resize nudge one tick later re-centers
-        // it without waiting for the user to hit fullscreen.
-        setTimeout(function () {
-          window.dispatchEvent(new Event('resize'));
-        }, 50);
-
-      } catch (err) {
-
-        if (myToken !== renderToken) return;
-        useFallbackViewer(pdf);
-
-      }
-
     }
 
-    window.openPublicationReader = function (event, el) {
+    var flipWrap = reader.querySelector('.publication-flip-wrap');
+    var flipContainer = document.getElementById('publication-flipbook');
+    var flipLoading = document.getElementById('publication-flip-loading');
+    var flipPrevBtn = document.getElementById('publication-flip-prev');
+    var flipNextBtn = document.getElementById('publication-flip-next');
+    var pageIndicator = document.getElementById('publication-flip-pageindicator');
 
-      if (event) event.preventDefault();
+    var frame = document.getElementById('publication-reader-frame');
+    var fallbackLink = document.getElementById('publication-reader-fallback-link');
+    var downloadLink = document.getElementById('publication-reader-download');
+    var titleEl = document.getElementById('publication-reader-title');
 
-      var pdf = el.getAttribute('data-reader-pdf');
-      if (!pdf) return false;
+    var pageFlipInstance = null;
+    var loadToken = 0;
 
-      var title = el.getAttribute('data-reader-title') || 'Reading';
 
-      var modal = document.getElementById('publication-reader');
-      var titleEl = document.getElementById('publication-reader-title');
-      var downloadBtn = document.getElementById('publication-reader-download');
-      var fallbackLink = document.getElementById('publication-reader-fallback-link');
+    /* ---------- helpers ---------- */
 
-      titleEl.textContent = title;
-      downloadBtn.href = pdf;
-      fallbackLink.href = pdf;
+    function getPageFlipCtor() {
+        if (typeof window.PageFlip !== 'undefined') {
+            return window.PageFlip;
+        }
+        if (typeof window.St !== 'undefined' && window.St.PageFlip) {
+            return window.St.PageFlip;
+        }
+        return null;
+    }
 
-      modal.classList.add('is-open');
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.classList.add('publication-reader-open');
+    function setLoading(isLoading, message) {
+        if (!flipLoading) return;
+        flipLoading.textContent = message || 'Loading pages…';
+        flipLoading.style.display = isLoading ? 'flex' : 'none';
+    }
 
-      renderFlipbook(pdf);
+    function showFlipMode() {
+        if (flipWrap) flipWrap.style.display = '';
+        if (frame) frame.style.display = 'none';
+        if (fallbackLink) fallbackLink.style.display = 'none';
+    }
 
-      return false;
+    function showFallbackMode(pdfUrl) {
+        if (flipWrap) flipWrap.style.display = 'none';
+        if (frame) {
+            frame.style.display = '';
+            frame.src = pdfUrl;
+        }
+        if (fallbackLink) {
+            fallbackLink.style.display = '';
+            fallbackLink.href = pdfUrl;
+        }
+        setLoading(false);
+    }
 
+    function destroyFlip() {
+        if (pageFlipInstance) {
+            try {
+                pageFlipInstance.destroy();
+            } catch (err) {
+                /* already gone — nothing to do */
+            }
+            pageFlipInstance = null;
+        }
+        if (flipContainer) flipContainer.innerHTML = '';
+        if (pageIndicator) pageIndicator.textContent = '';
+    }
+
+    function updatePageIndicator() {
+        if (!pageFlipInstance || !pageIndicator) return;
+        var current = pageFlipInstance.getCurrentPageIndex() + 1;
+        var total = pageFlipInstance.getPageCount();
+        pageIndicator.textContent = current + ' / ' + total;
+    }
+
+
+    /* ---------- pdf.js rendering ---------- */
+
+    function renderPdfToPages(pdfUrl, token) {
+        return window.pdfjsLib.getDocument(pdfUrl).promise.then(function (pdf) {
+            var pageNumbers = [];
+            for (var i = 1; i <= pdf.numPages; i++) {
+                pageNumbers.push(i);
+            }
+
+            return pageNumbers.reduce(function (chain, pageNumber) {
+                return chain.then(function (pages) {
+                    // Bail out if the reader was closed / reopened with a
+                    // different document while this was still rendering.
+                    if (token !== loadToken) {
+                        return pages;
+                    }
+
+                    setLoading(true, 'Loading page ' + pageNumber + ' of ' + pdf.numPages + '…');
+
+                    return pdf.getPage(pageNumber).then(function (page) {
+                        var viewport = page.getViewport({ scale: PDF_SCALE });
+
+                        var canvas = document.createElement('canvas');
+                        canvas.width = viewport.width;
+                        canvas.height = viewport.height;
+
+                        var ctx = canvas.getContext('2d');
+
+                        return page
+                            .render({ canvasContext: ctx, viewport: viewport })
+                            .promise.then(function () {
+                                pages.push(canvas.toDataURL('image/jpeg', 0.9));
+                                return pages;
+                            });
+                    });
+                });
+            }, Promise.resolve([]));
+        });
+    }
+
+
+    /* ---------- flipbook assembly ---------- */
+
+    function buildFlipbook(pageImages) {
+        destroyFlip();
+
+        var PageFlipCtor = getPageFlipCtor();
+        if (!PageFlipCtor) {
+            throw new Error('page-flip library not available');
+        }
+
+        pageImages.forEach(function (src) {
+            var pageEl = document.createElement('div');
+            pageEl.className = 'publication-flip-page';
+
+            var img = document.createElement('img');
+            img.src = src;
+            img.alt = '';
+            img.draggable = false;
+
+            pageEl.appendChild(img);
+            flipContainer.appendChild(pageEl);
+        });
+
+        pageFlipInstance = new PageFlipCtor(flipContainer, {
+            width: 550,
+            height: 733,
+            size: 'stretch',
+            minWidth: 280,
+            maxWidth: 1200,
+            minHeight: 400,
+            maxHeight: 1600,
+            maxShadowOpacity: 0.5,
+            showCover: true,
+            mobileScrollSupport: true,
+            usePortrait: true
+        });
+
+        pageFlipInstance.loadFromHTML(flipContainer.querySelectorAll('.publication-flip-page'));
+        pageFlipInstance.on('flip', updatePageIndicator);
+
+        updatePageIndicator();
+    }
+
+    function openFlipReader(pdfUrl) {
+        var token = ++loadToken;
+
+        setLoading(true, 'Loading pages…');
+        showFlipMode();
+
+        if (typeof window.pdfjsLib === 'undefined') {
+            showFallbackMode(pdfUrl);
+            return;
+        }
+
+        if (window.pdfjsLib.GlobalWorkerOptions && !window.pdfjsLib.GlobalWorkerOptions.workerSrc) {
+            window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+                'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        }
+
+        renderPdfToPages(pdfUrl, token)
+            .then(function (pageImages) {
+                if (token !== loadToken) return;
+
+                buildFlipbook(pageImages);
+                setLoading(false);
+            })
+            .catch(function (err) {
+                if (token !== loadToken) return;
+
+                console.warn('Publication reader: falling back to plain PDF preview.', err);
+                showFallbackMode(pdfUrl);
+            });
+    }
+
+
+    /* ---------- public open / close / fullscreen ---------- */
+
+    window.openPublicationReader = function (pdfUrl, title) {
+        if (!pdfUrl) return;
+
+        reader.setAttribute('aria-hidden', 'false');
+        reader.classList.add('is-open');
+        document.body.classList.add('publication-reader-open');
+
+        if (titleEl) titleEl.textContent = title || 'Publication';
+        if (downloadLink) downloadLink.href = pdfUrl;
+        if (fallbackLink) fallbackLink.href = pdfUrl;
+
+        openFlipReader(pdfUrl);
     };
 
     window.closePublicationReader = function () {
+        loadToken++; // invalidate any in-flight render
 
-      renderToken++; // invalidate any render still in flight
+        reader.setAttribute('aria-hidden', 'true');
+        reader.classList.remove('is-open');
+        document.body.classList.remove('publication-reader-open');
 
-      if (document.fullscreenElement || document.webkitFullscreenElement) {
-        if (document.exitFullscreen) document.exitFullscreen();
-        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-      }
+        destroyFlip();
 
-      var modal = document.getElementById('publication-reader');
-      var frame = document.getElementById('publication-reader-frame');
-      var body = document.querySelector('.publication-reader-body');
+        if (frame) frame.src = '';
 
-      modal.classList.remove('is-open');
-      modal.setAttribute('aria-hidden', 'true');
-      document.body.classList.remove('publication-reader-open');
-
-      frame.src = '';
-      body.classList.remove('is-fallback');
-
-      if (flipInstance) {
-        try { flipInstance.destroy(); } catch (e) {}
-        flipInstance = null;
-      }
-
+        if (document.fullscreenElement) {
+            document.exitFullscreen().catch(function () {});
+        }
     };
 
     window.togglePublicationFullscreen = function () {
+        var panel = reader.querySelector('.publication-reader-panel');
+        if (!panel) return;
 
-      var panel = document.querySelector('.publication-reader-panel');
-      var isFullscreen = document.fullscreenElement || document.webkitFullscreenElement;
-
-      if (!isFullscreen) {
-        if (panel.requestFullscreen) panel.requestFullscreen();
-        else if (panel.webkitRequestFullscreen) panel.webkitRequestFullscreen();
-      } else {
-        if (document.exitFullscreen) document.exitFullscreen();
-        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-      }
-
+        if (!document.fullscreenElement) {
+            if (panel.requestFullscreen) {
+                panel.requestFullscreen().catch(function () {});
+            }
+        } else if (document.exitFullscreen) {
+            document.exitFullscreen();
+        }
     };
 
-    function onFullscreenChange() {
 
-      var btn = document.getElementById('publication-reader-fullscreen');
-      var isFullscreen = document.fullscreenElement || document.webkitFullscreenElement;
+    /* ---------- wiring ---------- */
 
-      if (btn) btn.classList.toggle('is-active', !!isFullscreen);
+    document.addEventListener('click', function (e) {
+        var trigger = e.target.closest('[data-reader-pdf]');
+        if (!trigger) return;
 
-      // 'stretch' mode re-measures its container on window resize;
-      // fullscreen doesn't always fire one reliably in every
-      // browser, so nudge it manually.
-      window.dispatchEvent(new Event('resize'));
+        e.preventDefault();
 
-    }
+        var pdfUrl = trigger.getAttribute('data-reader-pdf');
+        var title = trigger.getAttribute('data-reader-title');
 
-    document.addEventListener('fullscreenchange', onFullscreenChange);
-    document.addEventListener('webkitfullscreenchange', onFullscreenChange);
-
-    document.getElementById('publication-flip-prev').addEventListener('click', function () {
-      if (flipInstance) flipInstance.flipPrev('bottom');
+        window.openPublicationReader(pdfUrl, title);
     });
 
-    document.getElementById('publication-flip-next').addEventListener('click', function () {
-      if (flipInstance) flipInstance.flipNext('bottom');
+    if (flipPrevBtn) {
+        flipPrevBtn.addEventListener('click', function () {
+            if (pageFlipInstance) pageFlipInstance.flipPrev();
+        });
+    }
+
+    if (flipNextBtn) {
+        flipNextBtn.addEventListener('click', function () {
+            if (pageFlipInstance) pageFlipInstance.flipNext();
+        });
+    }
+
+    // Close on backdrop click or Escape.
+    reader.addEventListener('click', function (e) {
+        if (e.target === reader) window.closePublicationReader();
     });
 
     document.addEventListener('keydown', function (e) {
-
-      var modal = document.getElementById('publication-reader');
-      if (!modal || !modal.classList.contains('is-open')) return;
-
-      if (e.key === 'Escape') {
-        // If in fullscreen, let the browser's own Escape handling
-        // exit fullscreen first rather than also closing the
-        // reader in the same keystroke.
-        if (!(document.fullscreenElement || document.webkitFullscreenElement)) {
-          window.closePublicationReader();
+        if (e.key === 'Escape' && reader.classList.contains('is-open')) {
+            window.closePublicationReader();
         }
-      } else if (e.key === 'ArrowRight' && flipInstance) {
-        flipInstance.flipNext('bottom');
-      } else if (e.key === 'ArrowLeft' && flipInstance) {
-        flipInstance.flipPrev('bottom');
-      }
-
     });
+})();
 
-    // Delegated handler: any future link/button anywhere on the
-    // page with a data-reader-pdf attribute automatically opens in
-    // the same reader — no extra wiring needed as more issues,
-    // prospectuses or year-in-review documents are added.
-    document.addEventListener('click', function (e) {
+    </script>
 
-      var trigger = e.target.closest('[data-reader-pdf]');
-      if (!trigger) return;
+</body>
 
-      // Already handled directly via onclick for elements that set
-      // it inline; this covers ones added later without an onclick.
-      if (trigger.hasAttribute('onclick')) return;
+</html>
 
-      window.openPublicationReader(e, trigger);
-
-    });
-
-  })();
-
-</script>

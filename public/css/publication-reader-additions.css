@@ -1,0 +1,219 @@
+/* =========================================================
+   PUBLICATION READER — required additions
+   Append to /css/publications.css.
+   Without these rules, .is-open / aria-hidden toggling from
+   publication-reader.js has nothing to visually react to, so
+   the reader modal never appears to open.
+========================================================= */
+
+.publication-reader {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(10, 10, 12, 0.82);
+}
+
+.publication-reader.is-open {
+    display: flex;
+}
+
+body.publication-reader-open {
+    overflow: hidden;
+}
+
+.publication-reader-panel {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 960px;
+    height: 90vh;
+    max-height: 900px;
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+}
+
+.publication-reader-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    flex: 0 0 auto;
+}
+
+.publication-reader-label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted, #6b7280);
+}
+
+.publication-reader-header h2 {
+    margin: 4px 0 0;
+    font-size: 1.15rem;
+}
+
+.publication-reader-header-actions {
+    display: flex;
+    gap: 8px;
+    flex: 0 0 auto;
+}
+
+.publication-reader-icon-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 8px;
+    background: var(--color-bg-alt, #f6f5f3);
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.publication-reader-icon-btn:hover {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.publication-reader-body {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+    background: var(--color-bg-alt, #f6f5f3);
+}
+
+/* ---------- flip mode ---------- */
+
+.publication-flip-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.publication-flipbook {
+    width: 100%;
+    height: 100%;
+}
+
+.publication-flip-page {
+    background: #fff;
+}
+
+.publication-flip-page img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+}
+
+.publication-flip-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.85);
+    font-size: 0.9rem;
+    color: var(--color-muted, #6b7280);
+    z-index: 2;
+}
+
+.publication-flip-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    font-size: 1.3rem;
+    z-index: 3;
+}
+
+.publication-flip-prev {
+    left: 16px;
+}
+
+.publication-flip-next {
+    right: 16px;
+}
+
+.publication-flip-pageindicator {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.65);
+    color: #fff;
+    font-size: 0.75rem;
+    z-index: 3;
+}
+
+/* ---------- fallback (plain iframe) mode ---------- */
+
+.publication-reader-frame {
+    display: none;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.publication-reader-fallback-link {
+    display: none;
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: inherit;
+    z-index: 3;
+}
+
+.publication-reader-footer {
+    flex: 0 0 auto;
+    padding: 16px 24px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    text-align: right;
+}
+
+@media (max-width: 600px) {
+
+    .publication-reader {
+        padding: 0;
+    }
+
+    .publication-reader-panel {
+        max-width: none;
+        height: 100vh;
+        max-height: none;
+        border-radius: 0;
+    }
+
+}
