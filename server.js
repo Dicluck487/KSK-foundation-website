@@ -5,7 +5,6 @@ const expressLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
 
 const supabase = require('./config/supabase');
-const { getPublishedPublications } = require('./controllers/publicationController');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -61,8 +60,6 @@ app.use((req, res, next) => {
 });
 
 
-// Publications available to every page (nav mega-dropdown reads this,
-// showing the 3 most recently uploaded). Sorted by created_at only.
 app.use(async (req, res, next) => {
 
   // Current page path
@@ -73,7 +70,24 @@ app.use(async (req, res, next) => {
 
   try {
 
-    res.locals.publishedPublications = await getPublishedPublications();
+    const { data, error } = await supabase
+      .from('publications')
+      .select('*')
+      .eq('status', 'published')
+      .order('year', { ascending: false });
+
+    if (error) {
+
+      console.error(
+        'Error loading published publications:',
+        error.message
+      );
+
+    } else {
+
+      res.locals.publishedPublications = data || [];
+
+    }
 
   } catch (error) {
 
@@ -103,75 +117,21 @@ const alumniRouter = require('./routes/alumni');
 // PUBLIC ROUTES
 // ---------------------------------------------------------
 
-// ⚠️ Check routes/index.js first — if a '/publications' route already
-// exists there, remove this block instead of running both.
-
-// Full publications page — the most recently uploaded published
-// item becomes the "Current Issue", everything else (still in
-// created_at order, newest first) fills the archive grid below.
-app.get('/publications', async (req, res) => {
-    try {
-
-        const decorated = await getPublishedPublications();
-
-        const currentPublication = decorated[0] || null;
-        const publications = decorated.slice(1);
-
-        res.render('publications', {
-            currentPublication,
-            publications,
-            publishedPublications: res.locals.publishedPublications
-        });
-
-    } catch (err) {
-        console.error('Publications page error:', err);
-        res.status(500).send('Something went wrong on our end. Please try again later.');
-    }
-});
-
-
-app.get('/publications/:id', async (req, res) => {
-    try {
-        const { id } = req.params;
-
-        const { data: publication, error } = await supabase
-            .from('publications')
-            .select('*')
-            .eq('id', id)
-            .eq('status', 'published')
-            .single();
-
-        if (error || !publication) {
-            console.error('Publication lookup error:', error);
-            return res.status(404).render('404');
-        }
-
-        const decorated = await getPublishedPublications();
-        const currentPublication = decorated.find((p) => p.id === publication.id) || {
-            ...publication,
-            coverUrl: null,
-            documentUrl: null
-        };
-
-        res.render('publications', {
-            currentPublication,
-            publications: [],
-            publishedPublications: res.locals.publishedPublications
-        });
-
-    } catch (err) {
-        console.error('Publication page error:', err);
-        res.status(500).send('Something went wrong on our end. Please try again later.');
-    }
-});
-
-
+app.use('/', indexRouter);
 
 // Authentication routes MUST be public.
-app.use('/', indexRouter);
 app.use('/', authRouter);
 
+
+// ---------------------------------------------------------
+// PROTECTED ADMIN ROUTES
+// ---------------------------------------------------------
+
 app.use('/admin', adminRouter);
+app.use('/admin', heroRouter);
+app.use('/admin', alumniRouter);
+
+// Hero administration routes.
 app.use('/admin', heroRouter);
 app.use('/admin', alumniRouter);
 
@@ -199,17 +159,13 @@ app.use((req, res) => {
 // =========================================================
 
 app.use((err, req, res, next) => {
-  console.error('ERROR:', err);
-  console.error('MESSAGE:', err?.message);
-  res.status(500).send('Something went wrong on our end. Please try again later.');
-});
 
+  console.error(err.stack);
 
-app.use((err, req, res, next) => {
-  if (err instanceof require('multer').MulterError || err.message.includes('Only')) {
-    return res.status(400).send(err.message);
-  }
-  next(err);
+  res.status(500).send(
+    'Something went wrong on our end. Please try again later.'
+  );
+
 });
 
 

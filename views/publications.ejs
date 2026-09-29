@@ -60,6 +60,8 @@
 
             </div>
 
+        <!-- Replace this image with the actual current FOCUS cover -->
+        <img src="<%= currentPublication.coverUrl %>">
 
             <% if (currentPublication) { %>
 
@@ -91,7 +93,31 @@
                         </h2>
 
 
-                        <% if (currentPublication.year) { %>
+        <div class="publication-actions">
+
+          <!--
+            Reads the current issue in place, the same way the
+            FOCUS Magazine 2025 / 2026 Prospectus pages on
+            thementorshipclass.com do: the PDF opens inline for
+            reading, with a "download in case of delayed loading"
+            fallback until the reader is closed.
+
+            data-reader-pdf   -> path to the PDF to embed
+            data-reader-title -> title shown above the reader
+          -->
+          <a
+    href="<%= currentPublication.documentUrl %>"
+    data-reader-pdf="<%= currentPublication.documentUrl %>"
+>
+    Read Current Issue
+</a>
+
+          <a
+            href="#focus-archive"
+            class="btn btn-outline"
+          >
+            View Archive
+          </a>
 
                             <div class="publication-year">
                                 <%= currentPublication.year %>
@@ -122,15 +148,11 @@
                                     Read Current Issue
                                 </a>
 
-
-                                <!-- DOWNLOAD -->
-                                <a
-                                    href="<%= currentPublication.documentUrl %>"
-                                    class="btn btn-outline"
-                                    download
-                                >
-                                    Download
-                                </a>
+        <!-- Replace this image with the actual current FOCUS cover -->
+        <img src="<%= currentPublication.coverUrl %>">
+        <span class="current-badge">
+          CURRENT ISSUE
+        </span>
 
                             <% } else { %>
 
@@ -162,7 +184,13 @@
                         once it has been published.
                     </p>
 
-                </div>
+       
+          <a
+    href="<%= currentPublication.documentUrl %>"
+    data-reader-pdf="<%= currentPublication.documentUrl %>"
+>
+    Read Current Issue
+</a>
 
             <% } %>
 
@@ -184,7 +212,8 @@
         <div class="container">
 
 
-            <div class="section-heading">
+        <!-- Replace this image with the actual current FOCUS cover -->
+        <img src="<%= currentPublication.coverUrl %>">
 
                 <span class="section-eyebrow">
                     MAGAZINE ARCHIVE
@@ -216,10 +245,13 @@
                              INDIVIDUAL PUBLICATION
                         ================================================== -->
 
-                        <article
-                            class="magazine-archive-card"
-                            id="publication-<%= pub.id %>"
-                        >
+       
+          <a
+    href="<%= currentPublication.documentUrl %>"
+    data-reader-pdf="<%= currentPublication.documentUrl %>"
+>
+    Read Current Issue
+</a>
 
 
                             <!-- COVER -->
@@ -242,7 +274,8 @@
                             <div class="magazine-archive-content">
 
 
-                                <% if (pub.year) { %>
+        <!-- Replace this image with the actual current FOCUS cover -->
+        <img src="<%= currentPublication.coverUrl %>">
 
                                     <span class="archive-year">
                                         <%= pub.year %>
@@ -270,7 +303,13 @@
                                 <div class="archive-actions">
 
 
-                                    <% if (pub.documentUrl) { %>
+       
+          <a
+    href="<%= currentPublication.documentUrl %>"
+    data-reader-pdf="<%= currentPublication.documentUrl %>"
+>
+    Read Current Issue
+</a>
 
 
                                         <!-- READ -->

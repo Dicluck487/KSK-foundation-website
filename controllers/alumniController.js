@@ -1,124 +1,184 @@
+// controllers/alumniController.js
+
 const supabase = require('../config/supabase');
-const { v4: uuidv4 } = require('uuid');
 
-const BUCKET = 'alumni';
 
-function publicUrl(storagePath) {
-  if (!storagePath) return null;
-  const { data } = supabase.storage.from(BUCKET).getPublicUrl(storagePath);
-  return data.publicUrl;
-}
-
+// =========================================================
 // GET /admin/alumni
-exports.listAlumni = async (req, res, next) => {
+// Display all alumni
+// =========================================================
+
+async function listAlumni(req, res) {
   try {
-    const { data, error } = await supabase
+    const { data: alumni, error } = await supabase
       .from('alumni')
       .select('*')
       .order('created_at', { ascending: false });
 
-    if (error) throw error;
+    if (error) {
+      console.error('Error loading alumni:', error.message);
 
-    const alumni = (data || []).map((a) => ({
-      ...a,
-      image_url: publicUrl(a.photo_path),
-    }));
+      return res.status(500).render('admin/error', {
+        title: 'Alumni Error',
+        message: error.message,
+      });
+    }
 
-    res.render('admin/alumni', { alumni });
-  } catch (error) {
-    next(error);
-  }
-};
+    const alumniWithUrls = (alumni || []).map((person) => {
+      let public_url = null;
 
-// POST /admin/alumni/upload
-exports.uploadAlumni = async (req, res, next) => {
-  try {
-    if (!req.file) return res.status(400).send('No file uploaded');
+      if (person.photo_path) {
+        const { data } = supabase
+          .storage
+          .from('alumni')
+          .getPublicUrl(person.photo_path);
 
-    const { name, year, program, testimonial } = req.body;
-    const ext = req.file.originalname.split('.').pop();
-    const photoPath = `${uuidv4()}.${ext}`;
+        public_url = data.publicUrl;
+      }
 
-    const { error: uploadError } = await supabase.storage
-      .from(BUCKET)
-      .upload(photoPath, req.file.buffer, { contentType: req.file.mimetype });
-
-    if (uploadError) throw uploadError;
-
-    const { error: dbError } = await supabase.from('alumni').insert({
-      name,
-      year: year || null,
-      program: program || null,
-      testimonial: testimonial || null,
-      photo_path: photoPath,
-      status: 'draft',
+      return {
+        ...person,
+        public_url,
+      };
     });
 
-    if (dbError) throw dbError;
-    res.redirect('/admin/alumni');
-  } catch (error) {
-    next(error);
-  }
-};
+    res.render('admin/alumni', {
+      alumni: alumniWithUrls,
+    });
 
-// POST /admin/alumni/:id/publish
-exports.publishAlumni = async (req, res, next) => {
+  } catch (error) {
+    console.error('Alumni controller error:', error);
+
+    res.status(500).render('admin/error', {
+      title: 'Alumni Error',
+      message: 'Unable to load alumni.',
+    });
+  }
+}
+
+
+// =========================================================
+// POST /admin/alumni
+// Create alumni record
+// =========================================================
+
+async function createAlumni(req, res) {
   try {
+    const {
+      name,
+      cohort,
+      program,
+      testimonial,
+      photo_path,
+      status,
+    } = req.body;
+
+    if (!name || !cohort || !program) {
+      return res.status(400).render('admin/error', {
+        title: 'Invalid Alumni',
+        message: 'Name, cohort and program are required.',
+      });
+    }
+
     const { error } = await supabase
       .from('alumni')
-      .update({ status: 'published' })
-      .eq('id', req.params.id);
+      .insert({
+        name,
+        cohort,
+        program,
+        testimonial: testimonial || null,
+        photo_path: photo_path || null,
+        status: status || 'published',
+      });
 
-    if (error) throw error;
+    if (error) {
+      console.error('Error creating alumni:', error.message);
+
+      return res.status(500).render('admin/error', {
+        title: 'Alumni Error',
+        message: error.message,
+      });
+    }
+
     res.redirect('/admin/alumni');
-  } catch (error) {
-    next(error);
-  }
-};
 
-// POST /admin/alumni/:id/draft
-exports.setDraftAlumni = async (req, res, next) => {
+  } catch (error) {
+    console.error('Create alumni error:', error);
+
+    res.status(500).render('admin/error', {
+      title: 'Alumni Error',
+      message: 'Unable to create alumni record.',
+    });
+  }
+}
+
+
+// =========================================================
+// POST /admin/alumni/:id/status
+// Publish / Draft
+// =========================================================
+
+async function updateAlumniStatus(req, res) {
   try {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    if (!['published', 'draft'].includes(status)) {
+      return res.redirect('/admin/alumni');
+    }
+
     const { error } = await supabase
       .from('alumni')
-      .update({ status: 'draft' })
-      .eq('id', req.params.id);
+      .update({
+        status,
+      })
+      .eq('id', id);
 
-    if (error) throw error;
+    if (error) {
+      console.error('Error updating alumni status:', error.message);
+    }
+
     res.redirect('/admin/alumni');
+
   } catch (error) {
-    next(error);
+    console.error('Update alumni status error:', error);
+
+    res.redirect('/admin/alumni');
   }
-};
+}
 
-// used by the public homepage — 3 most recent PUBLISHED
-exports.getRecentAlumni = async () => {
-  const { data, error } = await supabase
-    .from('alumni')
-    .select('*')
-    .eq('status', 'published')
-    .order('created_at', { ascending: false })
-    .limit(3);
 
-  if (error) throw error;
-  return (data || []).map((a) => ({
-    ...a,
-    image_url: publicUrl(a.photo_path),
-  }));
-};
+// =========================================================
+// POST /admin/alumni/:id/delete
+// Delete alumni record
+// =========================================================
 
-// used by the /alumni page — published, excluding the 3 most recent
-exports.getOlderAlumni = async () => {
-  const { data, error } = await supabase
-    .from('alumni')
-    .select('*')
-    .eq('status', 'published')
-    .order('created_at', { ascending: false })
-    .range(3, 999);
+async function deleteAlumni(req, res) {
+  try {
+    const { id } = req.params;
 
-  if (error) throw error;
-  return (data || []).map((a) => ({
-    ...a,
-    image_url: publicUrl(a.photo_path),
-  }));
+    const { error } = await supabase
+      .from('alumni')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      console.error('Error deleting alumni:', error.message);
+    }
+
+    res.redirect('/admin/alumni');
+
+  } catch (error) {
+    console.error('Delete alumni error:', error);
+
+    res.redirect('/admin/alumni');
+  }
+}
+
+
+module.exports = {
+  listAlumni,
+  createAlumni,
+  updateAlumniStatus,
+  deleteAlumni,
 };
