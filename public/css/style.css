@@ -785,7 +785,7 @@ transform: scale(1.03);
 }
 
 .hero-slide.active {
-opacity: 50;
+opacity: 1;
 animation: heroZoom 20s ease-in-out;
 }
 

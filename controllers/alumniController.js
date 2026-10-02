@@ -175,9 +175,30 @@ async function deleteAlumni(req, res) {
   }
 }
 
+const getRecentAlumni = async (limit = 6) => {
+  try {
+    const { data, error } = await supabase
+      .from("alumni")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .limit(limit);
+
+    if (error) {
+      console.error("Error fetching recent alumni:", error);
+      return [];
+    }
+
+    return data || [];
+  } catch (error) {
+    console.error("Unexpected error fetching recent alumni:", error);
+    return [];
+  }
+};
+
 
 module.exports = {
   listAlumni,
+  getRecentAlumni,
   createAlumni,
   updateAlumniStatus,
   deleteAlumni,

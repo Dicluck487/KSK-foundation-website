@@ -167,10 +167,35 @@ async function deleteHeroImage(req, res) {
   }
 }
 
+async function getPublishedHero() {
+  const { data: heroImages, error } = await supabase
+    .from('hero_images')
+    .select('*')
+    .eq('status', 'published')
+    .order('display_order', { ascending: true });
+
+  if (error) {
+    throw error;
+  }
+
+  return (heroImages || []).map((image) => {
+    const { data } = supabase
+      .storage
+      .from('hero-images')
+      .getPublicUrl(image.storage_path);
+
+    return {
+      ...image,
+      public_url: data.publicUrl,
+    };
+  });
+}
+
 
 module.exports = {
   listHeroImages,
   createHeroImage,
   updateHeroStatus,
   deleteHeroImage,
+  getPublishedHero,
 };

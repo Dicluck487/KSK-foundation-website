@@ -51,7 +51,6 @@ const programApplicationController = require('../controllers/programApplicationC
 const { getPublishedGallery, getRecentGalleryPhotos } = require('../controllers/galleryController');
 const heroController = require('../controllers/heroController');
 const alumniController = require('../controllers/alumniController');
-const publicationController = require('../controllers/publicationController');
 
 
 // ---- Routes ----
@@ -168,19 +167,6 @@ router.get('/cohorts', (req, res) => {
 
 
 
-router.get('/publications', async (req, res, next) => {
-    try {
-        const publications = await publicationController.getPublishedPublications();
-
-        res.render('publications', {
-            title: 'Publications',
-            description: 'Publications from KSK Foundation.',
-            publications
-        });
-    } catch (error) {
-        next(error);
-    }
-});
 router.get('/news-events', (req, res) => {
   res.render('news-events', {
     title: 'News & Events',

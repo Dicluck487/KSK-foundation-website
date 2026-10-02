@@ -10,7 +10,7 @@
     <div class="hero-slides">
         <% heroImages.forEach((img, i) => { %>
             <div class="hero-slide <%= i === 0 ? 'active' : '' %>"
-                 style="background-image: url('<%= img.image_url %>');"></div>
+                 style="background-image: url('<%= img.public_url %>');"></div>
         <% }) %>
     </div>
 
