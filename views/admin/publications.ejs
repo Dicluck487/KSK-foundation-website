@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Publications — KSK Admin</title>
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+<div class="admin-shell">
+  <%- include('partials/sidebar', { active: 'publications' }) %>
+  <main class="admin-main">
+    <div class="admin-topbar"><h1>Publications</h1></div>
+
+    <% if (currentAdmin.role !== 'viewer') { %>
+    <div class="panel">
+      <h2>Add publication</h2>
+      <form method="POST" action="/admin/publications" enctype="multipart/form-data" class="form-grid">
+        <div><label>Title</label><input type="text" name="title" required></div>
+        <div><label>Type</label>
+          <select name="type" required>
+            <option value="focus_magazine">FOCUS Magazine</option>
+            <option value="annual_highlights">Annual Highlights</option>
+            <option value="prospectus">Prospectus</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div><label>Year</label><input type="number" name="year" placeholder="2026"></div>
+        <div><label>Description</label><textarea name="description"></textarea></div>
+        <div><label>Cover image</label><input type="file" name="cover" accept="image/*"></div>
+        <div><label>PDF document</label><input type="file" name="document" accept="application/pdf"></div>
+        <button type="submit" class="btn primary">Save publication</button>
+      </form>
+    </div>
+    <% } %>
+
+    <div class="panel">
+      <h2>All publications</h2>
+      <% if (publications.length === 0) { %>
+        <div class="empty-state">No publications yet.</div>
+      <% } else { %>
+        <table class="admin-table">
+          <thead><tr><th></th><th>Title</th><th>Type</th><th>Year</th><th>Status</th><th></th></tr></thead>
+          <tbody>
+            <% publications.forEach(p => { %>
+              <tr>
+                <td><% if (p.coverUrl) { %><img class="thumb" src="<%= p.coverUrl %>"><% } %></td>
+                <td><%= p.title %></td>
+                <td><%= p.type.replace('_',' ') %></td>
+                <td><%= p.year || '—' %></td>
+                <td><span class="badge <%= p.status %>"><%= p.status %></span></td>
+                <td>
+                  <% if (p.documentUrl) { %><a href="<%= p.documentUrl %>" target="_blank" class="btn small">View PDF</a><% } %>
+                  <% if (currentAdmin.role !== 'viewer') { %>
+                    <form method="POST" action="/admin/publications/<%= p.id %>/status" style="display:inline;">
+                      <input type="hidden" name="status" value="<%= p.status === 'published' ? 'draft' : 'published' %>">
+                      <button type="submit" class="btn small"><%= p.status === 'published' ? 'Unpublish' : 'Publish' %></button>
+                    </form>
+                    <form method="POST" action="/admin/publications/<%= p.id %>/delete" style="display:inline;" onsubmit="return confirm('Delete this publication?');">
+                      <button type="submit" class="btn small danger">Delete</button>
+                    </form>
+                  <% } %>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      <% } %>
+    </div>
+  </main>
+</div>
+</body>
+</html>

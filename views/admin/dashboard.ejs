@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard — KSK Admin</title>
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+<div class="admin-shell">
+  <%- include('partials/sidebar', { active: 'dashboard' }) %>
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <h1>Dashboard</h1>
+      <div class="welcome">Welcome, <%= currentAdmin.name %> · <span class="badge <%= currentAdmin.role %>"><%= currentAdmin.role.replace('_',' ') %></span></div>
+    </div>
+
+    <% if (stats.pendingApps > 0 && currentAdmin.role === 'super_admin') { %>
+      <div class="panel" style="border-color:#f5d98e;background:#fffaf0;">
+        <strong><%= stats.pendingApps %></strong> admin application<%= stats.pendingApps > 1 ? 's' : '' %> awaiting review.
+        <a href="/admin/applications" class="btn small primary" style="margin-left:10px;">Review now</a>
+      </div>
+    <% } %>
+
+
+
+
+<% if (stats.unreadContacts > 0) { %>
+  <div class="panel" style="border-color:#a7c7f2;background:#f0f6ff;">
+    <strong><%= stats.unreadContacts %></strong> new contact message<%= stats.unreadContacts > 1 ? 's' : '' %> waiting.
+    <a href="/admin/contacts" class="btn small primary" style="margin-left:10px;">Review now</a>
+  </div>
+<% } %>
+
+
+    <div class="stat-grid">
+      <div class="stat-card"><div class="num"><%= stats.contacts %></div><div class="label">Contact Messages</div></div>
+      <div class="stat-card"><div class="num"><%= stats.partners %></div><div class="label">Partnership Applications</div></div>
+      <div class="stat-card"><div class="num"><%= stats.subscribers %></div><div class="label">Newsletter Subscribers</div></div>
+      <div class="stat-card"><div class="num"><%= stats.alumni %></div><div class="label">Alumni Records</div></div>
+       <div class="stat-card"><div class="num"><%= stats.programApplications %></div><div class="label">Program Applications</div></div>
+
+      
+    </div>
+
+    <div class="panel">
+      <h2>Recent Contact Messages</h2>
+      <% if (recentMessages.length === 0) { %>
+        <div class="empty-state">No messages yet.</div>
+      <% } else { %>
+        <table class="admin-table">
+          <thead><tr><th>Name</th><th>Subject</th><th>Status</th><th>Date</th></tr></thead>
+          <tbody>
+            <% recentMessages.forEach(m => { %>
+              <tr>
+                <td><%= m.name %></td>
+                <td><%= m.subject || '—' %></td>
+                <td><span class="badge <%= m.status %>"><%= m.status %></span></td>
+                <td><%= new Date(m.created_at).toLocaleDateString() %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+        <a href="/admin/contacts" class="btn small" style="margin-top:12px;">View all messages</a>
+      <% } %>
+    </div>
+  </main>
+</div>
+
+<style>
+  
+  /* Admin action buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 6px;
+    padding: 9px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+/* Small buttons */
+.btn.small {
+    padding: 8px 16px;
+    font-size: 13px;
+    min-width: auto;
+    width: auto;
+}
+
+/* Primary button */
+.btn.primary {
+    background: #7b1fa2;
+    color: #fff;
+}
+
+/* Hover */
+.btn.primary:hover {
+    background: #641782;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Make sure buttons don't stretch */
+.btn.small.primary {
+    display: inline-flex;
+    width: fit-content;
+    max-width: max-content;
+}
+</style>
+</body>
+</html>

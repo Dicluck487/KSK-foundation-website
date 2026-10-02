@@ -1,0 +1,854 @@
+<!-- =========================================================
+     NEWSLETTER / QUARTERLY UPDATE SIGNUP
+     Reusable partial
+
+======================================================== -->
+
+
+<%
+  const newsletterVariant = typeof variant !== 'undefined'
+    ? variant
+    : 'full';
+
+  const newsletterMessage =
+    typeof message !== 'undefined' ? message : null;
+
+  const newsletterError =
+    typeof error !== 'undefined' ? error : null;
+%>
+
+
+<section
+  class="newsletter-signup newsletter-signup--<%= newsletterVariant %>"
+  id="newsletter-signup"
+>
+
+  <div class="container">
+
+    <% if (newsletterVariant === 'full') { %>
+
+      <!-- ===================================================
+           FULL VERSION
+           Homepage / Contact Page
+      ==================================================== -->
+
+      <div class="newsletter-full">
+
+        <div class="newsletter-content">
+
+          <span class="section-eyebrow">
+            STAY CONNECTED
+          </span>
+
+          <h2>
+            Subscribe to our Quarterly Update
+          </h2>
+
+          <p class="newsp">
+            Get the latest from KSK Foundation every quarter —
+            new cohorts, graduation highlights, partnership
+            opportunities and FOCUS Magazine releases,
+            straight to your inbox.
+          </p>
+
+        </div>
+
+
+        <form
+          action="/newsletter/subscribe"
+          method="POST"
+          class="newsletter-form"
+          id="newsletter-form"
+          novalidate
+        >
+
+          <!-- ===============================================
+               NAME
+          ================================================ -->
+
+          <div class="form-group">
+
+            <label for="newsletter-name">
+              Full Name
+            </label>
+
+            <input
+              type="text"
+              id="newsletter-name"
+              name="fullName"
+              placeholder="Enter your full name"
+              autocomplete="name"
+              required
+            >
+
+            <small
+              class="form-error"
+              data-error-for="fullName"
+            ></small>
+
+          </div>
+
+
+          <!-- ===============================================
+               EMAIL
+          ================================================ -->
+
+          <div class="form-group">
+
+            <label for="newsletter-email">
+              Email Address
+            </label>
+
+            <input
+              type="email"
+              id="newsletter-email"
+              name="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required
+            >
+
+            <small
+              class="form-error"
+              data-error-for="email"
+            ></small>
+
+          </div>
+
+
+          <!-- ===============================================
+               I AM A...
+          ================================================ -->
+
+          <div class="form-group">
+
+            <label for="newsletter-role">
+              I am a...
+              <span class="optional">
+                Optional
+              </span>
+            </label>
+
+            <select
+              id="newsletter-role"
+              name="audience"
+            >
+
+              <option value="">
+                Select an option
+              </option>
+
+              <option value="prospective_sponsor">
+                Prospective Sponsor
+              </option>
+
+              <option value="parent_guardian">
+                Parent or Guardian
+              </option>
+
+              <option value="alumnus">
+                Alumnus
+              </option>
+
+              <option value="partner_school">
+                Partner School
+              </option>
+
+              <option value="other">
+                Other
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <!-- ===============================================
+               CONSENT
+          ================================================ -->
+
+          <div class="newsletter-consent">
+
+            <label class="checkbox-label">
+
+              <input
+                type="checkbox"
+                name="consent"
+                value="yes"
+                id="newsletter-consent"
+                required
+              >
+
+              <span class="custom-checkbox"></span>
+
+              <span class="consent-text">
+                I agree to receive quarterly email updates
+                from KSK Foundation.
+              </span>
+
+            </label>
+
+            <small
+              class="form-error"
+              data-error-for="consent"
+            ></small>
+
+          </div>
+
+
+          <!-- ===============================================
+               HIDDEN FORM DATA
+          ================================================ -->
+
+          <input
+            type="hidden"
+            name="source"
+            value="<%= typeof newsletterSource !== 'undefined'
+              ? newsletterSource
+              : 'website' %>"
+          >
+
+
+          <!-- ===============================================
+               SUBMIT
+          ================================================ -->
+
+          <button
+            type="submit"
+            class="btn btn-outline btn-lg newsletter-submit"
+          >
+
+            <span class="button-text">
+              Subscribe to Updates
+            </span>
+
+            <!-- <span
+              class="button-loading"
+              aria-hidden="true"
+            >
+              Subscribing...
+            </span> -->
+
+          </button>
+
+
+          <!-- ===============================================
+               SUCCESS / ERROR MESSAGE
+          ================================================ -->
+
+          <div
+            class="newsletter-status"
+            id="newsletter-status"
+            role="status"
+            aria-live="polite"
+          >
+
+            <% if (newsletterMessage) { %>
+
+              <div class="newsletter-success">
+                <strong>Thank you!</strong>
+                <%= newsletterMessage %>
+              </div>
+
+            <% } %>
+
+
+            <% if (newsletterError) { %>
+
+              <div class="newsletter-error">
+                <%= newsletterError %>
+              </div>
+
+            <% } %>
+
+          </div>
+
+        </form>
+
+      </div>
+
+
+    <% } else { %>
+
+
+      <!-- ===================================================
+           COMPACT VERSION
+           Footer
+      ==================================================== -->
+
+      <div class="newsletter-compact">
+
+        <div class="newsletter-compact-content">
+
+          <span class="section-eyebrow">
+            STAY UPDATED
+          </span>
+
+          <h3>
+            Get KSK Foundation updates
+          </h3>
+
+          <p>
+            New cohorts, graduation highlights,
+            opportunities and FOCUS Magazine releases.
+          </p>
+
+        </div>
+
+
+        <form
+          action="/newsletter/subscribe"
+          method="POST"
+          class="newsletter-compact-form"
+        >
+
+          <div class="compact-input">
+
+            <label
+              for="footer-newsletter-name"
+              class="sr-only"
+            >
+              Full Name
+            </label>
+
+            <input
+              type="text"
+              id="footer-newsletter-name"
+              name="fullName"
+              placeholder="Full Name"
+              required
+            >
+
+          </div>
+
+
+          <div class="compact-input">
+
+            <label
+              for="footer-newsletter-email"
+              class="sr-only"
+            >
+              Email Address
+            </label>
+
+            <input
+              type="email"
+              id="footer-newsletter-email"
+              name="email"
+              placeholder="Email Address"
+              required
+            >
+
+          </div>
+
+
+          <input
+            type="hidden"
+            name="source"
+            value="footer"
+          >
+
+
+          <input
+            type="hidden"
+            name="audience"
+            value=""
+          >
+
+
+          <input
+            type="hidden"
+            name="consent"
+            value="yes"
+          >
+
+
+          <button
+            type="submit"
+            class="btn btn-primary"
+          >
+            Subscribe
+          </button>
+
+        </form>
+
+
+        <p class="newsletter-privacy">
+          By subscribing, you agree to receive quarterly
+          email updates from KSK Foundation.
+        </p>
+
+      </div>
+
+    <% } %>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     NEWSLETTER CSS
+========================================================= -->
+
+<style>
+
+  /* =========================================================
+     FULL NEWSLETTER
+  ========================================================= */
+.newsletter-signup {
+    position: relative;
+    overflow: hidden;
+}
+
+/* =========================================
+   FULL NEWSLETTER — REDUCED HEIGHT
+========================================= */
+
+.newsletter-full {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 35px;
+    align-items: center;
+
+    /* Was 65px */
+    padding: 32px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--color-dark, #14161a),
+            var(--color-dark-2, #1e2126)
+        );
+
+    color: #fff;
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.12);
+}
+
+.newsletter-content .section-eyebrow {
+    color: #e9760b
+}
+
+.newsletter-content h2 {
+    margin: 0 0 10px;
+    color: #fff;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    line-height: 1.1;
+}
+
+.newsletter-content p {
+    max-width: 600px;
+    margin: 0;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   FORM — COMPACT
+========================================= */
+
+.newsletter-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group label {
+    color: #fff;
+    font-size: 0.76rem;
+    font-weight: 700;
+}
+
+.form-group .optional {
+    margin-left: 5px;
+    color: rgba(255,255,255,0.45);
+    font-size: 0.65rem;
+    font-weight: 400;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+
+    /* Was 50px */
+    min-height: 40px;
+
+    padding: 8px 12px;
+
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 7px;
+
+    outline: none;
+
+    background: rgba(255,255,255,0.07);
+    color: #fff;
+
+    font-family: inherit;
+    font-size: 0.82rem;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.form-group input::placeholder {
+    color: rgba(255,255,255,0.4);
+}
+
+.form-group select {
+    cursor: pointer;
+}
+
+.form-group select option {
+    color: #222;
+    background: #fff;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--color-primary, #e0392c);
+    background: rgba(255,255,255,0.1);
+}
+.newsp{
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+
+/* =========================================
+   CONSENT
+========================================= */
+
+.newsletter-consent {
+    grid-column: 1 / -1;
+    margin-top: 0;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+
+    cursor: pointer;
+
+    color: rgba(255,255,255,0.72);
+    font-size: 0.72rem;
+    line-height: 1.3;
+}
+
+.custom-checkbox {
+    flex: 0 0 auto;
+
+    width: 17px;
+    height: 17px;
+
+    margin-top: 1px;
+
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 3px;
+
+    background: rgba(255,255,255,0.05);
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.checkbox-label input:checked + .custom-checkbox {
+    border-color: var(--color-primary, #e0392c);
+    background: var(--color-primary, #e0392c);
+}
+
+.checkbox-label input:checked + .custom-checkbox::after {
+    content: "✓";
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 900;
+}
+
+
+/* =========================================
+   SUBMIT
+========================================= */
+
+.newsletter-submit {
+    grid-column: 1 / -1;
+    justify-self: start;
+
+    min-width: 160px;
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.newsletter-status {
+    grid-column: 1 / -1;
+}
+
+.newsletter-success,
+.newsletter-error {
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+}
+
+.form-error {
+    min-height: 10px;
+    color: #ffaaa1;
+    font-size: 0.65rem;
+}
+
+
+/* =========================================
+   COMPACT FOOTER VERSION
+========================================= */
+
+.newsletter-signup--compact {
+    padding: 18px 0;
+}
+
+.newsletter-compact {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+
+    gap: 18px;
+    align-items: center;
+
+    padding: 20px;
+
+    border-radius: 12px;
+
+    background: var(--color-dark-2, #1e2126);
+}
+
+.newsletter-compact-content .section-eyebrow {
+    margin-bottom: 4px;
+    color: var(--color-primary, #e0392c);
+}
+
+.newsletter-compact-content h3 {
+    margin: 0 0 5px;
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.newsletter-compact-content p {
+    margin: 0;
+    color: rgba(255,255,255,0.55);
+    font-size: 0.75rem;
+    line-height: 1.4;
+}
+
+.newsletter-compact-form {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr auto;
+    gap: 7px;
+}
+
+.compact-input input {
+    width: 100%;
+
+    min-height: 38px;
+
+    padding: 8px 11px;
+
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 6px;
+
+    outline: none;
+
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+}
+
+.newsletter-privacy {
+    grid-column: 1 / -1;
+
+    margin: 0;
+
+    color: rgba(255,255,255,0.4);
+    font-size: 0.62rem;
+}
+
+</style>
+
+
+<!-- =========================================================
+     NEWSLETTER JAVASCRIPT
+========================================================= -->
+
+<script>
+
+(function () {
+
+  const form =
+    document.getElementById('newsletter-form');
+
+  if (!form) {
+    return;
+  }
+
+
+  const nameInput =
+    document.getElementById('newsletter-name');
+
+  const emailInput =
+    document.getElementById('newsletter-email');
+
+  const consentInput =
+    document.getElementById('newsletter-consent');
+
+  const status =
+    document.getElementById('newsletter-status');
+
+
+  function showError(field, message) {
+
+    const errorElement =
+      form.querySelector(
+        '[data-error-for="' + field + '"]'
+      );
+
+    if (errorElement) {
+      errorElement.textContent = message;
+    }
+
+  }
+
+
+  function clearErrors() {
+
+    form
+      .querySelectorAll('.form-error')
+      .forEach(function (element) {
+
+        element.textContent = '';
+
+      });
+
+  }
+
+
+  function validateEmail(email) {
+
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      .test(email);
+
+  }
+
+
+  form.addEventListener(
+    'submit',
+    function (event) {
+
+      event.preventDefault();
+
+      clearErrors();
+
+      let valid = true;
+
+
+      /* NAME */
+
+      if (!nameInput.value.trim()) {
+
+        showError(
+          'fullName',
+          'Please enter your full name.'
+        );
+
+        valid = false;
+
+      }
+
+
+      /* EMAIL */
+
+      if (!emailInput.value.trim()) {
+
+        showError(
+          'email',
+          'Please enter your email address.'
+        );
+
+        valid = false;
+
+      } else if (
+        !validateEmail(emailInput.value.trim())
+      ) {
+
+        showError(
+          'email',
+          'Please enter a valid email address.'
+        );
+
+        valid = false;
+
+      }
+
+
+      /* CONSENT */
+
+      if (!consentInput.checked) {
+
+        showError(
+          'consent',
+          'Please agree to receive quarterly updates.'
+        );
+
+        valid = false;
+
+      }
+
+
+      if (!valid) {
+        return;
+      }
+
+
+      /* LOADING STATE */
+
+      form.classList.add('is-loading');
+
+      const submitButton =
+        form.querySelector('.newsletter-submit');
+
+      submitButton.disabled = true;
+
+
+      /*
+       * Submit normally after validation.
+       *
+       * The browser sends the form to:
+       * POST /newsletter/subscribe
+       */
+
+      form.submit();
+
+    }
+  );
+
+
+})();
+
+</script>

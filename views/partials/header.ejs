@@ -1,0 +1,167 @@
+<header class="site-header">
+    <div class="container header-inner">
+
+
+    <!-- Logo -->
+    <a href="/" class="logo">
+             <img src="/images/logo.jpg" alt="KSK Logo">
+       
+    </a>
+   
+
+    <!-- Navigation -->
+    <nav class="main-nav" id="main-nav">
+        <ul>
+
+            <li>
+                <a href="/" class="<%= currentPath === '/' ? 'active' : '' %>">
+                    Welcome
+                </a>
+            </li>
+
+           <!-- About KSK -->
+<li class="has-dropdown">
+
+    <a href="javascript:void(0);" class="dropdown-toggle" aria-expanded="false">
+        About KSK
+        <span class="dropdown-arrow">⌄</span>
+    </a>
+
+    <div class="mega-dropdown">
+
+        <a href="/who-we-are" class="mega-item">
+            <img src="/images/pride.jpg" alt="Who We Are">
+            <h4>Who We Are</h4>
+            <p>
+                A youth program using peer-to-peer mentorship
+                to groom leaders and entrepreneurs.
+            </p>
+        </a>
+
+        <a href="/alumni" class="mega-item">
+            <img src="/images/alum2.jpg" alt="Testimonials">
+            <h4>Testimonials</h4>
+            <p>
+                Whether a potential mentee, mentor, or just curious,
+                our alumni are ready to share and support.
+            </p>
+        </a>
+
+        <a href="/leadership" class="mega-item">
+            <img src="/images/lead1.jpg" alt="Our Team">
+            <h4>Our Team</h4>
+            <p>
+                Our leading management team behind great mentoring
+                and coaching.
+            </p>
+        </a>
+
+    </div>
+
+</li>
+            <!-- Cohorts -->
+            <!-- <li>
+                <a href="/cohorts" class="<%= currentPath === '/cohorts' ? 'active' : '' %>">
+                    Cohort
+                </a>
+            </li> -->
+
+            <li>
+                <a href="/programs" class="<%= currentPath === '/cohorts' ? 'active' : '' %>">
+                    Programs
+                </a>
+            </li>
+
+            <!-- Publications -->
+<li class="has-dropdown">
+    <a href="/publications" class="dropdown-toggle">
+        Publications ⌄
+    </a>
+
+    <div class="mega-dropdown">
+
+        <% if (publishedPublications && publishedPublications.length > 0) { %>
+
+            <% publishedPublications.slice(0, 3).forEach(function(pub) { %>
+
+                <a
+                    href="/publications#publication-<%= pub.id %>"
+                    class="mega-item"
+                >
+
+                    <img
+                        src="<%= pub.cover_url || '/images/magazinn.jpeg' %>"
+                        alt="<%= pub.title %>"
+                    >
+
+                    <h4>
+                        <%= pub.title %>
+                    </h4>
+
+                    <!-- <% if (pub.description) { %>
+                        <p><%= pub.description %></p>
+                    <% } %> -->
+
+                    <% if (pub.year) { %>
+                        <span><%= pub.year %></span>
+                    <% } %>
+
+                </a>
+
+            <% }); %>
+
+        <% } else { %>
+
+            <a href="/publications" class="mega-item">
+                <img
+                    src="/images/magazinn.jpeg"
+                    alt="KSK Foundation Publications"
+                >
+                <h4>Publications</h4>
+                <span>View our publications</span>
+            </a>
+
+        <% } %>
+
+    </div>
+</li>
+
+            <!-- Contact -->
+            <li>
+                <a href="/partner-with-us" class="<%= currentPath === '/partner-with-us' ? 'active' : '' %>">
+                    Partner With Us
+                </a>
+            </li>
+
+
+            <li>
+                <a href="/contact-us">Contact</a>
+            </li>
+
+            <li>
+<a href="/faq">FAQ</a>
+            </li>
+
+        </ul>
+    </nav>
+
+    <!-- Apply Button -->
+    <a href="/apply" class="btn primary header-cta">
+        Apply Today
+    </a>
+
+    <!-- Mobile Navigation Toggle -->
+    <button
+        class="nav-toggle"
+        id="nav-toggle"
+        aria-label="Toggle navigation"
+        type="button"
+    >
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+</div>
+
+</header>

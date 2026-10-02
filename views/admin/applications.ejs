@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Applications — KSK Admin</title>
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+<div class="admin-shell">
+  <%- include('partials/sidebar', { active: 'applications' }) %>
+  <main class="admin-main">
+    <div class="admin-topbar"><h1>Admin Applications</h1></div>
+
+    <div class="panel">
+      <% if (applications.length === 0) { %>
+        <div class="empty-state">No applications yet.</div>
+      <% } else { %>
+        <table class="admin-table">
+          <thead><tr><th>Name</th><th>Email</th><th>Reason</th><th>Status</th><th>Date</th><th></th></tr></thead>
+          <tbody>
+            <% applications.forEach(a => { %>
+              <tr>
+                <td><%= a.name %><br><small style="color:#6b7280;"><%= a.organization || '' %></small></td>
+                <td><%= a.email %><br><small style="color:#6b7280;"><%= a.phone || '' %></small></td>
+                <td style="max-width:260px;"><%= a.reason %></td>
+                <td><span class="badge <%= a.status %>"><%= a.status %></span></td>
+                <td><%= new Date(a.created_at).toLocaleDateString() %></td>
+                <td>
+                  <% if (a.status === 'pending') { %>
+                    <form method="POST" action="/admin/applications/<%= a.id %>/approve" style="display:inline-flex;gap:6px;align-items:center;">
+                      <select name="role" class="btn small" style="padding:5px 8px;">
+                        <option value="content_admin">Content Admin</option>
+                        <option value="viewer">Viewer</option>
+                      </select>
+                      <button type="submit" class="btn small primary">Approve</button>
+                    </form>
+                    <form method="POST" action="/admin/applications/<%= a.id %>/reject" style="display:inline;">
+                      <button type="submit" class="btn small danger">Reject</button>
+                    </form>
+                  <% } %>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      <% } %>
+    </div>
+  </main>
+</div>
+</body>
+</html>

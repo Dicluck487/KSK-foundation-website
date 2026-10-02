@@ -1,0 +1,442 @@
+<!-- =========================================================
+     KSK FOUNDATION HOME PAGE
+     Existing hero slider, mentorship experience, testimonials,
+     and CTA retained and updated to match the new brief.
+========================================================= -->
+
+<!-- Hero Section -->
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-slides">
+        <% heroImages.forEach((img, i) => { %>
+            <div class="hero-slide <%= i === 0 ? 'active' : '' %>"
+                 style="background-image: url('<%= img.image_url %>');"></div>
+        <% }) %>
+    </div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-inner">
+        <div class="hero-text">
+            <p class="brow">KSK Foundation</p>
+            <p class="lead">Since</p>
+
+            <p class="stat-number">2011</p>
+                        
+            <h1>Empowering Young Ugandans to Lead, Innovate and Build.</h1>
+
+            <p class="lead">
+                KSK Foundation has been equipping young people
+                with the leadership, enterprise and innovation skills they
+                need to thrive through flagship programs, scholarships
+                and mentorship across Uganda.
+            </p>
+
+            <div class="hero-actions">
+                <a href="/programs" class="btn btn-primary">
+                    Explore Our Programs
+                </a>
+
+                <a href="/partner-with-us" class="btn btn-outline">
+                    Partner With Us
+                </a>
+
+                <a href="#newsletter-signup" class="btn btn-primary">
+                    Subscribe to Updates
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Hero slider JavaScript -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const slides = document.querySelectorAll(".hero-slide");
+    const heroText = document.querySelector(".hero-text");
+
+    if (!slides.length) {
+        return;
+    }
+
+    let currentSlide = 0;
+
+    if (heroText) {
+        requestAnimationFrame(function () {
+            heroText.classList.add("animate");
+        });
+    }
+
+    setInterval(function () {
+        slides[currentSlide].classList.remove("active");
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add("active");
+    }, 5000);
+});
+</script>
+
+<!-- Impact at a Glance -->
+<section class="section impact">
+    <div class="container">
+        <p class="eyebrow center">Impact at a Glance</p>
+
+        <h2 class="center">
+            Building Young People. Strengthening Communities.
+        </h2>
+
+        <p class="center max-w">
+            Since 2011, KSK Foundation has invested in young Ugandans
+            through leadership development, enterprise, innovation,
+            scholarships and mentorship.
+        </p>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">2011</div>
+                <div class="stat-label">Founded</div>
+                <p>14+ years of impact</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number">60+</div>
+                <div class="stat-label">Industry Professionals Engaged</div>
+                <p>Facilitators engaged in 2025/26</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Flagship Youth Programs</div>
+                <p>Programs delivered</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Partner Schools</div>
+                <p>Schools with KSK scholarships</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Programs Preview -->
+<!-- Our Programs Preview -->
+<section class="section programs-preview">
+    <div class="container">
+        <p class="eyebrow center">Our Programs</p>
+
+        <h2 class="center">
+            Programs Designed to Help Young Ugandans Thrive
+        </h2>
+
+        <!-- <p class="center max-w">
+            From secondary school leavers to young professionals,
+            our programs develop the confidence, practical skills
+            and networks needed to lead and create impact.
+        </p> -->
+
+        <div class="program-grid">
+            <article class="program-card">
+                <img
+                    src="/images/WorldReady.jpg"
+                    alt="Making Students World Ready Program"
+                    class="rounded-img"
+                >
+
+                <div class="program-card-content">
+                    <p class="eyebrow">Flagship Youth Program</p>
+                    <h3>Making Students World Ready Program</h3>
+
+                    <!-- <p>
+                        An eight-week intensive equipping secondary school
+                        leavers with personal branding, leadership, enterprise
+                        and innovation skills.
+                    </p> -->
+
+                    <!-- <a href="/programs" class="btn btn-outline">
+                        View Program
+                    </a> -->
+                </div>
+            </article>
+
+            <article class="program-card">
+                <img
+                    src="/images/KAIZEN.jpg"
+                    alt="Kaizen Teen Boot Camp"
+                    class="rounded-img"
+                >
+
+                <div class="program-card-content">
+                    <p class="eyebrow">Teen Development</p>
+                    <h3>Kaizen Teen Boot Camp</h3>
+
+                    <!-- <p>
+                        A residential life-skills camp for teens, combining
+                        personal development, financial literacy, leadership
+                        and outdoor experiential learning.
+                    </p> -->
+
+                    <!-- <a href="/programs" class="btn btn-outline">
+                        View Program
+                    </a> -->
+                </div>
+            </article>
+
+            <article class="program-card">
+                <img
+                    src="/images/WRP.jpg"
+                    alt="Financial Services Academy"
+                    class="rounded-img"
+                >
+
+                <div class="program-card-content">
+                    <p class="eyebrow">Professional Development</p>
+                    <h3>Financial Services Academy</h3>
+
+                    <!-- <p>
+                        A professional-development program for young
+                        graduates covering finance, accounting, taxation,
+                        AI in finance and capital markets, delivered by
+                        distinguished industry practitioners.
+                    </p> -->
+
+                    <!-- <a href="/programs" class="btn btn-outline">
+                        View Program
+                    </a> -->
+                </div>
+            </article>
+
+            <article class="program-card">
+                <img
+                    src="/images/scholarship.jpg"
+                    alt="KSK Foundation Scholarships"
+                    class="rounded-img"
+                >
+
+                <div class="program-card-content">
+                    <p class="eyebrow">Scholarships</p>
+                    <h3>Scholarships</h3>
+
+                    <p>
+                        Scholarship opportunities supporting young Ugandans
+                        through KSK Foundation's partner schools.
+                    </p>
+
+                    <!-- <a href="/programs" class="btn btn-outline">
+                        View Program
+                    </a> -->
+                </div>
+            </article>
+        </div>
+
+        <div class="center programs-more">
+            <a href="/programs" class="btn btn-primary">
+                Explore All Programs
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Existing Mentorship Experience retained -->
+<section class="section experience">
+    <div class="container two-col">
+        <img
+            src="/images/images1.jpg"
+            alt="Mentorship session"
+            class="rounded-img tall"
+        >
+
+        <div>
+            <p class="eyebrow">Our Mentorship Experience</p>
+
+            <h2>
+                Ignite Your Potential. Learn From Visionaries.
+            </h2>
+
+            <p>
+                Immerse yourself in a mentorship experience guided by
+                experienced leaders. Our program uses personal narratives
+                and structured monthly themes to build:
+            </p>
+
+            <ul class="checklist">
+                <li>Self awareness</li>
+                <li>Personal development</li>
+                <li>Career development</li>
+                <li>Impactful leadership</li>
+                <li>Entrepreneurship</li>
+            </ul>
+
+            <a href="/who-we-are" class="btn btn-outline">
+                More About Us
+            </a>
+        </div>
+    </div>
+</section>
+
+<%- include('partials/recent-gallery', { recentPhotos }) %>
+
+
+<!-- Testimonials Preview -->
+<section class="section alumni-preview">
+  <div class="container">
+
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">ALUMNI VOICES</span>
+        <h2>What Our Alumni Say</h2>
+      </div>
+
+      <a href="/alumni" class="btn secondary">
+        View All Alumni
+      </a>
+    </div>
+
+    <% if (latestAlumni && latestAlumni.length > 0) { %>
+
+      <div class="alumni-preview-grid">
+
+        <% latestAlumni.forEach(alumni => { %>
+
+          <article class="alumni-preview-card">
+
+            <% if (alumni.image_url || alumni.photo_path) { %>
+              <div class="alumni-preview-image">
+                <img
+                  src="<%= alumni.image_url || alumni.photo_path %>"
+                  alt="<%= alumni.name %>"
+                  loading="lazy"
+                >
+              </div>
+            <% } %>
+
+            <div class="alumni-preview-content">
+
+              <span class="alumni-program">
+                <%= alumni.program || 'KSK Foundation Alumni' %>
+              </span>
+
+              <h3>
+                <%= alumni.name %>
+              </h3>
+
+              <p class="alumni-quote">
+                “<%= alumni.testimonial %>”
+              </p>
+
+            </div>
+
+          </article>
+
+        <% }) %>
+
+      </div>
+
+    <% } else { %>
+
+      <div class="empty-state">
+        Alumni voices will appear here as they are published.
+      </div>
+
+    <% } %>
+
+
+        <div class="center testimonials-more">
+            <!-- <a href="/testimonials" class="btn btn-outline"> -->
+                <a href="/alumni" class="btn btn-outline"></a>
+                Read Alumni Voices
+            </a>
+        </div>
+
+    </div>
+</section>
+
+
+<div id="newsletter-signup">
+<%- include('partials/newsletter-signup', {
+    variant: 'full',
+    newsletterSource: 'homepage'
+}) %>
+</div>
+
+
+<!-- Closing Partner CTA -->
+<section class="cta-banner">
+    <div class="container cta-inner">
+        <div>
+            <p class="eyebrow">Partner With Us</p>
+
+            <h2>
+                Help Build the Next Generation of Young Ugandan Leaders.
+            </h2>
+
+            <p>
+                Every cohort we run depends on partners who believe in what
+                young Ugandans are capable of. Get in touch to find out how
+                your organization can be part of the next season.
+            </p>
+        </div>
+
+        <a href="/partner-with-us" class="btn btn-primary btn-lg">
+            Partner With Us
+        </a>
+    </div>
+</section>
+
+<style>
+    .brow {
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-size: 18px;
+        font-weight: 700;
+        color: #e0740f;
+        margin: 0 0 8px;
+    }
+
+    .stat-number {
+        font-size: clamp(32px, 5vw, 48px);
+        font-weight: 800;
+        color: #e0740f;
+        margin: 0 0 12px;
+    }
+</style>
+
+<style>
+    /* Four-program preview: all cards on one line */
+    .programs-preview .program-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 22px;
+    }
+
+    .programs-preview .program-card {
+        min-width: 0;
+        height: 100%;
+    }
+
+    .programs-preview .program-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+    }
+
+    .programs-preview .program-card-content {
+        height: calc(100% - 220px);
+        box-sizing: border-box;
+    }
+
+    @media (max-width: 900px) {
+        .programs-preview .program-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @media (max-width: 600px) {
+        .programs-preview .program-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+   <script src="/js/stat-counter.js"></script>
+
+

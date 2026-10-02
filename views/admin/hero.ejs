@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hero Images — KSK Admin</title>
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+<div class="admin-shell">
+  <%- include('partials/sidebar', { active: 'hero' }) %>
+  <main class="admin-main">
+    <div class="admin-topbar"><h1>Hero Images</h1></div>
+
+    <% if (currentAdmin.role !== 'viewer') { %>
+    <div class="panel">
+      <h2>Upload hero image</h2>
+    <form method="POST" action="/admin/hero/upload" enctype="multipart/form-data" class="form-grid">
+
+    <div>
+        <label for="image">Image</label>
+        <input
+            type="file"
+            id="image"
+            name="image"
+            accept="image/*"
+            required
+        >
+    </div>
+
+    <div>
+        <label for="title">Title</label>
+        <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="e.g. KSK Graduation Luncheon"
+            required
+        >
+    </div>
+
+    <div>
+        <label for="alt_text">Alt text (optional)</label>
+        <input
+            type="text"
+            id="alt_text"
+            name="alt_text"
+            placeholder="Describe the image"
+        >
+    </div>
+
+    <button type="submit" class="btn primary">Upload</button>
+
+</form>
+    </div>
+    <% } %>
+
+    <div class="panel">
+      <h2>All hero images</h2>
+      <% if (images.length === 0) { %>
+        <div class="empty-state">No hero images yet.</div>
+      <% } else { %>
+        <table class="admin-table">
+          <thead><tr><th></th><th>Status</th><th></th></tr></thead>
+          <tbody>
+            <% images.forEach(img => { %>
+              <tr>
+                <td><img class="thumb" src="<%= img.image_url %>"></td>
+                <td><span class="badge <%= img.status %>"><%= img.status %></span></td>
+                <td>
+                  <% if (currentAdmin.role !== 'viewer') { %>
+                    <% if (img.status === 'draft') { %>
+                      <form method="POST" action="/admin/hero/<%= img.id %>/publish" style="display:inline;">
+                        <button type="submit" class="btn small">Publish</button>
+                      </form>
+                    <% } else { %>
+                      <form method="POST" action="/admin/hero/<%= img.id %>/draft" style="display:inline;">
+                        <button type="submit" class="btn small">Move to Draft</button>
+                      </form>
+                    <% } %>
+                  <% } %>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      <% } %>
+    </div>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<section class="page-header">
+  <div class="container">
+    <h1>Cohort</h1>
+    <p>Current and past mentorship cohorts.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="cohort-list">
+      <% cohorts.forEach(function(c) { %>
+        <div class="cohort-row">
+          <div>
+            <h3><%= c.name %></h3>
+            <p><%= c.period %></p>
+          </div>
+          <span class="badge <%= c.status === 'Applications Open' ? 'badge-open' : 'badge-closed' %>"><%= c.status %></span>
+        </div>
+      <% }); %>
+    </div>
+
+    <div class="cta-inline">
+      <a href="/apply" class="btn btn-primary">Apply To The Current Cohort</a>
+    </div>
+  </div>
+</section>
+
+<style>.page-header {
+  position: relative;
+  overflow: hidden;
+  background-image:
+    linear-gradient(135deg, rgba(20,22,26,0.78), rgba(251, 253, 253, 0.55)),
+    url('/images/cohort.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.page-header .section-eyebrow { color: rgba(255,255,255,0.85); }
+.page-header h1 { color: #eba852; }
+.page-header p { color: #fff; }
+</style>
