@@ -166,19 +166,21 @@ router.get('/cohorts', (req, res) => {
   });
 });
 
-router.get('/publications', async (req, res, next) => {
-  try {
-    const publications = await publicationController.getPublishedPublications();
-    res.render('publications', {
-      title: 'Publications',
-      description: 'Publications from KSK Foundation.',
-      publications
-    });
-  } catch (error) {
-    next(error);
-  }
-});
 
+
+router.get('/publications', async (req, res, next) => {
+    try {
+        const publications = await publicationController.getPublishedPublications();
+
+        res.render('publications', {
+            title: 'Publications',
+            description: 'Publications from KSK Foundation.',
+            publications
+        });
+    } catch (error) {
+        next(error);
+    }
+});
 router.get('/news-events', (req, res) => {
   res.render('news-events', {
     title: 'News & Events',
@@ -208,6 +210,7 @@ router.get('/privacy-policy', (req, res) => {
     description: 'How we handle your data.'
   });
 });
+
 
 router.get('/contact-us', (req, res) => {
   res.render('contact-us', { title: 'Contact KSK Foundation' });

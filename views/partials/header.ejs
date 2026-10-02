@@ -82,25 +82,25 @@
 
         <% if (publishedPublications && publishedPublications.length > 0) { %>
 
-            <% publishedPublications.slice(0, 3).forEach(function(pub) { %>
+            <% publishedPublications.slice(0, 3).forEach(function(pub, index) { %>
 
-                <a
-                    href="/publications#publication-<%= pub.id %>"
-                    class="mega-item"
-                >
+                <a href="/publications/<%= pub.id %>" class="mega-item">
 
-                    <img
-                        src="<%= pub.cover_url || '/images/magazinn.jpeg' %>"
-                        alt="<%= pub.title %>"
-                    >
+                    <% if (pub.cover_path) { %>
+                        <img
+                            src="<%= pub.cover_path %>"
+                            alt="<%= pub.title %>"
+                        >
+                    <% } else { %>
+                        <img
+                            src="/images/logo.jpg"
+                            alt="<%= pub.title %>"
+                        >
+                    <% } %>
 
                     <h4>
                         <%= pub.title %>
                     </h4>
-
-                    <!-- <% if (pub.description) { %>
-                        <p><%= pub.description %></p>
-                    <% } %> -->
 
                     <% if (pub.year) { %>
                         <span><%= pub.year %></span>
@@ -114,9 +114,10 @@
 
             <a href="/publications" class="mega-item">
                 <img
-                    src="/images/magazinn.jpeg"
+                    src="/images/logo.jpg"
                     alt="KSK Foundation Publications"
                 >
+
                 <h4>Publications</h4>
                 <span>View our publications</span>
             </a>

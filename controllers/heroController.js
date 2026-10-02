@@ -1,107 +1,176 @@
+// controllers/heroController.js
+
 const supabase = require('../config/supabase');
 const { v4: uuidv4 } = require('uuid');
 
-const BUCKET = 'hero-images';
-
-function publicUrl(storagePath) {
-  if (!storagePath) return null;
-  const { data } = supabase.storage.from(BUCKET).getPublicUrl(storagePath);
-  return data.publicUrl;
-}
-
-// GET /admin/hero - list all uploaded hero images
-exports.listHero = async (req, res, next) => {
+/**
+ * GET /admin/hero-images
+ *
+ * Display all hero images.
+ */
+async function listHeroImages(req, res) {
   try {
-    const { data, error } = await supabase
+    const { data: heroImages, error } = await supabase
       .from('hero_images')
       .select('*')
-      .order('display_order', { ascending: true })
-      .order('created_at', { ascending: false });
+      .order('display_order', { ascending: true });
 
-    if (error) throw error;
+    if (error) {
+      console.error('Error loading hero images:', error);
+      return res.status(500).render('admin/error', {
+        title: 'Hero Images Error',
+        message: error.message,
+      });
+    }
 
-    const images = (data || []).map((img) => ({
-      ...img,
-      image_url: publicUrl(img.storage_path),
-    }));
+    const images = (heroImages || []).map((image) => {
+      const { data } = supabase
+        .storage
+        .from('hero-images')
+        .getPublicUrl(image.storage_path);
 
-    res.render('admin/hero', { images });
-  } catch (error) {
-    next(error);
-  }
-};
-
-// POST /admin/hero/upload
-exports.uploadHero = async (req, res, next) => {
-  try {
-    if (!req.file) return res.status(400).send('No file uploaded');
-
-    const { title, alt_text } = req.body;
-    const ext = req.file.originalname.split('.').pop();
-    const storagePath = `${uuidv4()}.${ext}`;
-
-    const { error: uploadError } = await supabase.storage
-      .from(BUCKET)
-      .upload(storagePath, req.file.buffer, { contentType: req.file.mimetype });
-
-    if (uploadError) throw uploadError;
-
-    const { error: dbError } = await supabase.from('hero_images').insert({
-      title: title || null,
-      alt_text: alt_text || null,
-      storage_path: storagePath,
-      status: 'draft',
+      return {
+        ...image,
+        public_url: data.publicUrl,
+      };
     });
 
-    if (dbError) throw dbError;
-    res.redirect('/admin/hero');
-  } catch (error) {
-    next(error);
-  }
-};
+    res.render('admin/hero', {
+      heroImages: images,
+    });
 
-// POST /admin/hero/:id/publish
-exports.publishHero = async (req, res, next) => {
+  } catch (error) {
+    console.error('Hero images controller error:', error);
+
+    res.status(500).render('admin/error', {
+      title: 'Hero Images Error',
+      message: 'Unable to load hero images.',
+    });
+  }
+}
+
+
+/**
+ * POST /admin/hero-images
+ *
+ * Create a new hero image database record.
+ *
+ * This version assumes the image has already been uploaded
+ * to Supabase Storage.
+ */
+async function createHeroImage(req, res) {
   try {
+    const {
+      title,
+      storage_path,
+      alt_text,
+      display_order,
+      status,
+    } = req.body;
+
+    if (!storage_path) {
+      return res.status(400).send('Storage path is required.');
+    }
+
     const { error } = await supabase
       .from('hero_images')
-      .update({ status: 'published', updated_at: new Date() })
-      .eq('id', req.params.id);
+      .insert({
+        title: title || null,
+        storage_path,
+        alt_text: alt_text || null,
+        display_order: Number(display_order) || 0,
+        status: status || 'published',
+      });
 
-    if (error) throw error;
-    res.redirect('/admin/hero');
+    if (error) {
+      console.error('Error creating hero image:', error);
+      return res.status(500).render('admin/error', {
+        title: 'Hero Image Error',
+        message: error.message,
+      });
+    }
+
+    res.redirect('/admin/hero-images');
+
   } catch (error) {
-    next(error);
-  }
-};
+    console.error('Create hero image error:', error);
 
-// POST /admin/hero/:id/draft
-exports.setDraftHero = async (req, res, next) => {
+    res.status(500).render('admin/error', {
+      title: 'Hero Image Error',
+      message: 'Unable to create hero image.',
+    });
+  }
+}
+
+
+/**
+ * POST /admin/hero-images/:id/status
+ *
+ * Change hero image status.
+ */
+async function updateHeroStatus(req, res) {
   try {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    if (!['published', 'draft'].includes(status)) {
+      return res.redirect('/admin/hero-images');
+    }
+
     const { error } = await supabase
       .from('hero_images')
-      .update({ status: 'draft', updated_at: new Date() })
-      .eq('id', req.params.id);
+      .update({
+        status,
+        updated_at: new Date().toISOString(),
+      })
+      .eq('id', id);
 
-    if (error) throw error;
-    res.redirect('/admin/hero');
+    if (error) {
+      console.error('Error updating hero status:', error);
+    }
+
+    res.redirect('/admin/hero-images');
+
   } catch (error) {
-    next(error);
+    console.error('Update hero status error:', error);
+    res.redirect('/admin/hero-images');
   }
-};
+}
 
-// used by the public homepage
-exports.getPublishedHero = async () => {
-  const { data, error } = await supabase
-    .from('hero_images')
-    .select('*')
-    .eq('status', 'published')
-    .order('display_order', { ascending: true })
-    .order('created_at', { ascending: false });
 
-  if (error) throw error;
-  return (data || []).map((img) => ({
-    ...img,
-    image_url: publicUrl(img.storage_path),
-  }));
+/**
+ * POST /admin/hero-images/:id/delete
+ *
+ * Delete the database record.
+ *
+ * We intentionally do NOT delete the Storage file yet.
+ * That keeps the actual image safe while testing.
+ */
+async function deleteHeroImage(req, res) {
+  try {
+    const { id } = req.params;
+
+    const { error } = await supabase
+      .from('hero_images')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      console.error('Error deleting hero image:', error);
+    }
+
+    res.redirect('/admin/hero-images');
+
+  } catch (error) {
+    console.error('Delete hero image error:', error);
+    res.redirect('/admin/hero-images');
+  }
+}
+
+
+module.exports = {
+  listHeroImages,
+  createHeroImage,
+  updateHeroStatus,
+  deleteHeroImage,
 };

@@ -3,295 +3,515 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alumni Voices — KSK Admin</title>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Alumni — KSK Foundation</title>
+
   <link rel="stylesheet" href="/css/admin.css">
+
+  <style>
+    .alumni-page {
+      padding: 30px;
+    }
+
+    .alumni-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      gap: 20px;
+    }
+
+    .alumni-header h1 {
+      margin: 0;
+    }
+
+    .add-form {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font: inherit;
+    }
+
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .btn-add {
+      margin-top: 18px;
+      background: #0d6efd;
+      color: white;
+      border: 0;
+      padding: 11px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .alumni-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fill, minmax(300px, 1fr));
+
+      gap: 25px;
+    }
+
+    .alumni-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .alumni-photo {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .no-photo {
+      height: 230px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f1f1f1;
+      color: #777;
+    }
+
+    .alumni-content {
+      padding: 18px;
+    }
+
+    .alumni-content h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .alumni-meta {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 6px;
+    }
+
+    .testimonial {
+      margin-top: 15px;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .actions form {
+      margin: 0;
+    }
+
+    .actions button {
+      border: 0;
+      border-radius: 6px;
+      padding: 9px 14px;
+      cursor: pointer;
+    }
+
+    .publish {
+      background: #198754;
+      color: #fff;
+    }
+
+    .draft {
+      background: #6c757d;
+      color: #fff;
+    }
+
+    .delete {
+      background: #dc3545;
+      color: #fff;
+    }
+
+    .empty-state {
+      padding: 50px;
+      background: #fff;
+      border-radius: 12px;
+      text-align: center;
+      color: #666;
+    }
+
+    @media (max-width: 700px) {
+      .alumni-page {
+        padding: 15px;
+      }
+
+      .alumni-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-group.full {
+        grid-column: auto;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="admin-shell">
+<div class="alumni-page">
+  <%- include('partials/sidebar', { active: 'gallery' }) %>
 
-  <%- include('partials/sidebar', { active: 'alumni' }) %>
+  <div class="alumni-header">
 
-  <main class="admin-main">
+    <div>
+      <h1>Alumni</h1>
 
-    <div class="admin-topbar">
-      <h1>Manage Alumni Voices</h1>
+      <p>
+        Manage KSK Foundation alumni profiles and testimonials.
+      </p>
     </div>
 
-    <% if (currentAdmin.role !== 'viewer') { %>
+    <a href="/admin/dashboard">
+      ← Back to Dashboard
+    </a>
 
-      <!-- Add Alumni Voice -->
-      <div class="panel">
+  </div>
 
-        <h2>Add Alumni Voice</h2>
 
-        <form
-          method="POST"
-          action="/admin/alumni/upload"
-          enctype="multipart/form-data"
-          class="form-grid"
-        >
+  <!-- =====================================================
+       ADD ALUMNI
+  ====================================================== -->
 
-          <!-- Photo -->
-          <div>
-            <label for="image">Photo</label>
+  <div class="add-form">
 
-            <input
-              type="file"
-              id="image"
-              name="image"
-              accept="image/*"
-              required
-            >
-          </div>
+    <h2>Add Alumni</h2>
 
-          <!-- Name -->
-          <div>
-            <label for="name">Name</label>
+    <p>
+      Upload the alumni photo to the
+      <strong>alumni</strong>
+      Supabase Storage bucket first.
+    </p>
 
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Alumni name"
-              required
-            >
-          </div>
+    <form
+      action="/admin/alumni"
+      method="POST"
+    >
 
-          <!-- Year -->
-          <div>
-            <label for="year">Year</label>
+      <div class="form-grid">
 
-            <select
-              id="year"
-              name="year"
-              required
-            >
-              <option value="">Select year</option>
-            </select>
-          </div>
+        <div class="form-group">
 
-          <!-- Program -->
-          <div>
-            <label for="program">Program</label>
+          <label for="name">
+            Name *
+          </label>
 
-            <select
-              id="program"
-              name="program"
-              required
-            >
-              <option value="">Select program</option>
-
-              <option value="Making Students World Ready Program">
-                Making Students World Ready Program
-              </option>
-
-              <option value="Kaizen Teen Boot Camp">
-                Kaizen Teen Boot Camp
-              </option>
-
-              <option value="Financial Services Academy">
-                Financial Services Academy
-              </option>
-
-              <option value="Scholarships">
-                Scholarships
-              </option>
-            </select>
-          </div>
-
-          <!-- Testimonial -->
-          <div>
-            <label for="testimonial">Testimonial</label>
-
-            <textarea
-              id="testimonial"
-              name="testimonial"
-              placeholder="What they said..."
-              rows="5"
-              required
-            ></textarea>
-          </div>
-
-          <!-- Submit -->
-          <button
-            type="submit"
-            class="btn primary"
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="John Doe"
+            required
           >
-            Add Alumni Voice
-          </button>
 
-        </form>
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="cohort">
+            Cohort *
+          </label>
+
+          <input
+            type="text"
+            id="cohort"
+            name="cohort"
+            placeholder="Season VIII — 2025"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="program">
+            Program *
+          </label>
+
+          <input
+            type="text"
+            id="program"
+            name="program"
+            placeholder="MSWRP"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="photo_path">
+            Photo Storage Path
+          </label>
+
+          <input
+            type="text"
+            id="photo_path"
+            name="photo_path"
+            placeholder="john.jpg"
+          >
+
+        </div>
+
+
+        <div class="form-group full">
+
+          <label for="testimonial">
+            Testimonial
+          </label>
+
+          <textarea
+            id="testimonial"
+            name="testimonial"
+            placeholder="What the alumni said about the program..."
+          ></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="status">
+            Status
+          </label>
+
+          <select
+            id="status"
+            name="status"
+          >
+
+            <option value="published">
+              Published
+            </option>
+
+            <option value="draft">
+              Draft
+            </option>
+
+          </select>
+
+        </div>
 
       </div>
 
-    <% } %>
+
+      <button
+        type="submit"
+        class="btn-add"
+      >
+        Add Alumni
+      </button>
+
+    </form>
+
+  </div>
 
 
-    <!-- All Alumni Voices -->
-    <div class="panel">
+  <!-- =====================================================
+       ALUMNI LIST
+  ====================================================== -->
 
-      <h2>All Alumni Voices</h2>
+  <% if (!alumni || alumni.length === 0) { %>
 
-      <% if (alumni.length === 0) { %>
+    <div class="empty-state">
 
-        <div class="empty-state">
-          No alumni voices yet.
-        </div>
+      <h2>No Alumni Records</h2>
 
-      <% } else { %>
-
-        <table class="admin-table">
-
-          <thead>
-            <tr>
-              <th>Photo</th>
-              <th>Name</th>
-              <th>Year</th>
-              <th>Program</th>
-              <th>Testimonial</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-
-          <tbody>
-
-            <% alumni.forEach(a => { %>
-
-              <tr>
-
-                <!-- Photo -->
-                <td>
-                  <% if (a.image_url) { %>
-
-                    <img
-                      class="thumb"
-                      src="<%= a.image_url %>"
-                      alt="<%= a.name %>"
-                    >
-
-                  <% } else { %>
-
-                    <span>—</span>
-
-                  <% } %>
-                </td>
-
-                <!-- Name -->
-                <td>
-                  <%= a.name %>
-                </td>
-
-                <!-- Year -->
-                <td>
-                  <%= a.year || '—' %>
-                </td>
-
-                <!-- Program -->
-                <td>
-                  <%= a.program || '—' %>
-                </td>
-
-                <!-- Testimonial -->
-                <td>
-                  <%= a.testimonial %>
-                </td>
-
-                <!-- Status -->
-                <td>
-                  <span class="badge <%= a.status %>">
-                    <%= a.status %>
-                  </span>
-                </td>
-
-                <!-- Actions -->
-                <td>
-
-                  <% if (currentAdmin.role !== 'viewer') { %>
-
-                    <% if (a.status === 'draft') { %>
-
-                      <form
-                        method="POST"
-                        action="/admin/alumni/<%= a.id %>/publish"
-                        style="display:inline;"
-                      >
-                        <button
-                          type="submit"
-                          class="btn small"
-                        >
-                          Publish
-                        </button>
-                      </form>
-
-                    <% } else { %>
-
-                      <form
-                        method="POST"
-                        action="/admin/alumni/<%= a.id %>/draft"
-                        style="display:inline;"
-                      >
-                        <button
-                          type="submit"
-                          class="btn small"
-                        >
-                          Move to Draft
-                        </button>
-                      </form>
-
-                    <% } %>
-
-                  <% } %>
-
-                </td>
-
-              </tr>
-
-            <% }) %>
-
-          </tbody>
-
-        </table>
-
-      <% } %>
+      <p>
+        Add your first alumni profile above.
+      </p>
 
     </div>
 
-  </main>
+  <% } else { %>
+
+    <div class="alumni-grid">
+
+      <% alumni.forEach(function(person) { %>
+
+        <div class="alumni-card">
+
+
+          <% if (person.public_url) { %>
+
+            <img
+              src="<%= person.public_url %>"
+              alt="<%= person.name %>"
+              class="alumni-photo"
+            >
+
+          <% } else { %>
+
+            <div class="no-photo">
+              No photo
+            </div>
+
+          <% } %>
+
+
+          <div class="alumni-content">
+
+            <h3>
+              <%= person.name %>
+            </h3>
+
+
+            <div class="alumni-meta">
+              <strong>Cohort:</strong>
+              <%= person.cohort %>
+            </div>
+
+
+            <div class="alumni-meta">
+              <strong>Program:</strong>
+              <%= person.program %>
+            </div>
+
+
+            <div class="alumni-meta">
+              <strong>Status:</strong>
+              <%= person.status %>
+            </div>
+
+
+            <% if (person.testimonial) { %>
+
+              <div class="testimonial">
+                "<%= person.testimonial %>"
+              </div>
+
+            <% } %>
+
+
+            <div class="actions">
+
+
+              <% if (person.status !== 'published') { %>
+
+                <form
+                  action="/admin/alumni/<%= person.id %>/status"
+                  method="POST"
+                >
+
+                  <input
+                    type="hidden"
+                    name="status"
+                    value="published"
+                  >
+
+                  <button
+                    type="submit"
+                    class="publish"
+                  >
+                    Publish
+                  </button>
+
+                </form>
+
+              <% } %>
+
+
+              <% if (person.status === 'published') { %>
+
+                <form
+                  action="/admin/alumni/<%= person.id %>/status"
+                  method="POST"
+                >
+
+                  <input
+                    type="hidden"
+                    name="status"
+                    value="draft"
+                  >
+
+                  <button
+                    type="submit"
+                    class="draft"
+                  >
+                    Set Draft
+                  </button>
+
+                </form>
+
+              <% } %>
+
+
+              <form
+                action="/admin/alumni/<%= person.id %>/delete"
+                method="POST"
+                onsubmit="return confirm('Delete this alumni record?');"
+              >
+
+                <button
+                  type="submit"
+                  class="delete"
+                >
+                  Delete
+                </button>
+
+              </form>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      <% }); %>
+
+    </div>
+
+  <% } %>
 
 </div>
-
-
-<!-- Dynamic Year Dropdown -->
-<script>
-
-  const yearSelect = document.getElementById('year');
-
-  if (yearSelect) {
-
-    const currentYear = new Date().getFullYear();
-
-    const firstYear = 2023;
-
-    for (
-      let year = currentYear;
-      year >= firstYear;
-      year--
-    ) {
-
-      const option = document.createElement('option');
-
-      option.value = year;
-      option.textContent = year;
-
-      yearSelect.appendChild(option);
-    }
-  }
-
-</script>
 
 </body>
 </html>

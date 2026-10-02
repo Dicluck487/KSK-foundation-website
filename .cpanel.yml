@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/kskfound/public_html/
+    - /bin/rsync -av --exclude='.git' --exclude='.cpanel.yml' --exclude='README.md' ./ $DEPLOYPATH

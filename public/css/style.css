@@ -2662,559 +2662,732 @@ html {
     line-height: 1;
 }
 
-.alumni-preview {
-    padding: 80px 0;
-    background: #f8f8f6;
-}
+  
+        /* =========================================================
+           KSK FOUNDATION — ALUMNI VOICES
+        ========================================================= */
+
+        :root {
+            --primary: #6e0257;
+            --primary-dark: #4f0340;
+            --teal: #056b83;
+            --dark: #14161a;
+            --dark-2: #1e2126;
+            --text: #25262a;
+            --muted: #6d7178;
+            --light: #f6f5f3;
+            --white: #ffffff;
+            --border: #e7e7e7;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+            color: var(--text);
+            background: #fff;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .container {
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .alumni-hero {
+
+            .contact-page-header {
+  /* position: relative;
+  overflow: hidden; */
+  background-image:
+    /* linear-gradient(135deg, rgba(97, 6, 100, 0.78), rgba(238, 74, 230, 0.55)), */
+    url('/images/contact.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+            position: relative;
+            overflow: hidden;
+
+            min-height: 430px;
+
+            display: flex;
+            align-items: center;
+
+            background:
+                linear-gradient(
+                    110deg,
+                    rgba(20, 22, 26, 0.97),
+                    rgba(20, 22, 26, 0.88),
+                    rgba(110, 2, 87, 0.72)
+                );
+        }
+
+        .alumni-hero::before {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at 80% 20%,
+                    rgba(255,255,255,0.09),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 20% 80%,
+                    rgba(110,2,87,0.2),
+                    transparent 35%
+                );
+        }
 
-.alumni-preview .section-heading {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 30px;
-    margin-bottom: 40px;
-}
+        .hero-content {
+            position: relative;
+            z-index: 2;
 
-.alumni-preview .eyebrow {
-    display: block;
-    margin-bottom: 10px;
-    color: #d97900;
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-}
+            max-width: 760px;
 
-.alumni-preview .section-heading h2 {
-    margin: 0;
-    color: #111827;
-    font-size: clamp(30px, 4vw, 46px);
-    line-height: 1.1;
-    font-weight: 700;
-}
+            padding: 75px 0;
+        }
 
-.alumni-preview-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-}
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
 
-.alumni-preview-card {
-    overflow: hidden;
-    background: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-}
+            margin-bottom: 18px;
 
-.alumni-preview-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.11);
-}
+            color: #e8b9dd;
 
-.alumni-preview-image {
-    width: 100%;
-    height: 250px;
-    overflow: hidden;
-}
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
 
-.alumni-preview-image img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-}
+        .hero-eyebrow::before {
+            content: "";
 
-.alumni-preview-card:hover .alumni-preview-image img {
-    transform: scale(1.04);
-}
+            width: 35px;
+            height: 2px;
 
-.alumni-preview-content {
-    padding: 28px 24px 30px;
-}
+            background: #e8b9dd;
+        }
 
-.alumni-program {
-    display: block;
-    margin-bottom: 12px;
-    color: #d97900;
-    font-size: 12px;
-    line-height: 1.4;
-    font-weight: 800;
-    letter-spacing: 1.3px;
-    text-transform: uppercase;
-}
+        .hero-content h1 {
+            margin: 0 0 20px;
 
-.alumni-preview-content h3 {
-    margin: 0 0 16px;
-    color: #561358;
-    font-size: 22px;
-    line-height: 1.25;
-}
+            color: #fff;
 
-.alumni-quote {
-    margin: 0;
-    color: #24344d;
-    font-size: 16px;
-    line-height: 1.7;
-}
+            font-size: clamp(2.6rem, 6vw, 5rem);
+            line-height: 0.98;
+            letter-spacing: -0.04em;
+        }
 
-.alumni-year {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 6px 12px;
-    border-radius: 20px;
-    background: #f2f3f5;
-    color: #555;
-    font-size: 13px;
-    font-weight: 600;
-}
+        .hero-content h1 span {
+            color: #dca6d0;
+        }
 
-@media (max-width: 900px) {
-    .alumni-preview-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
+        .hero-content p {
+            max-width: 650px;
 
-@media (max-width: 600px) {
-    .alumni-preview {
-        padding: 60px 0;
-    }
-
-    .alumni-preview .section-heading {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .alumni-preview-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .alumni-preview-image {
-        height: 230px;
-    }
-}
+            margin: 0;
 
+            color: rgba(255,255,255,0.72);
 
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
 
-/* ==========================================
-   PUBLICATIONS — anchor offset
-   So jumping to #publication-<id> doesn't hide
-   the card under the sticky header.
-========================================== */
 
-.current-publication-card,
-.magazine-archive-card {
-    scroll-margin-top: 110px;
-}
+        /* =========================================================
+           YEAR NAVIGATION
+        ========================================================= */
 
+        .year-navigation {
+            position: sticky;
+            top: 0;
+            z-index: 20;
 
-/* ==========================================
-   PDF READER OVERLAY
-========================================== */
-
-.pdf-reader-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 10000;
-    background: #561358;
-    align-items: center;
-    justify-content: center;
-    padding: 30px;
-}
+            background: rgba(255,255,255,0.96);
 
-.pdf-reader-overlay.open {
-    display: flex;
-}
+            border-bottom: 1px solid var(--border);
 
-.pdf-reader-container {
-    width: 100%;
-    max-width: 900px;
-    height: 90vh;
-    background: #fff;
-    border-radius: 12px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
+            backdrop-filter: blur(12px);
+        }
 
-.pdf-reader-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 18px 24px;
-    border-bottom: 1px solid #eee;
-}
+        .year-nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-.pdf-reader-label {
-    display: block;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: var(--color-primary);
-    text-transform: uppercase;
-}
+            gap: 8px;
 
-.pdf-reader-header h2 {
-    margin: 4px 0 0;
-    font-size: 1.1rem;
-}
+            padding: 12px 0;
+        }
 
-.pdf-reader-close {
-    background: none;
-    border: none;
-    font-size: 1.6rem;
-    line-height: 1;
-    cursor: pointer;
-    color: #666;
-}
+        .year-nav-inner a {
+            padding: 8px 20px;
 
-.pdf-reader-body {
-    flex: 1;
-    overflow: hidden;
-    background: #f5f5f5;
-}
+            border-radius: 100px;
 
-.pdf-reader-footer {
-    padding: 14px 24px;
-    border-top: 1px solid #eee;
-    display: flex;
-    justify-content: flex-end;
-}
+            color: var(--muted);
 
+            font-size: 0.85rem;
+            font-weight: 700;
 
-/* ==========================================
-   ADMIN — publications table
-========================================== */
+            transition:
+                background 0.2s ease,
+                color 0.2s ease;
+        }
 
-.admin-page {
-    padding: 40px 0;
-    max-width: 1100px;
-    margin: 0 auto;
-}
+        .year-nav-inner a:hover,
+        .year-nav-inner a.active {
+            background: var(--primary);
+            color: #fff;
+        }
 
-.admin-page-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 24px;
-}
 
-.admin-flash {
-    background: #e6f6ea;
-    color: #1e8a3d;
-    padding: 12px 16px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-}
+        /* =========================================================
+           INTRO
+        ========================================================= */
 
-.admin-table {
-    width: 100%;
-    border-collapse: collapse;
-}
+        .alumni-intro {
+            padding: 80px 0 55px;
 
-.admin-table th,
-.admin-table td {
-    text-align: left;
-    padding: 12px 10px;
-    border-bottom: 1px solid #eee;
-    vertical-align: middle;
-}
+            text-align: center;
+        }
 
-.admin-table-thumb {
-    width: 50px;
-    height: 65px;
-    object-fit: cover;
-    border-radius: 4px;
-}
+        .section-eyebrow {
+            display: block;
 
-.admin-table-actions {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
+            margin-bottom: 10px;
 
-.btn-danger {
-    background: #d9483e;
-    color: #fff;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-}
+            color: var(--primary);
 
-.btn-danger:hover {
-    background: #b23a2c;
-}
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
 
+        .alumni-intro h2 {
+            max-width: 720px;
 
+            margin: 0 auto 16px;
 
-/* ==========================================
-   PUBLICATION READER (flipbook)
-========================================== */
+            color: var(--dark);
 
-.publication-reader {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 10000;
-    background: #561358;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-}
+            font-size: clamp(2rem, 4vw, 3.1rem);
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+        }
 
-.publication-reader.is-open {
-    display: flex;
-}
+        .alumni-intro p {
+            max-width: 680px;
 
-body.publication-reader-open {
-    overflow: hidden;
-}
+            margin: 0 auto;
 
-.publication-reader-panel {
-    width: 100%;
-    max-width: 1100px;
-    height: 92vh;
-    background: #561358;
-    border-radius: 14px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
-}
+            color: var(--muted);
 
-/* Fullscreen: let the panel fill the whole screen */
-.publication-reader-panel:fullscreen,
-.publication-reader-panel:-webkit-full-screen {
-    max-width: none;
-    width: 100vw;
-    height: 100vh;
-    border-radius: 0;
-}
+            font-size: 0.98rem;
+        }
 
 
-/* ---------- HEADER ---------- */
+        /* =========================================================
+           YEAR SECTIONS
+        ========================================================= */
 
-.publication-reader-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 24px;
-    background: #561358;
-    color: #fff;
-    flex-shrink: 0;
-}
+        .year-section {
+            padding: 65px 0;
 
-.publication-reader-label {
-    display: block;
-    font-size: 0.68rem;
-    font-weight: 800;
-    letter-spacing: 1.4px;
-    text-transform: uppercase;
-    color: var(--color-primary);
-}
+            scroll-margin-top: 70px;
+        }
 
-.publication-reader-header h2 {
-    margin: 4px 0 0;
-    font-size: 1.05rem;
-    color: #fff;
-}
+        .year-section:nth-child(even) {
+            background: var(--light);
+        }
 
-.publication-reader-header-actions {
-    display: flex;
-    gap: 8px;
-}
+        .year-heading {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
 
-.publication-reader-icon-btn {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(255, 255, 255, 0.08);
-    color: #fff;
-    font-size: 1.2rem;
-    line-height: 1;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s ease;
-}
+            gap: 30px;
 
-.publication-reader-icon-btn:hover,
-.publication-reader-icon-btn.is-active {
-    background: rgba(255, 255, 255, 0.2);
-}
+            margin-bottom: 30px;
+        }
 
+        .year-title {
+            display: flex;
+            align-items: center;
 
-/* ---------- BODY ---------- */
+            gap: 15px;
+        }
 
-.publication-reader-body {
-    position: relative;
-    flex: 1;
-    overflow: hidden;
-    background:
-        radial-gradient(circle at center, #2a1e37 0%, #150e1c 100%);
-}
+        .year-title span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-/* Flipbook wrap fills the body by default... */
-.publication-flip-wrap {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+            width: 45px;
+            height: 45px;
 
-.publication-flipbook {
-    max-width: 100%;
-    max-height: 100%;
-}
+            border-radius: 50%;
 
-.publication-flipbook .page {
-    background: #fff;
-}
+            background: var(--primary);
 
-.publication-flipbook .page canvas {
-    width: 100%;
-    height: 100%;
-    display: block;
-}
+            color: #fff;
 
-/* ...and the fallback iframe/link are hidden until .is-fallback is set */
-.publication-reader-frame,
-.publication-reader-fallback-link {
-    display: none;
-}
+            font-size: 0.72rem;
+            font-weight: 800;
+        }
 
-.publication-reader-body.is-fallback .publication-flip-wrap {
-    display: none;
-}
+        .year-title h2 {
+            margin: 0;
 
-.publication-reader-body.is-fallback .publication-reader-frame {
-    display: block;
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
+            color: var(--dark);
 
-.publication-reader-body.is-fallback .publication-reader-fallback-link {
-    display: inline-block;
-    position: absolute;
-    bottom: 16px;
-    right: 16px;
-    padding: 8px 16px;
-    background: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    border-radius: 999px;
-    font-size: 0.8rem;
-    text-decoration: none;
-}
+            font-size: 2.1rem;
+            line-height: 1;
+        }
 
+        .year-description {
+            max-width: 430px;
 
-/* ---------- LOADING ---------- */
-
-.publication-flip-loading {
-    display: none;
-    position: absolute;
-    inset: 0;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 0.95rem;
-    letter-spacing: 0.5px;
-    background: rgba(21, 14, 28, 0.7);
-    z-index: 2;
-}
+            margin: 0;
 
-.publication-flip-loading.is-visible {
-    display: flex;
-}
+            color: var(--muted);
 
+            font-size: 0.88rem;
+        }
 
-/* ---------- NAV ---------- */
-
-.publication-flip-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(255, 255, 255, 0.12);
-    color: #fff;
-    font-size: 1.6rem;
-    line-height: 1;
-    cursor: pointer;
-    z-index: 3;
-    transition: background 0.2s ease;
-}
 
-.publication-flip-nav:hover:not(:disabled) {
-    background: rgba(255, 255, 255, 0.28);
-}
+        /* =========================================================
+           TESTIMONIAL CARDS
+        ========================================================= */
 
-.publication-flip-nav:disabled {
-    opacity: 0.25;
-    cursor: default;
-}
+        .alumni-grid {
+            display: grid;
 
-.publication-flip-prev {
-    left: 16px;
-}
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
 
-.publication-flip-next {
-    right: 16px;
-}
+            gap: 22px;
+        }
 
-.publication-flip-pageindicator {
-    position: absolute;
-    bottom: 16px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 6px 16px;
-    border-radius: 999px;
-    background: rgba(0, 0, 0, 0.55);
-    color: #fff;
-    font-size: 0.8rem;
-    z-index: 3;
-}
+        .alumni-card {
+            overflow: hidden;
 
+            display: flex;
+            flex-direction: column;
 
-/* ---------- FOOTER ---------- */
+            background: #fff;
 
-.publication-reader-footer {
-    padding: 14px 24px;
-    background: #241a2e;
-    display: flex;
-    justify-content: flex-end;
-    flex-shrink: 0;
-}
+            border: 1px solid var(--border);
 
+            border-radius: 16px;
 
-/* ---------- RESPONSIVE ---------- */
+            box-shadow:
+                0 8px 30px rgba(0,0,0,0.04);
 
-@media (max-width: 700px) {
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
 
-    .publication-reader-panel {
-        height: 96vh;
-        border-radius: 10px;
-    }
+        .alumni-card:hover {
+            transform: translateY(-5px);
 
-    .publication-flip-nav {
-        width: 40px;
-        height: 40px;
-        font-size: 1.3rem;
-    }
+            box-shadow:
+                0 18px 40px rgba(0,0,0,0.09);
+        }
 
-    .publication-reader-header h2 {
-        font-size: 0.92rem;
-    }
 
-}
+        /* =========================================================
+           CARD IMAGE
+        ========================================================= */
+
+        .alumni-photo {
+            position: relative;
+
+            height: 270px;
+
+            overflow: hidden;
+
+            background: #ddd;
+        }
+
+        .alumni-photo img {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+            object-position: center top;
+
+            transition: transform 0.5s ease;
+        }
+
+        .alumni-card:hover .alumni-photo img {
+            transform: scale(1.04);
+        }
+
+        .year-badge {
+            position: absolute;
+
+            top: 15px;
+            left: 15px;
+
+            padding: 6px 11px;
+
+            border-radius: 100px;
+
+            background: rgba(20,22,26,0.82);
+
+            color: #fff;
+
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+        }
+
+
+        /* =========================================================
+           CARD CONTENT
+        ========================================================= */
+
+        .alumni-card-content {
+            display: flex;
+            flex-direction: column;
+
+            flex: 1;
+
+            padding: 25px;
+        }
+
+        .alumni-program {
+            margin-bottom: 8px;
+
+            color: var(--primary);
+
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .alumni-card h3 {
+            margin: 0 0 3px;
+
+            color: var(--dark);
+
+            font-size: 1.2rem;
+            line-height: 1.25;
+        }
+
+        .alumni-role {
+            display: block;
+
+            margin-bottom: 18px;
+
+            color: #96999f;
+
+            font-size: 0.76rem;
+        }
+
+        .alumni-quote {
+            position: relative;
+
+            margin: 0;
+
+            padding-left: 18px;
+
+            color: #555a61;
+
+            font-size: 0.87rem;
+            line-height: 1.7;
+
+            font-style: italic;
+        }
+
+        .alumni-quote::before {
+            content: "";
+
+            position: absolute;
+
+            top: 3px;
+            left: 0;
+
+            width: 3px;
+            height: calc(100% - 6px);
+
+            border-radius: 5px;
+
+            background: var(--primary);
+        }
+
+        .alumni-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 10px;
+
+            margin-top: 22px;
+            padding-top: 15px;
+
+            border-top: 1px solid var(--border);
+        }
+
+        .alumni-card-footer span {
+            color: #999;
+
+            font-size: 0.68rem;
+        }
+
+        .read-more {
+            color: var(--primary);
+
+            font-size: 0.7rem;
+            font-weight: 800;
+
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+
+        /* =========================================================
+           FEATURED QUOTE
+        ========================================================= */
+
+        .featured-voice {
+            margin: 0 0 70px;
+
+            padding: 45px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--primary),
+                    var(--primary-dark)
+                );
+
+            color: #fff;
+
+            text-align: center;
+        }
+
+        .featured-voice .quote-mark {
+            margin-bottom: 10px;
+
+            font-family: Georgia, serif;
+
+            font-size: 4rem;
+            line-height: 0.7;
+
+            opacity: 0.35;
+        }
+
+        .featured-voice blockquote {
+            max-width: 800px;
+
+            margin: 0 auto 20px;
+
+            color: #fff;
+
+            font-family: Georgia, serif;
+
+            font-size: clamp(1.3rem, 3vw, 2rem);
+            line-height: 1.45;
+        }
+
+        .featured-voice cite {
+            color: rgba(255,255,255,0.7);
+
+            font-size: 0.75rem;
+            font-style: normal;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+
+        /* =========================================================
+           CTA
+        ========================================================= */
+
+        .alumni-cta {
+            padding: 70px 0;
+
+            background: var(--dark);
+        }
+
+        .alumni-cta-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 30px;
+        }
+
+        .alumni-cta h2 {
+            margin: 0 0 8px;
+
+            color: #fff;
+
+            font-size: clamp(1.7rem, 4vw, 2.6rem);
+            line-height: 1.1;
+        }
+
+        .alumni-cta p {
+            max-width: 620px;
+
+            margin: 0;
+
+            color: #aaa;
+
+            font-size: 0.9rem;
+        }
+
+        .alumni-cta-button {
+            flex-shrink: 0;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            min-height: 46px;
+
+            padding: 0 27px;
+
+            background: var(--primary);
+
+            color: #fff;
+
+            font-size: 0.75rem;
+            font-weight: 800;
+
+            clip-path:
+                polygon(
+                    10% 0,
+                    100% 0,
+                    90% 100%,
+                    0 100%
+                );
+
+            transition:
+                background 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .alumni-cta-button:hover {
+            background: #8b0870;
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 950px) {
+
+            .alumni-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .year-heading {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .alumni-cta-inner {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+
+        @media (max-width: 650px) {
+
+            .container {
+                width: min(100% - 28px, 1180px);
+            }
+
+            .alumni-hero {
+                min-height: 380px;
+            }
+
+            .hero-content {
+                padding: 55px 0;
+            }
+
+            .year-nav-inner {
+                justify-content: flex-start;
+
+                overflow-x: auto;
+
+                padding: 10px 0;
+            }
+
+            .year-nav-inner a {
+                flex-shrink: 0;
+            }
+
+            .alumni-intro {
+                padding: 55px 0 35px;
+            }
+
+            .year-section {
+                padding: 45px 0;
+            }
+
+            .alumni-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .alumni-photo {
+                height: 300px;
+            }
+
+            .featured-voice {
+                padding: 30px 20px;
+                margin-bottom: 45px;
+            }
 
+            .alumni-cta {
+                padding: 50px 0;
+            }
+        }

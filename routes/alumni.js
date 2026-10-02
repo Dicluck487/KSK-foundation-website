@@ -1,16 +1,64 @@
+// routes/alumni.js
+
 const express = require('express');
 const router = express.Router();
+
 const { requireAuth } = require('../middleware/auth');
-const { imageUpload } = require('../middleware/upload');
+const { requireRole } = require('../middleware/roles');
+
 const alumniController = require('../controllers/alumniController');
 
+
+// All Alumni administration requires authentication.
 router.use(requireAuth);
 
-router.get('/alumni', alumniController.listAlumni);
-router.post('/alumni/upload', imageUpload.single('image'), alumniController.uploadAlumni);
-router.post('/alumni/:id/publish', alumniController.publishAlumni);
-router.post('/alumni/:id/draft', alumniController.setDraftAlumni);
 
+// ---------------------------------------------------------
+// View Alumni
+// Super Admin + Content Admin + Viewer
+// ---------------------------------------------------------
+
+router.get(
+  '/alumni',
+  requireRole('super_admin', 'content_admin', 'viewer'),
+  alumniController.listAlumni
+);
+
+
+// ---------------------------------------------------------
+// Create Alumni
+// Super Admin + Content Admin
+// ---------------------------------------------------------
+
+router.post(
+  '/alumni',
+  requireRole('super_admin', 'content_admin'),
+  alumniController.createAlumni
+);
+
+
+// ---------------------------------------------------------
+// Update Alumni status
+// Super Admin + Content Admin
+// ---------------------------------------------------------
+
+router.post(
+  '/alumni/:id/status',
+  requireRole('super_admin', 'content_admin'),
+  alumniController.updateAlumniStatus
+);
+
+
+// ---------------------------------------------------------
+// Delete Alumni
+// Super Admin + Content Admin
+// ---------------------------------------------------------
+
+router.post(
+  '/alumni/:id/delete',
+  requireRole('super_admin', 'content_admin'),
+  alumniController.deleteAlumni
+);
 
 
 module.exports = router;
