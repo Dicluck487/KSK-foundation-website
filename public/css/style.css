@@ -3218,3 +3218,757 @@ body.publication-reader-open {
 
 }
 
+
+
+/* ==========================================
+   PUBLICATIONS PAGE
+========================================== */
+
+.publication-hero {
+    padding: 60px 0 30px;
+    text-align: center;
+}
+
+.publication-hero .lead,
+.publication-hero p {
+    max-width: 650px;
+    margin: 0 auto;
+    color: var(--color-muted);
+}
+
+.section-heading {
+    max-width: 700px;
+    margin: 0 auto 40px;
+    text-align: center;
+}
+
+.section-heading p {
+    color: var(--color-muted);
+    margin: 0;
+}
+
+
+/* ---------- CURRENT ISSUE ---------- */
+
+.current-publication-card {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 40px;
+
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
+
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.publication-cover {
+    width: 100%;
+    height: 100%;
+    min-height: 340px;
+}
+
+.publication-cover img {
+    width: 100%;
+    height: 100%;
+    min-height: 340px;
+    object-fit: cover;
+    display: block;
+}
+
+.publication-info {
+    padding: 40px 40px 40px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.publication-label {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.publication-info h2 {
+    margin: 0 0 12px;
+    font-size: 1.8rem;
+}
+
+.publication-year {
+    display: inline-block;
+    margin-bottom: 16px;
+    padding: 4px 14px;
+    border-radius: 999px;
+    background: var(--color-bg-alt);
+    color: var(--color-dark);
+    font-size: 0.85rem;
+    font-weight: 700;
+    width: fit-content;
+}
+
+.publication-description {
+    color: var(--color-muted);
+    margin-bottom: 24px;
+}
+
+.publication-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.publication-unavailable {
+    color: #999;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+
+/* ---------- ARCHIVE GRID ---------- */
+
+.magazine-archive-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px;
+}
+
+.magazine-archive-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.magazine-archive-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.11);
+}
+
+.magazine-archive-cover {
+    width: 100%;
+    height: 280px;
+}
+
+.magazine-archive-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.magazine-archive-content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.archive-year {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    width: fit-content;
+}
+
+.magazine-archive-content h3 {
+    margin: 0 0 10px;
+    font-size: 1.15rem;
+}
+
+.archive-description {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+
+    /* Clamp long descriptions so cards stay a consistent height */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+    flex: 1;
+}
+
+.archive-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}
+
+.archive-actions .btn {
+    font-size: 0.85rem;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 36px;
+}
+
+
+/* ---------- EMPTY STATES ---------- */
+
+.publication-empty {
+    text-align: center;
+    padding: 60px 25px;
+    border-radius: 18px;
+    background: var(--color-bg-alt);
+    border: 1px dashed rgba(230, 221, 218, 0.12);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.publication-empty-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #fff;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.publication-empty h3 {
+    margin-bottom: 8px;
+}
+
+.publication-empty p {
+    color: var(--color-muted);
+    margin: 0;
+}
+
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 900px) {
+
+    .current-publication-card {
+        grid-template-columns: 1fr;
+    }
+
+    .publication-cover,
+    .publication-cover img {
+        min-height: 280px;
+    }
+
+    .publication-info {
+        padding: 30px;
+    }
+
+    .magazine-archive-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .magazine-archive-list {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* ==========================================
+   PUBLICATION READER (flipbook)
+========================================== */
+
+.publication-reader {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(10, 8, 15, 0.85);
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.publication-reader.is-open {
+    display: flex;
+}
+
+body.publication-reader-open {
+    overflow: hidden;
+}
+
+.publication-reader-panel {
+    width: 100%;
+    max-width: 1100px;
+    height: 92vh;
+    background: #1c1424;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+
+/* Fullscreen: let the panel fill the whole screen */
+.publication-reader-panel:fullscreen,
+.publication-reader-panel:-webkit-full-screen {
+    max-width: none;
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+}
+
+
+/* ---------- HEADER ---------- */
+
+.publication-reader-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    background: #241a2e;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.publication-reader-label {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+}
+
+.publication-reader-header h2 {
+    margin: 4px 0 0;
+    font-size: 1.05rem;
+    color: #fff;
+}
+
+.publication-reader-header-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.publication-reader-icon-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+
+.publication-reader-icon-btn:hover,
+.publication-reader-icon-btn.is-active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+
+/* ---------- BODY ---------- */
+
+.publication-reader-body {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at center, #2a1e37 0%, #150e1c 100%);
+}
+
+/* Flipbook wrap fills the body by default... */
+.publication-flip-wrap {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.publication-flipbook {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.publication-flipbook .page {
+    background: #fff;
+}
+
+.publication-flipbook .page canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* ...and the fallback iframe/link are hidden until .is-fallback is set */
+.publication-reader-frame,
+.publication-reader-fallback-link {
+    display: none;
+}
+
+.publication-reader-body.is-fallback .publication-flip-wrap {
+    display: none;
+}
+
+.publication-reader-body.is-fallback .publication-reader-frame {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.publication-reader-body.is-fallback .publication-reader-fallback-link {
+    display: inline-block;
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    text-decoration: none;
+}
+
+
+/* ---------- LOADING ---------- */
+
+.publication-flip-loading {
+    display: none;
+    position: absolute;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    background: rgba(21, 14, 28, 0.7);
+    z-index: 2;
+}
+
+.publication-flip-loading.is-visible {
+    display: flex;
+}
+
+
+/* ---------- NAV ---------- */
+
+.publication-flip-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 3;
+    transition: background 0.2s ease;
+}
+
+.publication-flip-nav:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.28);
+}
+
+.publication-flip-nav:disabled {
+    opacity: 0.25;
+    cursor: default;
+}
+
+.publication-flip-prev {
+    left: 16px;
+}
+
+.publication-flip-next {
+    right: 16px;
+}
+
+.publication-flip-pageindicator {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    font-size: 0.8rem;
+    z-index: 3;
+}
+
+
+/* ---------- FOOTER ---------- */
+
+.publication-reader-footer {
+    padding: 14px 24px;
+    background: #241a2e;
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 700px) {
+
+    .publication-reader-panel {
+        height: 96vh;
+        border-radius: 10px;
+    }
+
+    .publication-flip-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1.3rem;
+    }
+
+    .publication-reader-header h2 {
+        font-size: 0.92rem;
+    }
+
+}
+
+/* =========================================================
+   PUBLICATION READER — required additions
+   Append to /css/publications.css.
+   Without these rules, .is-open / aria-hidden toggling from
+   publication-reader.js has nothing to visually react to, so
+   the reader modal never appears to open.
+========================================================= */
+
+.publication-reader {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(10, 10, 12, 0.82);
+}
+
+.publication-reader.is-open {
+    display: flex;
+}
+
+body.publication-reader-open {
+    overflow: hidden;
+}
+
+.publication-reader-panel {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 960px;
+    height: 90vh;
+    max-height: 900px;
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+}
+
+.publication-reader-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    flex: 0 0 auto;
+}
+
+.publication-reader-label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted, #6b7280);
+}
+
+.publication-reader-header h2 {
+    margin: 4px 0 0;
+    font-size: 1.15rem;
+}
+
+.publication-reader-header-actions {
+    display: flex;
+    gap: 8px;
+    flex: 0 0 auto;
+}
+
+.publication-reader-icon-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 8px;
+    background: var(--color-bg-alt, #f6f5f3);
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.publication-reader-icon-btn:hover {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.publication-reader-body {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+    background: var(--color-bg-alt, #f6f5f3);
+}
+
+/* ---------- flip mode ---------- */
+
+.publication-flip-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.publication-flipbook {
+    width: 100%;
+    height: 100%;
+}
+
+.publication-flip-page {
+    background: #fff;
+}
+
+.publication-flip-page img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+}
+
+.publication-flip-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.85);
+    font-size: 0.9rem;
+    color: var(--color-muted, #6b7280);
+    z-index: 2;
+}
+
+.publication-flip-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    font-size: 1.3rem;
+    z-index: 3;
+}
+
+.publication-flip-prev {
+    left: 16px;
+}
+
+.publication-flip-next {
+    right: 16px;
+}
+
+.publication-flip-pageindicator {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.65);
+    color: #fff;
+    font-size: 0.75rem;
+    z-index: 3;
+}
+
+/* ---------- fallback (plain iframe) mode ---------- */
+
+.publication-reader-frame {
+    display: none;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.publication-reader-fallback-link {
+    display: none;
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: inherit;
+    z-index: 3;
+}
+
+.publication-reader-footer {
+    flex: 0 0 auto;
+    padding: 16px 24px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    text-align: right;
+}
+
+@media (max-width: 600px) {
+
+    .publication-reader {
+        padding: 0;
+    }
+
+    .publication-reader-panel {
+        max-width: none;
+        height: 100vh;
+        max-height: none;
+        border-radius: 0;
+    }
+
+}
+
+
