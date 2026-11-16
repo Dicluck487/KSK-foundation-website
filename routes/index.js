@@ -164,11 +164,10 @@ router.get('/testimonials', (req, res) => {
 
 
 // Alumni page — 3 most recent show on homepage, everyone older shows here
+
 router.get('/alumni', async (req, res) => {
-
     try {
-
-        const { data: alumni, error } = await supabase
+        const { data, error } = await supabase
             .from('alumni')
             .select('*')
             .eq('status', 'published')
@@ -180,6 +179,24 @@ router.get('/alumni', async (req, res) => {
             throw error;
         }
 
+        // Convert Supabase storage paths into public image URLs
+        const alumni = (data || []).map(a => {
+            let image_url = null;
+
+            if (a.photo_path) {
+                const { data: imageData } = supabase.storage
+                    .from('alumni')
+                    .getPublicUrl(a.photo_path);
+
+                image_url = imageData?.publicUrl || null;
+            }
+
+            return {
+                ...a,
+                image_url
+            };
+        });
+
         const programs = [
             'Making Students World Ready Program',
             'Kaizen Teen Boot Camp',
@@ -189,26 +206,22 @@ router.get('/alumni', async (req, res) => {
 
         const years = [
             ...new Set(
-                (alumni || [])
+                alumni
                     .map(a => Number(a.year))
                     .filter(year => !isNaN(year))
             )
         ].sort((a, b) => b - a);
 
         res.render('alumni', {
-            alumni: alumni || [],
+            alumni,
             years,
             programs
         });
 
     } catch (error) {
-
         console.error('Alumni page error:', error);
-
         res.status(500).send('Unable to load Alumni Voices.');
-
     }
-
 });
 
 router.get('/our-team', (req, res) => {
