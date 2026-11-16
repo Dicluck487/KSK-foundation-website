@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const supabase = require('../config/supabase');
 
 // ---- Sample content data (swap with a database/CMS later) ----
 
@@ -52,6 +53,58 @@ const { getPublishedGallery, getRecentGalleryPhotos } = require('../controllers/
 const heroController = require('../controllers/heroController');
 const alumniController = require('../controllers/alumniController');
 const publicationController = require('../controllers/publicationController');
+
+
+// ---- Supabase ----
+const supabase = require('../config/supabase');
+
+// ---- Shared Publications Data for Header ----
+
+router.use(async (req, res, next) => {
+    try {
+        const { data, error } = await supabase
+            .from('publications')
+            .select('id, title, year, cover_path')
+            .eq('status', 'published')
+            .order('year', { ascending: false })
+            .order('created_at', { ascending: false })
+            .limit(3);
+
+        if (error) {
+            console.error('Header publications loading error:', error);
+            res.locals.publishedPublications = [];
+            return next();
+        }
+
+        res.locals.publishedPublications = (data || []).map(pub => {
+
+            let coverUrl = '/images/magazinn.jpeg';
+
+            if (pub.cover_path) {
+                const { data: imageData } = supabase.storage
+                    .from('publications')
+                    .getPublicUrl(pub.cover_path);
+
+                coverUrl = imageData.publicUrl;
+            }
+
+            return {
+                ...pub,
+                cover_url: coverUrl
+            };
+
+        });
+
+        next();
+
+    } catch (error) {
+        console.error('Shared publications middleware error:', error);
+
+        res.locals.publishedPublications = [];
+
+        next();
+    }
+});
 
 
 // ---- Routes ----
@@ -166,18 +219,6 @@ router.get('/cohorts', (req, res) => {
   });
 });
 
-router.get('/publications', async (req, res, next) => {
-  try {
-    const publications = await publicationController.getPublishedPublications();
-    res.render('publications', {
-      title: 'Publications',
-      description: 'Publications from KSK Foundation.',
-      publications
-    });
-  } catch (error) {
-    next(error);
-  }
-});
 
 router.get('/news-events', (req, res) => {
   res.render('news-events', {
@@ -259,7 +300,6 @@ router.get('/leadership', (req, res) => {
 });
 
 
-const supabase = require('../config/supabase');
 
 
 router.get('/publications', async (req, res) => {
