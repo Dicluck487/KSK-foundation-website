@@ -90,9 +90,10 @@
                 >
 
                     <img
-                        src="<%= pub.cover_url || '/images/magazinn.jpeg' %>"
-                        alt="<%= pub.title %>"
-                    >
+    src="<%= pub.cover_url %>"
+    alt="<%= pub.title %>"
+    onerror="this.onerror=null; this.src='/images/magazinn.jpeg';"
+>
 
                     <h4>
                         <%= pub.title %>
