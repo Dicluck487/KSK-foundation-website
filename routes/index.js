@@ -55,23 +55,21 @@ const alumniController = require('../controllers/alumniController');
 const publicationController = require('../controllers/publicationController');
 
 
-// ---- Supabase ----
-const supabase = require('../config/supabase');
 
-// ---- Shared Publications Data for Header ----
+ // ---- Shared Publications Data for Header ----
 
 router.use(async (req, res, next) => {
     try {
         const { data, error } = await supabase
             .from('publications')
-            .select('id, title, year, cover_path')
+            .select('*')
             .eq('status', 'published')
             .order('year', { ascending: false })
             .order('created_at', { ascending: false })
             .limit(3);
 
         if (error) {
-            console.error('Header publications loading error:', error);
+            console.error('Header publications error:', error);
             res.locals.publishedPublications = [];
             return next();
         }
@@ -81,27 +79,37 @@ router.use(async (req, res, next) => {
             let coverUrl = '/images/magazinn.jpeg';
 
             if (pub.cover_path) {
-                const { data: imageData } = supabase.storage
-                    .from('publications')
-                    .getPublicUrl(pub.cover_path);
+                const { data: imageData, error: imageError } =
+                    supabase.storage
+                        .from('publications')
+                        .getPublicUrl(pub.cover_path);
 
-                coverUrl = imageData.publicUrl;
+                if (imageData && imageData.publicUrl) {
+                    coverUrl = imageData.publicUrl;
+                }
             }
 
             return {
                 ...pub,
-                cover_url: coverUrl
+                cover_url: coverUrl,
+                coverUrl: coverUrl
             };
-
         });
+
+        console.log(
+            'Header publications loaded:',
+            res.locals.publishedPublications.map(pub => ({
+                title: pub.title,
+                cover_path: pub.cover_path,
+                cover_url: pub.cover_url
+            }))
+        );
 
         next();
 
     } catch (error) {
         console.error('Shared publications middleware error:', error);
-
         res.locals.publishedPublications = [];
-
         next();
     }
 });
